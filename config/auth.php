@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-
 return [
 
     /*
@@ -64,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', User::class),
+            'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
         // 'users' => [
@@ -113,5 +111,22 @@ return [
     */
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Lockout Settings
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the lockout settings for failed login and 2FA
+    | verification attempts. The max_attempts setting determines how many
+    | failed attempts are allowed before lockout. The lockout_minutes setting
+    | determines how long the lockout lasts.
+    |
+    */
+
+    'lockout' => [
+        'max_attempts' => env('AUTH_LOCKOUT_MAX_ATTEMPTS', 3),
+        'lockout_minutes' => env('AUTH_LOCKOUT_MINUTES', 60),
+    ],
 
 ];
