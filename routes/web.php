@@ -88,3 +88,8 @@ Route::get('/debug/test-email', function () {
         ], 500);
     }
 });
+
+// Home route (for @/routes home() helper used in auth layouts).
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+})->name('home');
