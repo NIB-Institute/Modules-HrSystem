@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\Settings\WidgetController::index
 * @see app/Http/Controllers/Settings/WidgetController.php:52
@@ -42,43 +42,6 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\WidgetController::index
-* @see app/Http/Controllers/Settings/WidgetController.php:52
-* @route '/dashboard/settings'
-*/
-const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\WidgetController::index
-* @see app/Http/Controllers/Settings/WidgetController.php:52
-* @route '/dashboard/settings'
-*/
-indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\WidgetController::index
-* @see app/Http/Controllers/Settings/WidgetController.php:52
-* @route '/dashboard/settings'
-*/
-indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-index.form = indexForm
 
 /**
 * @see \App\Http\Controllers\Settings\WidgetController::update
@@ -139,38 +102,6 @@ update.patch = (args: { widget: number | { id: number } } | [widget: number | { 
 })
 
 /**
-* @see \App\Http\Controllers\Settings\WidgetController::update
-* @see app/Http/Controllers/Settings/WidgetController.php:85
-* @route '/dashboard/settings/widgets/{widget}'
-*/
-const updateForm = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PATCH',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\WidgetController::update
-* @see app/Http/Controllers/Settings/WidgetController.php:85
-* @route '/dashboard/settings/widgets/{widget}'
-*/
-updateForm.patch = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PATCH',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-update.form = updateForm
-
-/**
 * @see \App\Http\Controllers\Settings\WidgetController::order
 * @see app/Http/Controllers/Settings/WidgetController.php:103
 * @route '/dashboard/settings/widgets/order'
@@ -205,28 +136,6 @@ order.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\Settings\WidgetController::order
-* @see app/Http/Controllers/Settings/WidgetController.php:103
-* @route '/dashboard/settings/widgets/order'
-*/
-const orderForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: order.url(options),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\WidgetController::order
-* @see app/Http/Controllers/Settings/WidgetController.php:103
-* @route '/dashboard/settings/widgets/order'
-*/
-orderForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: order.url(options),
-    method: 'post',
-})
-
-order.form = orderForm
-
-/**
 * @see \App\Http\Controllers\Settings\WidgetController::toggle
 * @see app/Http/Controllers/Settings/WidgetController.php:123
 * @route '/dashboard/settings/widgets/toggle-module'
@@ -259,28 +168,6 @@ toggle.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: toggle.url(options),
     method: 'post',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\WidgetController::toggle
-* @see app/Http/Controllers/Settings/WidgetController.php:123
-* @route '/dashboard/settings/widgets/toggle-module'
-*/
-const toggleForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: toggle.url(options),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\WidgetController::toggle
-* @see app/Http/Controllers/Settings/WidgetController.php:123
-* @route '/dashboard/settings/widgets/toggle-module'
-*/
-toggleForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: toggle.url(options),
-    method: 'post',
-})
-
-toggle.form = toggleForm
 
 const settings = {
     index: Object.assign(index, index),

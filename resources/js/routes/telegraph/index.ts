@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \DefStudio\Telegraph\Controllers\WebhookController::webhook
 * @see vendor/defstudio/telegraph/src/Controllers/WebhookController.php:14
@@ -50,28 +50,6 @@ webhook.post = (args: { token: string | number } | [token: string | number ] | s
     url: webhook.url(args, options),
     method: 'post',
 })
-
-/**
-* @see \DefStudio\Telegraph\Controllers\WebhookController::webhook
-* @see vendor/defstudio/telegraph/src/Controllers/WebhookController.php:14
-* @route '/telegraph/{token}/webhook'
-*/
-const webhookForm = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: webhook.url(args, options),
-    method: 'post',
-})
-
-/**
-* @see \DefStudio\Telegraph\Controllers\WebhookController::webhook
-* @see vendor/defstudio/telegraph/src/Controllers/WebhookController.php:14
-* @route '/telegraph/{token}/webhook'
-*/
-webhookForm.post = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: webhook.url(args, options),
-    method: 'post',
-})
-
-webhook.form = webhookForm
 
 const telegraph = {
     webhook: Object.assign(webhook, webhook),
