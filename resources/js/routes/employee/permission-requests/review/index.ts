@@ -4,7 +4,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFo
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:163
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-export const submit = (args: { permission_request: string | number } | [permission_request: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+export const submit = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: submit.url(args, options),
     method: 'post',
 })
@@ -19,9 +19,13 @@ submit.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:163
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-submit.url = (args: { permission_request: string | number } | [permission_request: string | number ] | string | number, options?: RouteQueryOptions) => {
+submit.url = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { permission_request: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { permission_request: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -33,7 +37,9 @@ submit.url = (args: { permission_request: string | number } | [permission_reques
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        permission_request: args.permission_request,
+        permission_request: typeof args.permission_request === 'object'
+        ? args.permission_request.uuid
+        : args.permission_request,
     }
 
     return submit.definition.url
@@ -46,7 +52,7 @@ submit.url = (args: { permission_request: string | number } | [permission_reques
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:163
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-submit.post = (args: { permission_request: string | number } | [permission_request: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+submit.post = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: submit.url(args, options),
     method: 'post',
 })
@@ -56,7 +62,7 @@ submit.post = (args: { permission_request: string | number } | [permission_reque
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:163
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-const submitForm = (args: { permission_request: string | number } | [permission_request: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const submitForm = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: submit.url(args, options),
     method: 'post',
 })
@@ -66,7 +72,7 @@ const submitForm = (args: { permission_request: string | number } | [permission_
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:163
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-submitForm.post = (args: { permission_request: string | number } | [permission_request: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+submitForm.post = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: submit.url(args, options),
     method: 'post',
 })

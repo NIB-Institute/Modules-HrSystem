@@ -1,5 +1,4 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
-import wallet0fdd46 from './wallet'
 /**
 * @see \App\Http\Controllers\Settings\WidgetController::index
 * @see app/Http/Controllers/Settings/WidgetController.php:52
@@ -283,93 +282,11 @@ toggleForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 
 toggle.form = toggleForm
 
-/**
-* @see \Modules\Wallets\Http\Controllers\Dashboard\V1\WalletSettingsController::wallet
-* @see Modules/Wallets/app/Http/Controllers/Dashboard/V1/WalletSettingsController.php:30
-* @route '/dashboard/settings/wallet'
-*/
-export const wallet = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: wallet.url(options),
-    method: 'get',
-})
-
-wallet.definition = {
-    methods: ["get","head"],
-    url: '/dashboard/settings/wallet',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \Modules\Wallets\Http\Controllers\Dashboard\V1\WalletSettingsController::wallet
-* @see Modules/Wallets/app/Http/Controllers/Dashboard/V1/WalletSettingsController.php:30
-* @route '/dashboard/settings/wallet'
-*/
-wallet.url = (options?: RouteQueryOptions) => {
-    return wallet.definition.url + queryParams(options)
-}
-
-/**
-* @see \Modules\Wallets\Http\Controllers\Dashboard\V1\WalletSettingsController::wallet
-* @see Modules/Wallets/app/Http/Controllers/Dashboard/V1/WalletSettingsController.php:30
-* @route '/dashboard/settings/wallet'
-*/
-wallet.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: wallet.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Wallets\Http\Controllers\Dashboard\V1\WalletSettingsController::wallet
-* @see Modules/Wallets/app/Http/Controllers/Dashboard/V1/WalletSettingsController.php:30
-* @route '/dashboard/settings/wallet'
-*/
-wallet.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: wallet.url(options),
-    method: 'head',
-})
-
-/**
-* @see \Modules\Wallets\Http\Controllers\Dashboard\V1\WalletSettingsController::wallet
-* @see Modules/Wallets/app/Http/Controllers/Dashboard/V1/WalletSettingsController.php:30
-* @route '/dashboard/settings/wallet'
-*/
-const walletForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: wallet.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Wallets\Http\Controllers\Dashboard\V1\WalletSettingsController::wallet
-* @see Modules/Wallets/app/Http/Controllers/Dashboard/V1/WalletSettingsController.php:30
-* @route '/dashboard/settings/wallet'
-*/
-walletForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: wallet.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Wallets\Http\Controllers\Dashboard\V1\WalletSettingsController::wallet
-* @see Modules/Wallets/app/Http/Controllers/Dashboard/V1/WalletSettingsController.php:30
-* @route '/dashboard/settings/wallet'
-*/
-walletForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: wallet.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-wallet.form = walletForm
-
 const settings = {
     index: Object.assign(index, index),
     update: Object.assign(update, update),
     order: Object.assign(order, order),
     toggle: Object.assign(toggle, toggle),
-    wallet: Object.assign(wallet, wallet0fdd46),
 }
 
 export default settings
