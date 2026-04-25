@@ -34,35 +34,11 @@ class ModuleSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // 1. Customer module (independent, needed for Wallets)
-            CustomerDatabaseSeeder::class,
-
-            // 2. Outlet module (TypeOutlet → Outlet)
-            OutletDatabaseSeeder::class,
-
-            // 3. ProductType (depends on Outlet, needed by Categories)
-            ProductTypeSeeder::class,
-
-            // 4. Menu module (MenuType → Menu → Category)
-            // Categories read ProductType.slug from database dynamically
-            MenuDatabaseSeeder::class,
-
-            // 5. Product module (Products, Attributes, Variants)
-            ProductAttributeSeeder::class,
-            ProductDatabaseSeeder::class,
-            ProductVariantSeeder::class,
-
-            // 6. Link products to menu categories (pivot table)
-            MenuCategoryProductSeeder::class,
-
-            // 7. Wallets module (depends on Customer)
-            WalletsDatabaseSeeder::class,
-
+          
             // 8.  emoloyee seeder modules
             EmployeeDatabaseSeeder::class,
 
-            // 9. order seeder modules
-            OrderDatabaseSeeder::class,
+    
         ]);
     }
 }
