@@ -3,19 +3,60 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
+use App\Traits\HasNotifications;
+use App\Traits\HasDevices;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory, Notifiable, HasApiTokens, TwoFactorAuthenticatable, InteractsWithMedia, HasRoles;
+    use HasNotifications, HasDevices;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'avatar',
+        'password',
+        'role',
+        'tenant_type',
+        'tenant_id',
+        'suspended_at',
+        'suspended_reason',
+        'suspended_by',
+        'two_factor_method',
+        'two_factor_email_code',
+        'two_factor_email_expires_at',
+        'two_factor_email_attempts',
+        'two_factor_email_sent_at',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_email_code',
+        'remember_token',
+    ];
 
     /**
      * Get the attributes that should be cast.
@@ -27,6 +68,195 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'two_factor_confirmed_at' => 'datetime',
+            'two_factor_email_expires_at' => 'datetime',
+            'two_factor_email_sent_at' => 'datetime',
+            'suspended_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Check if user is suspended.
+     */
+    public function isSuspended(): bool
+    {
+        return $this->suspended_at !== null;
+    }
+
+    /**
+     * Suspend the user.
+     */
+    public function suspend(?string $reason = null, ?int $suspendedBy = null): void
+    {
+        $this->update([
+            'suspended_at' => now(),
+            'suspended_reason' => $reason,
+            'suspended_by' => $suspendedBy,
+        ]);
+    }
+
+    /**
+     * Unsuspend the user.
+     */
+    public function unsuspend(): void
+    {
+        $this->update([
+            'suspended_at' => null,
+            'suspended_reason' => null,
+            'suspended_by' => null,
+        ]);
+    }
+
+    /**
+     * Get the user who suspended this user.
+     */
+    public function suspendedByUser(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'suspended_by');
+    }
+
+    /**
+     * Register the Telescope gate.
+     *
+     * This gate determines who can access Telescope in non-local environments.
+     */
+    protected function gate(): void
+    {
+        Gate::define('viewTelescope', function (User $user) {
+            return in_array($user->email, [
+                'taylor@laravel.com',
+            ]);
+        });
+    }
+
+    /**
+     * Get the user's primary tenant (polymorphic).
+     */
+    public function tenant(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Get all tenant access records for this user.
+     */
+    public function tenantAccess(): HasMany
+    {
+        return $this->hasMany(UserTenant::class);
+    }
+
+    /**
+     * Check if user belongs to a specific tenant.
+     */
+    public function belongsToTenant(string $tenantType, int $tenantId): bool
+    {
+        // Check primary tenant
+        if ($this->tenant_type === $tenantType && $this->tenant_id === $tenantId) {
+            return true;
+        }
+
+        // Check additional tenant access
+        return $this->tenantAccess()
+            ->where('tenant_type', $tenantType)
+            ->where('tenant_id', $tenantId)
+            ->exists();
+    }
+
+    /**
+     * Get the current tenant model.
+     */
+    public function currentTenant(): ?object
+    {
+        return $this->tenant;
+    }
+
+    /**
+     * Check if user has any tenant assigned.
+     */
+    public function hasTenant(): bool
+    {
+        return $this->tenant_id !== null && $this->tenant_type !== null;
+    }
+
+    /**
+     * Get all tenants the user has access to (including primary).
+     */
+    public function allTenants(): array
+    {
+        $tenants = [];
+
+        // Add primary tenant
+        if ($this->hasTenant()) {
+            $tenants[] = [
+                'type' => $this->tenant_type,
+                'id' => $this->tenant_id,
+                'is_primary' => true,
+                'model' => $this->tenant,
+            ];
+        }
+
+        // Add additional tenants
+        foreach ($this->tenantAccess as $access) {
+            $tenants[] = [
+                'type' => $access->tenant_type,
+                'id' => $access->tenant_id,
+                'is_primary' => $access->is_primary,
+                'role' => $access->role,
+                'model' => $access->tenant,
+            ];
+        }
+
+        return $tenants;
+    }
+
+    /**
+     * Check if user has two-factor authentication enabled.
+     */
+    public function hasTwoFactorEnabled(): bool
+    {
+        return $this->two_factor_confirmed_at !== null;
+    }
+
+    /**
+     * Check if user prefers email-based 2FA.
+     */
+    public function prefersTwoFactorEmail(): bool
+    {
+        return $this->two_factor_method === 'email';
+    }
+
+    /**
+     * Check if user prefers TOTP-based 2FA.
+     */
+    public function prefersTwoFactorTotp(): bool
+    {
+        return $this->two_factor_method === 'totp';
+    }
+
+    /**
+     * Enable two-factor authentication with specified method.
+     */
+    public function enableTwoFactor(string $method = 'email'): void
+    {
+        $this->update([
+            'two_factor_method' => $method,
+            'two_factor_confirmed_at' => now(),
+        ]);
+    }
+
+    /**
+     * Disable two-factor authentication.
+     */
+    public function disableTwoFactor(): void
+    {
+        $this->update([
+            'two_factor_method' => 'email',
+            'two_factor_confirmed_at' => null,
+            'two_factor_secret' => null,
+            'two_factor_recovery_codes' => null,
+            'two_factor_email_code' => null,
+            'two_factor_email_expires_at' => null,
+            'two_factor_email_attempts' => 0,
+        ]);
     }
 }

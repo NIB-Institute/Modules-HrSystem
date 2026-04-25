@@ -4,14 +4,25 @@ namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
-use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Responses\FailedTwoFactorLoginResponse;
+use App\Http\Responses\LogoutResponse;
+use App\Models\User;
+use App\Rules\Turnstile;
+use App\Services\LoginSettingsService;
+use App\Services\TwoFactorLockoutService;
+use App\Services\UserOtpService;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
+use Laravel\Fortify\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
+use Laravel\Fortify\Contracts\LogoutResponse as LogoutResponseContract;
+use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -21,7 +32,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(LogoutResponseContract::class, LogoutResponse::class);
+        $this->app->singleton(FailedTwoFactorLoginResponseContract::class, FailedTwoFactorLoginResponse::class);
     }
 
     /**
@@ -29,20 +41,214 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Fortify::createUsersUsing(CreateNewUser::class);
-        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
-        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
+        $this->configureActions();
+        $this->configureViews();
+        $this->configureRateLimiting();
+    }
+
+    /**
+     * Configure Fortify actions.
+     */
+    private function configureActions(): void
+    {
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
-        Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
+        Fortify::createUsersUsing(CreateNewUser::class);
+
+        // Custom authentication with IP lockout and Turnstile
+        Fortify::authenticateUsing(function (Request $request) {
+            $lockoutService = app(TwoFactorLockoutService::class);
+
+            // Validate Turnstile token if enabled
+            if (config('services.turnstile.enabled')) {
+                // TEMPORARY: Skip Turnstile for super-admin during debugging
+                $skipTurnstile = in_array($request->email, [
+                    'kouchlyhour@gmail.com',
+                ]);
+
+                if (!$skipTurnstile) {
+                    $validator = Validator::make($request->all(), [
+                        'cf_turnstile_response' => ['required', new Turnstile],
+                    ]);
+
+                    if ($validator->fails()) {
+                        throw ValidationException::withMessages([
+                            'cf_turnstile_response' => $validator->errors()->first('cf_turnstile_response'),
+                        ]);
+                    }
+                } else {
+                    \Log::info('Turnstile: Skipped for whitelisted email', ['email' => $request->email]);
+                }
+            }
+
+            // Debug: Always log the IP check
+            \Log::info('Login attempt from IP: ' . $request->ip() . ', is locked: ' . ($lockoutService->isLoginLocked($request) ? 'YES' : 'NO'));
+
+            // Check if IP is locked - BLOCK ALL login attempts
+            if ($lockoutService->isLoginLocked($request)) {
+                $lockoutInfo = $lockoutService->getLoginLockoutInfo($request);
+                \Log::info('Blocking login - IP is locked: ' . $request->ip());
+
+                throw ValidationException::withMessages([
+                    Fortify::username() => [$lockoutInfo['message']],
+                ]);
+            }
+
+            $user = User::where('email', $request->email)->first();
+
+            if (! $user || ! Hash::check($request->password, $user->password)) {
+                // Record failed attempt
+                $lockoutResult = $lockoutService->recordFailedLoginAttempt($request);
+
+                if ($lockoutResult['locked']) {
+                    throw ValidationException::withMessages([
+                        Fortify::username() => [$lockoutResult['message']],
+                    ]);
+                }
+
+                // Show remaining attempts in error message
+                $remainingAttempts = $lockoutResult['remaining_attempts'] ?? 0;
+                throw ValidationException::withMessages([
+                    Fortify::username() => ["Invalid credentials. {$remainingAttempts} attempt(s) remaining before lockout."],
+                ]);
+            }
+
+            // Check if user is suspended - block login
+            if ($user->isSuspended()) {
+                throw ValidationException::withMessages([
+                    Fortify::username() => [
+                        'Your account has been suspended. '.
+                        ($user->suspended_reason ? "Reason: {$user->suspended_reason}" : 'Please contact support.'),
+                    ],
+                ]);
+            }
+
+            // Clear lockout on successful authentication
+            $lockoutService->clearLoginLockout($request);
+
+            return $user;
+        });
+    }
+
+    /**
+     * Configure Fortify views.
+     */
+    private function configureViews(): void
+    {
+        Fortify::loginView(function (Request $request) {
+            $lockoutService = app(TwoFactorLockoutService::class);
+
+            try {
+                $settingsService = app(LoginSettingsService::class);
+                $loginSettings = $settingsService->getSettings();
+            } catch (\Exception $e) {
+                report($e);
+                $loginSettings = [
+                    'app_name' => config('app.name', 'Universe'),
+                    'title' => 'Welcome back',
+                    'subtitle' => 'Enter your credentials to access your account',
+                    'image' => '/img/dev.png',
+                    'logo' => '',
+                    'quote_text' => '',
+                    'quote_author' => '',
+                    'quote_company' => '',
+                    'show_social_login' => false,
+                    'show_remember_me' => true,
+                ];
+            }
+
+            try {
+                $status = $request->session()->get('status');
+            } catch (\Exception $e) {
+                $status = null;
+            }
+
+            // Check login lockout status
+            $loginLockoutInfo = $lockoutService->getLoginLockoutInfo($request);
+
+            // Check 2FA lockout status - also block login if locked from 2FA
+            $twoFactorLockoutInfo = $lockoutService->get2FALockoutInfo($request);
+
+            // Use whichever lockout is active (prioritize 2FA lockout)
+            $lockoutInfo = $twoFactorLockoutInfo['locked'] ? $twoFactorLockoutInfo : $loginLockoutInfo;
+
+            return Inertia::render('auth/Login', [
+                'canResetPassword' => Features::enabled(Features::resetPasswords()),
+                'canRegister' => Features::enabled(Features::registration()),
+                'status' => $status,
+                'loginSettings' => $loginSettings,
+                'lockout' => $lockoutInfo['locked'] ? $lockoutInfo : null,
+                'turnstileSiteKey' => config('services.turnstile.enabled') ? config('services.turnstile.site_key') : null,
+            ]);
+        });
+
+        Fortify::resetPasswordView(fn (Request $request) => Inertia::render('auth/ResetPassword', [
+            'email' => $request->email,
+            'token' => $request->route('token'),
+        ]));
+
+        Fortify::requestPasswordResetLinkView(fn (Request $request) => Inertia::render('auth/ForgotPassword', [
+            'status' => $request->session()->get('status'),
+        ]));
+
+        Fortify::verifyEmailView(fn (Request $request) => Inertia::render('auth/VerifyEmail', [
+            'status' => $request->session()->get('status'),
+        ]));
+
+        Fortify::registerView(fn () => Inertia::render('auth/Register'));
+
+        Fortify::twoFactorChallengeView(function (Request $request) {
+            $user = User::find($request->session()->get('login.id'));
+            $method = $user?->two_factor_method ?? 'email';
+            $lockoutService = app(TwoFactorLockoutService::class);
+
+            // Check 2FA lockout status
+            $lockoutInfo = $lockoutService->get2FALockoutInfo($request);
+
+            // For email method, we'll send OTP via frontend request (faster page load)
+
+            return Inertia::render('auth/TwoFactorChallenge', [
+                'twoFactorMethod' => $method,
+                'email' => $user ? $this->maskEmail($user->email) : null,
+                'lockout' => $lockoutInfo['locked'] ? $lockoutInfo : null,
+            ]);
+        });
+
+        Fortify::confirmPasswordView(fn () => Inertia::render('auth/ConfirmPassword'));
+    }
+
+    /**
+     * Configure rate limiting.
+     */
+    private function configureRateLimiting(): void
+    {
+        RateLimiter::for('two-factor', function (Request $request) {
+            return Limit::perMinute(5)->by($request->session()->get('login.id'));
+        });
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
         });
+    }
 
-        RateLimiter::for('two-factor', function (Request $request) {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
-        });
+    /**
+     * Mask email for display.
+     */
+    private function maskEmail(string $email): string
+    {
+        $parts = explode('@', $email);
+        if (count($parts) !== 2) {
+            return $email;
+        }
+
+        $name = $parts[0];
+        $domain = $parts[1];
+
+        if (strlen($name) <= 2) {
+            return $name.'***@'.$domain;
+        }
+
+        return substr($name, 0, 2).str_repeat('*', min(strlen($name) - 2, 5)).'@'.$domain;
     }
 }
