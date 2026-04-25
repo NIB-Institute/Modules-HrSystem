@@ -1,0 +1,3 @@
+[submodule "Modules/School"]
+	path = Modules/School
+	url = https://github.com/24lyhour/Modules-HrSystem-School.git
