@@ -29,6 +29,14 @@ trait HasSelectableColumns
     protected array $selectedColumns = [];
 
     /**
+     * When true, the export should yield no rows so the resulting file
+     * is a header-only template (re-importable). The Export class is
+     * responsible for honouring this flag from its query() (e.g. by
+     * adding a whereRaw('1 = 0')).
+     */
+    protected bool $templateMode = false;
+
+    /**
      * @param  array<int, string>  $columns
      */
     public function setSelectedColumns(array $columns): static
@@ -36,6 +44,18 @@ trait HasSelectableColumns
         $this->selectedColumns = $columns;
 
         return $this;
+    }
+
+    public function asTemplate(bool $template = true): static
+    {
+        $this->templateMode = $template;
+
+        return $this;
+    }
+
+    public function isTemplateMode(): bool
+    {
+        return $this->templateMode;
     }
 
     /**

@@ -47,7 +47,7 @@ departments.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:53
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:65
 * @route '/dashboard/employees/export-options'
 */
 export const exportOptions = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -62,7 +62,7 @@ exportOptions.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:53
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:65
 * @route '/dashboard/employees/export-options'
 */
 exportOptions.url = (options?: RouteQueryOptions) => {
@@ -71,7 +71,7 @@ exportOptions.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:53
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:65
 * @route '/dashboard/employees/export-options'
 */
 exportOptions.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -81,7 +81,7 @@ exportOptions.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:53
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:65
 * @route '/dashboard/employees/export-options'
 */
 exportOptions.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -91,7 +91,7 @@ exportOptions.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => (
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:34
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:76
 * @route '/dashboard/employees/export'
 */
 export const exportMethod = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -106,7 +106,7 @@ exportMethod.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:34
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:76
 * @route '/dashboard/employees/export'
 */
 exportMethod.url = (options?: RouteQueryOptions) => {
@@ -115,7 +115,7 @@ exportMethod.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:34
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:76
 * @route '/dashboard/employees/export'
 */
 exportMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -125,7 +125,7 @@ exportMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:34
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:76
 * @route '/dashboard/employees/export'
 */
 exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -135,7 +135,7 @@ exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::importMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:73
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:50
 * @route '/dashboard/employees/import'
 */
 export const importMethod = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -150,7 +150,7 @@ importMethod.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::importMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:73
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:50
 * @route '/dashboard/employees/import'
 */
 importMethod.url = (options?: RouteQueryOptions) => {
@@ -159,7 +159,7 @@ importMethod.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::importMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:73
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:50
 * @route '/dashboard/employees/import'
 */
 importMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -169,7 +169,7 @@ importMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::importMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:73
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:50
 * @route '/dashboard/employees/import'
 */
 importMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -179,7 +179,7 @@ importMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::template
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:225
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:202
 * @route '/dashboard/employees/template'
 */
 export const template = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -194,7 +194,7 @@ template.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::template
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:225
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:202
 * @route '/dashboard/employees/template'
 */
 template.url = (options?: RouteQueryOptions) => {
@@ -203,7 +203,7 @@ template.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::template
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:225
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:202
 * @route '/dashboard/employees/template'
 */
 template.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -213,7 +213,7 @@ template.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::template
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:225
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:202
 * @route '/dashboard/employees/template'
 */
 template.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
