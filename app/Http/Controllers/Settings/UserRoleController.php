@@ -213,7 +213,7 @@ class UserRoleController extends Controller
             'roles' => 'array',
             'roles.*' => 'exists:roles,id',
             'tenants' => $tenantsRule,
-            'tenants.*.tenant_type' => 'required_with:tenants|string|in:School,Outlet',
+            'tenants.*.tenant_type' => 'required_with:tenants|string|in:School',
             'tenants.*.tenant_id' => 'required_with:tenants|integer',
             'tenants.*.is_primary' => 'boolean',
         ]);
@@ -390,7 +390,7 @@ class UserRoleController extends Controller
             'avatar' => 'nullable|string|max:500',
             'password' => ['nullable', 'confirmed', Password::defaults()],
             'tenants' => 'nullable|array',
-            'tenants.*.tenant_type' => 'required_with:tenants|string|in:School,Outlet,Company',
+            'tenants.*.tenant_type' => 'required_with:tenants|string|in:School',
             'tenants.*.tenant_id' => 'required_with:tenants|integer',
             'tenants.*.is_primary' => 'boolean',
         ]);
