@@ -38,7 +38,13 @@ class AppServiceProvider extends ServiceProvider
     {
         if (! Inertia::hasMacro('modal')) {
             Inertia::macro('modal', function (string $component, array|\Illuminate\Contracts\Support\Arrayable $props = []) {
-                return Inertia::render($component, $props);
+                return new \Momentum\Modal\Modal(
+                    $component,
+                    Inertia::getShared() ?? [],
+                    is_array($props) ? $props : $props->toArray(),
+                    'app',
+                    Inertia::getVersion(),
+                );
             });
         }
 
