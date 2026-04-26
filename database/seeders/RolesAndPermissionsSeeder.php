@@ -30,59 +30,6 @@ class RolesAndPermissionsSeeder extends Seeder
             // School Module
             'school' => ['schools', 'departments', 'classrooms', 'courses', 'programs', 'equipment'],
 
-            // Blog Module
-            'blog' => ['posts', 'banners', 'special_offers', 'slider_shows'],
-
-            // Company Module
-            'company' => ['companies'],
-
-            // Hotel Module
-            'hotel' => ['hotels', 'hotel_categories', 'hotel_amenities', 'hotel_rooms', 'hotel_reviews', 'hotel_provinces', 'hotel_room_policies'],
-
-            // Customer Module
-            'customer' => ['customers', 'customer_otps'],
-
-            // Movice Module
-            'movice' => ['movices'],
-
-            // Outlet Module
-            'outlet' => ['outlets', 'outlet_types'],
-
-            // Portfolio Module
-            'portfolio' => [
-                'portfolios', 'pages', 'sections', 'services',
-                'testimonials', 'headers', 'footers', 'site_settings', 'contact_messages'
-            ],
-
-            // Menu Module
-            'menu' => ['menus', 'menu_types', 'categories'],
-
-            // Wallets Module
-            'wallets' => ['wallets', 'transactions'],
-
-            // Product Module
-            'product' => [
-                'products', 'product_types', 'brands', 'product_variants', 'product_attributes',
-                'product_attribute_values', 'product_add_ons', 'product_upsells'
-            ],
-
-            // Booking Module
-            'booking' => ['bookings', 'booking_addons', 'booking_room_rates'],
-
-            // Order Module
-            'order' => [
-                'orders', 'order_items', 'order_shipping',
-                'carts', 'cart_items',
-                'product_reviews', 'outlet_reviews',
-                'shipping_zones', 'refunds'
-            ],
-
-            // Payment Module
-            'payment' => ['payments'],
-
-            // Report Module
-            'report' => ['reports'],
-
             // Media Module (for avatars, images, files)
             'media' => ['media'],
 
@@ -220,19 +167,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'dashboard.export_reports',
 
             // Dashboard widget permissions (controls which widgets user can see)
-            'dashboard.customer',
-            'dashboard.menu',
-            'dashboard.outlet',
-            'dashboard.product',
-            'dashboard.order',
-            'dashboard.wallets',
             'dashboard.employee',
             'dashboard.school',
-            'dashboard.booking',
-            'dashboard.hotel',
-            'dashboard.payment',
-            'dashboard.report',
-         
 
             // Settings
             'settings.manage',
@@ -247,62 +183,6 @@ class RolesAndPermissionsSeeder extends Seeder
             'api.access',
             'api.manage_tokens',
 
-            // ==========================================
-            // ORDER MODULE PERMISSIONS
-            // ==========================================
-
-            // Order specific
-            'orders.export',
-            'orders.import',
-            'orders.update_status',
-            'orders.update_payment_status',
-            'orders.status_modal',
-            'orders.cancel',
-            'orders.refund',
-            'orders.print',
-            'orders.track',
-            'orders.assign_driver',
-            'orders.view_map',
-            'orders.bulk_update_status',
-            'orders.bulk_delete',
-
-            // Cart specific
-            'carts.export',
-            'carts.convert_to_order',
-            'carts.toggle_status',
-            'carts.clear_items',
-            'carts.checkout',
-            'carts.bulk_delete',
-
-            // Product Reviews specific
-            'product_reviews.export',
-            'product_reviews.reply',
-            'product_reviews.toggle_active',
-            'product_reviews.approve',
-            'product_reviews.reject',
-            'product_reviews.bulk_delete',
-
-            // Outlet Reviews specific
-            'outlet_reviews.export',
-            'outlet_reviews.reply',
-            'outlet_reviews.toggle_active',
-            'outlet_reviews.approve',
-            'outlet_reviews.reject',
-            'outlet_reviews.bulk_delete',
-
-            // Shipping Zones specific
-            'shipping_zones.export',
-            'shipping_zones.import',
-            'shipping_zones.toggle_active',
-            'shipping_zones.check_delivery',
-            'shipping_zones.view_map',
-            'shipping_zones.bulk_delete',
-
-            // Refunds specific
-            'refunds.export',
-            'refunds.approve',
-            'refunds.reject',
-            'refunds.process',
         ];
 
         // Create permissions for each module resource
@@ -372,11 +252,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 return true;
             }
             // Staff can update their own area
-            if (str_contains($permission, 'update') && (
-                str_contains($permission, 'attendances') ||
-                str_contains($permission, 'posts') ||
-                str_contains($permission, 'portfolios')
-            )) {
+            if (str_contains($permission, 'update') && str_contains($permission, 'attendances')) {
                 return true;
             }
             // Attendance specific

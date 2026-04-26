@@ -37,9 +37,6 @@ export type { CardAction, CardBadge } from './CardWidget';
 export { SidebarFilter } from './SidebarFilter';
 export type { FilterItem } from './SidebarFilter';
 
-// Delivery Route Map
-export { DeliveryRouteMap } from './DeliveryRouteMap';
-
 // Geofence Map
 export { GeofenceMap } from './GeofenceMap';
 export type { GeofenceType, GeofenceData, LatLng } from './GeofenceMap';
