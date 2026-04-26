@@ -122,26 +122,14 @@ class UserRoleController extends Controller
             ->where('status', true)
             ->orderBy('name');
 
-        $outletQuery = Outlet::allRecords()
-            ->select('id', 'name', 'address', 'status')
-            ->where('status', 'active')
-            ->orderBy('name');
-
         // Super-admin and admin (without tenant) can see all tenants
         if (!$canAccessAllTenants && $tenantService->hasTenant()) {
             $schoolIds = $tenantService->getSchoolIds();
-            $outletIds = $tenantService->getOutletIds();
 
             if (!empty($schoolIds)) {
                 $schoolQuery->whereIn('id', $schoolIds);
             } else {
                 $schoolQuery->whereRaw('1 = 0'); // No schools available
-            }
-
-            if (!empty($outletIds)) {
-                $outletQuery->whereIn('id', $outletIds);
-            } else {
-                $outletQuery->whereRaw('1 = 0'); // No outlets available
             }
         }
 
@@ -151,14 +139,6 @@ class UserRoleController extends Controller
             'code' => $school->code,
             'type' => 'School',
             'label' => $school->name . ' (' . $school->code . ')',
-        ]);
-
-        $outlets = $outletQuery->get()->map(fn ($outlet) => [
-            'id' => $outlet->id,
-            'name' => $outlet->name,
-            'code' => '',
-            'type' => 'Outlet',
-            'label' => $outlet->name,
         ]);
 
         // Get current user's tenants for pre-selection (non-super-admin only)
@@ -184,7 +164,6 @@ class UserRoleController extends Controller
             'roles' => $roles,
             'availableTenants' => [
                 'schools' => $schools,
-                'outlets' => $outlets,
             ],
             'currentUserTenants' => $currentUserTenants,
             'isSuperAdmin' => $isSuperAdmin,
