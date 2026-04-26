@@ -15,15 +15,8 @@ class WidgetController extends Controller
      * Module to permission mapping for dashboard widgets.
      */
     protected array $modulePermissions = [
-        'Customer' => 'dashboard.customer',
-        'Menu' => 'dashboard.menu',
-        'Outlet' => 'dashboard.outlet',
-        'Product' => 'dashboard.product',
-        'Order' => 'dashboard.order',
-        'Wallets' => 'dashboard.wallets',
         'Employee' => 'dashboard.employee',
         'School' => 'dashboard.school',
-        'Hotel' => 'dashboard.hotel',
     ];
 
     /**
