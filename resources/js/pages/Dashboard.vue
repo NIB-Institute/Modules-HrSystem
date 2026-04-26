@@ -1,31 +1,118 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { Head, Link } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
 import { EmployeeWidget } from '@employee/Components/Widgets';
 import { SchoolWidget } from '@school/Components/Widgets';
+import { Settings, UserCheck, GraduationCap } from 'lucide-vue-next';
 import type { BreadcrumbItem } from '@/types';
+import type {
+    EmployeeMetrics,
+    AttendanceTrendPoint,
+    GrowthTrendPoint as EmployeeGrowthTrendPoint,
+    RecentEmployee,
+} from '@employee/Components/Widgets';
+import type {
+    SchoolMetrics,
+    DepartmentBySchool,
+    GrowthTrendPoint as SchoolGrowthTrendPoint,
+    RecentSchool,
+} from '@school/Components/Widgets';
+
+interface EmployeeWidgetData {
+    metrics: EmployeeMetrics;
+    attendanceTrend: AttendanceTrendPoint[];
+    growthTrend: EmployeeGrowthTrendPoint[];
+    recentEmployees?: RecentEmployee[];
+}
+
+interface SchoolWidgetData {
+    metrics: SchoolMetrics;
+    departmentsBySchool: DepartmentBySchool[];
+    growthTrend: SchoolGrowthTrendPoint[];
+    recentSchools?: RecentSchool[];
+}
+
+const props = defineProps<{
+    employee?: EmployeeWidgetData;
+    school?: SchoolWidgetData;
+}>();
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Dashboard', href: '/dashboard' },
 ];
 
-defineProps<{
-    employee?: Record<string, unknown>;
-    school?: Record<string, unknown>;
-}>();
+const urlParams = new URLSearchParams(window.location.search);
+const activeTab = ref<string>(urlParams.get('tab') || 'employee');
+const dateRange = ref<string>('30d');
+const loading = ref(false);
+
+const handleDateRangeChange = (value: string) => {
+    dateRange.value = value;
+};
+const handleRefresh = () => {
+    window.location.reload();
+};
 </script>
 
 <template>
-    <Head title="Dashboard" />
-
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex flex-col gap-6 p-6">
-            <h1 class="text-2xl font-semibold">Dashboard</h1>
+        <Head title="Dashboard" />
 
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <EmployeeWidget v-if="employee" v-bind="employee" />
-                <SchoolWidget v-if="school" v-bind="school" />
+        <div class="flex h-full flex-1 flex-col gap-6 p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">Dashboard</h1>
+                    <p class="text-muted-foreground">Overview of your business modules</p>
+                </div>
+                <Button variant="outline" as-child>
+                    <Link href="/dashboard/settings">
+                        <Settings class="mr-2 h-4 w-4" />
+                        Widget Settings
+                    </Link>
+                </Button>
             </div>
+
+            <Tabs v-model="activeTab" class="space-y-6">
+                <TabsList>
+                    <TabsTrigger value="employee">
+                        <UserCheck class="mr-2 h-4 w-4" />
+                        Employee
+                    </TabsTrigger>
+                    <TabsTrigger value="school">
+                        <GraduationCap class="mr-2 h-4 w-4" />
+                        School
+                    </TabsTrigger>
+                </TabsList>
+
+                <TabsContent v-if="props.employee" value="employee" class="space-y-6">
+                    <EmployeeWidget
+                        :metrics="props.employee.metrics"
+                        :attendance-trend="props.employee.attendanceTrend"
+                        :growth-trend="props.employee.growthTrend"
+                        :recent-employees="props.employee.recentEmployees"
+                        :date-range="dateRange"
+                        :loading="loading"
+                        @date-range-change="handleDateRangeChange"
+                        @refresh="handleRefresh"
+                    />
+                </TabsContent>
+
+                <TabsContent v-if="props.school" value="school" class="space-y-6">
+                    <SchoolWidget
+                        :metrics="props.school.metrics"
+                        :departments-by-school="props.school.departmentsBySchool"
+                        :growth-trend="props.school.growthTrend"
+                        :recent-schools="props.school.recentSchools"
+                        :date-range="dateRange"
+                        :loading="loading"
+                        @date-range-change="handleDateRangeChange"
+                        @refresh="handleRefresh"
+                    />
+                </TabsContent>
+            </Tabs>
         </div>
     </AppLayout>
 </template>

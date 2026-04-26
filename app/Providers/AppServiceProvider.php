@@ -58,34 +58,12 @@ class AppServiceProvider extends ServiceProvider
             MenuService::addSubmenuItem(
                 'footer',
                 'dashboard-settings',
-                __('Wallet Settings'),
-                '/dashboard/settings/wallet',
-                20,
-                'wallets.view_any',
-                'settings.wallet',
-                'Wallet'
-            );
-
-            MenuService::addSubmenuItem(
-                'footer',
-                'dashboard-settings',
                 __('Login Settings'),
                 '/dashboard/settings/login',
                 30,
                 'settings.manage',
                 'settings.login',
                 'LogIn'
-            );
-
-            MenuService::addSubmenuItem(
-                'footer',
-                'dashboard-settings',
-                __('Product Settings'),
-                '/dashboard/products/settings',
-                40,
-                'products.view_any',
-                'dashboard.product.settings',
-                'Package'
             );
 
             MenuService::addSubmenuItem(
