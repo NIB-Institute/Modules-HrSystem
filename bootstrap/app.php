@@ -7,6 +7,7 @@ use App\Http\Middleware\ModuleAccess;
 use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\SetTenantContext;
 use Modules\Employee\Http\Middleware\DashboardMiddlewareHandle as EmployeeSidebarMenu;
+use Modules\School\Http\Middleware\DashboardMiddlewareHandle as SchoolSidebarMenu;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -41,6 +42,7 @@ return Application::configure(basePath: dirname(__DIR__))
             // Module sidebar registrars - must run before HandleInertiaRequests
             // so MenuService is populated when the menu tree is shared.
             EmployeeSidebarMenu::class,
+            SchoolSidebarMenu::class,
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
