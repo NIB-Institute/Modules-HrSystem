@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 use Inertia\Response;
-use Modules\Outlet\Models\Outlet;
 use Modules\School\Models\School;
 use Spatie\Permission\Models\Role;
 
@@ -92,7 +91,6 @@ class UserRoleController extends Controller
     {
         $map = [
             'School' => School::class,
-            'Outlet' => Outlet::class,
         ];
 
         return $map[$shortType] ?? $shortType;
@@ -232,7 +230,6 @@ class UserRoleController extends Controller
         // Map short type to full class name
         $tenantClassMap = [
             'School' => School::class,
-            'Outlet' => Outlet::class,
         ];
 
         DB::transaction(function () use ($validated, $tenantClassMap, $tenantService, $isSuperAdmin) {
@@ -410,7 +407,6 @@ class UserRoleController extends Controller
         // Map short type to full class name
         $tenantClassMap = [
             'School' => School::class,
-            'Outlet' => Outlet::class,
         ];
 
         DB::transaction(function () use ($validated, $user, $tenantClassMap) {

@@ -37,23 +37,8 @@
         "paths": {
             "@/*": ["resources/js/*"],
             "@modules/*": ["Modules/*"],
-            "@blog/*": ["Modules/Blog/resources/js/*"],
-            "@booking/*": ["Modules/Booking/resources/js/*"],
-            "@company/*": ["Modules/Company/resources/js/*"],
-            "@customer/*": ["Modules/Customer/resources/js/*"],
-            "@hotel/*": ["Modules/Hotel/resources/js/*"],
-            "@menu/*": ["Modules/Menu/resources/js/*"],
-            "@movice/*": ["Modules/Movice/resources/js/*"],
-            "@order/*": ["Modules/Order/resources/js/*"],
-            "@outlet/*": ["Modules/Outlet/resources/js/*"],
-            "@payment/*": ["Modules/Payment/resources/js/*"],
-            "@porfolio/*": ["Modules/Porfolio/resources/js/*"],
-            "@product/*": ["Modules/Product/resources/js/*"],
-            "@report/*": ["Modules/Report/resources/js/*"],
-            "@wallets/*": ["Modules/Wallets/resources/js/*"],
             "@employee/*": ["Modules/Employee/resources/js/*"],
-            "@school/*": ["Modules/School/resources/js/*"],
-            "@delivery/*": ["Modules/Delivery/resources/js/*"]
+            "@school/*": ["Modules/School/resources/js/*"]
         },
         // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
         // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
