@@ -6,6 +6,8 @@ use App\Services\MenuService;
 use App\Services\TenantService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +25,28 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
+        $this->registerInertiaModalShim();
         $this->registerDashboardMenuItems();
+    }
+
+    /**
+     * Shim for the based/momentum-modal package, which doesn't support
+     * inertia-laravel ^3. Modules call Inertia::modal(...)->baseRoute(...)
+     * for create/edit forms; degrade gracefully to a full-page render.
+     */
+    protected function registerInertiaModalShim(): void
+    {
+        if (! Inertia::hasMacro('modal')) {
+            Inertia::macro('modal', function (string $component, array|\Illuminate\Contracts\Support\Arrayable $props = []) {
+                return Inertia::render($component, $props);
+            });
+        }
+
+        if (! InertiaResponse::hasMacro('baseRoute')) {
+            InertiaResponse::macro('baseRoute', function (string $name, array $parameters = []) {
+                return $this;
+            });
+        }
     }
 
     /**
