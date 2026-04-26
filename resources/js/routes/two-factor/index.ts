@@ -45,15 +45,6 @@ login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-/**
-* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
-* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:56
-* @route '/two-factor-challenge'
-*/
-export const login = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: login.url(options),
-    method: 'post',
-})
 
 login.definition = {
     methods: ["post"],
