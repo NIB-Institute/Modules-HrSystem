@@ -3,31 +3,19 @@
 namespace App\Concerns\Exports;
 
 use App\Http\Requests\ExportRequest;
-use Illuminate\Support\Str;
-use Inertia\Inertia;
-use Maatwebsite\Excel\Excel as ExcelType;
-use Maatwebsite\Excel\Facades\Excel;
 use Momentum\Modal\Modal;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
- * Drop this on any dashboard controller that has a Maatwebsite Export
- * class using HasSelectableColumns. You get two endpoints for free:
+ * Sugar for single-resource controllers. Drop this on a controller, declare:
  *
- *  - exportOptions(): Modal — renders the shared <ResourceExportPage />
- *    overlaid on the parent index, populated with the column catalogue.
- *  - export(ExportRequest): BinaryFileResponse — downloads the file
- *    honouring user-selected columns, format (xlsx/csv) and
- *    template-vs-export mode.
- *
- * The host controller declares three short methods that say *which*
- * resource is being exported:
- *
- *   protected function exportClass(): string     // Export FQCN
+ *   protected function exportClass(): string     // FQCN
  *   protected function exportBaseRoute(): string // 'school.schools.index'
  *   protected function exportRouteName(): string // 'school.schools.export'
  *
- * That's it. No more per-controller boilerplate.
+ * ...and you get exportOptions() + export() for free. Behaviour comes from
+ * App\Concerns\Exports\ResourceExporter so multi-resource controllers can
+ * call the same logic per resource.
  */
 trait ExportsResources
 {
@@ -37,57 +25,32 @@ trait ExportsResources
 
     abstract protected function exportRouteName(): string;
 
-    /**
-     * Filename slug. Defaults to the snake_case stem of the Export class
-     * (e.g. EmployeesExport -> 'employees'). Override if you want
-     * something different.
-     */
-    protected function exportFileSlug(): string
+    protected function exportTitle(): ?string
     {
-        return Str::of(class_basename($this->exportClass()))
-            ->beforeLast('Export')
-            ->snake()
-            ->lower()
-            ->toString();
+        return null; // helper falls back to "Export {ResourceName}"
     }
 
-    /**
-     * Title shown in the modal header. Override per controller for i18n.
-     */
-    protected function exportTitle(): string
+    protected function exportFileSlug(): ?string
     {
-        return 'Export '.Str::of(class_basename($this->exportClass()))
-            ->beforeLast('Export')
-            ->headline()
-            ->toString();
+        return null; // helper derives from class basename
     }
 
     public function exportOptions(): Modal
     {
-        $cls = $this->exportClass();
-
-        return Inertia::modal('shared/ResourceExportPage', [
-            'exportColumns' => (new $cls())->exportableColumnList(),
-            'exportRoute' => route($this->exportRouteName()),
-            'title' => $this->exportTitle(),
-        ])->baseRoute($this->exportBaseRoute());
+        return ResourceExporter::optionsModal(
+            $this->exportClass(),
+            $this->exportRouteName(),
+            $this->exportBaseRoute(),
+            $this->exportTitle(),
+        );
     }
 
     public function export(ExportRequest $request): BinaryFileResponse
     {
-        $writerType = $request->fileFormat() === 'csv' ? ExcelType::CSV : ExcelType::XLSX;
-
-        $cls = $this->exportClass();
-        $export = (new $cls($request->tableFilters()))
-            ->setSelectedColumns($request->selectedColumns())
-            ->asTemplate($request->isTemplate());
-
-        $prefix = $request->isTemplate()
-            ? $this->exportFileSlug().'_template_'
-            : $this->exportFileSlug().'_';
-
-        $filename = $prefix.now()->format('Y-m-d_His').'.'.$request->fileFormat();
-
-        return Excel::download($export, $filename, $writerType);
+        return ResourceExporter::download(
+            $this->exportClass(),
+            $request,
+            $this->exportFileSlug(),
+        );
     }
 }
