@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::store
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:69
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:70
 * @route '/dashboard/departments/import'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ store.definition = {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::store
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:69
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:70
 * @route '/dashboard/departments/import'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::store
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:69
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:70
 * @route '/dashboard/departments/import'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::preview
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:64
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:65
 * @route '/dashboard/departments/import/preview'
 */
 export const preview = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -50,7 +50,7 @@ preview.definition = {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::preview
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:64
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:65
 * @route '/dashboard/departments/import/preview'
 */
 preview.url = (options?: RouteQueryOptions) => {
@@ -59,7 +59,7 @@ preview.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::preview
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:64
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:65
 * @route '/dashboard/departments/import/preview'
 */
 preview.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
