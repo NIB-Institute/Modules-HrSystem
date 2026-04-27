@@ -82,122 +82,129 @@
 }
 
 /*
-  NIB Cambodia — White page, Gold buttons (white text), Navy sidebar
-  Page BG:  White   #FFFFFF
-  Primary:  Gold    #C9A227  → buttons, links, active states
-  Text on primary: White #FFFFFF
-  Secondary: Navy  #1B2B6B
+  NIB Cambodia — Final Brand System
+  ─────────────────────────────────
+  Page bg:    White      #FFFFFF
+  Body text:  Dark       #141414
+  Primary:    Gold       #C9A227  → buttons, active, links, ring
+  On primary: White      #FFFFFF  → text on gold buttons
+  Secondary:  Navy       #1B2B6B  → secondary buttons
+  Sidebar:    Deep navy  #152258  → sidebar bg
+  Sidebar active: Gold highlight
 */
 
 :root {
     --radius: 0.65rem;
 
-    /* ── Page — clean white background, dark text ── */
-    --background:        oklch(1 0 0);
-    --foreground:        oklch(0.141 0.005 285.823);
+    /* ── Page — clean white, dark text ── */
+    --background:             oklch(0.985 0.002 88);
+    --foreground:             oklch(0.141 0.005 285.823);
 
-    /* ── Cards — pure white ── */
-    --card:              oklch(1 0 0);
-    --card-foreground:   oklch(0.141 0.005 285.823);
+    /* ── Cards — pure white surfaces ── */
+    --card:                   oklch(1 0 0);
+    --card-foreground:        oklch(0.141 0.005 285.823);
 
-    --popover:           oklch(1 0 0);
-    --popover-foreground:oklch(0.141 0.005 285.823);
+    --popover:                oklch(1 0 0);
+    --popover-foreground:     oklch(0.141 0.005 285.823);
 
-    /* ── ✦ Primary — NIB Gold #C9A227, WHITE text on it ── */
-    --primary:           oklch(0.695 0.152 79);
-    --primary-foreground:oklch(1 0 0);
+    /* ── ✦ Primary — NIB Gold #C9A227, WHITE text ── */
+    --primary:                oklch(0.695 0.152 79);
+    --primary-foreground:     oklch(1 0 0);
 
-    /* ── Secondary — NIB Navy #1B2B6B ── */
-    --secondary:         oklch(0.305 0.112 264);
-    --secondary-foreground: oklch(1 0 0);
+    /* ── Secondary — NIB Navy #1B2B6B, white text ── */
+    --secondary:              oklch(0.305 0.112 264);
+    --secondary-foreground:   oklch(1 0 0);
 
-    /* ── Muted — warm pale gold tint on surfaces ── */
-    --muted:             oklch(0.968 0.012 86);
-    --muted-foreground:  oklch(0.48 0.042 80);
+    /* ── Muted — warm very pale gold tint ── */
+    --muted:                  oklch(0.968 0.012 86);
+    --muted-foreground:       oklch(0.48 0.042 80);
 
-    /* ── Accent — soft gold wash ── */
-    --accent:            oklch(0.960 0.028 82);
-    --accent-foreground: oklch(0.26 0.06 79);
+    /* ── Accent — soft gold wash for hover states ── */
+    --accent:                 oklch(0.958 0.028 82);
+    --accent-foreground:      oklch(0.26 0.06 79);
 
     /* ── Destructive ── */
-    --destructive:       oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.985 0 0);
+    --destructive:            oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(1 0 0);
 
-    /* ── Borders & inputs — warm gold tint ── */
-    --border:            oklch(0.906 0.018 85);
-    --input:             oklch(0.906 0.018 85);
+    /* ── Borders & inputs — warm gold-tinted grey ── */
+    --border:                 oklch(0.906 0.018 85);
+    --input:                  oklch(0.906 0.018 85);
 
-    /* ── Ring — gold focus ring ── */
-    --ring:              oklch(0.695 0.152 79);
+    /* ── Ring — gold focus outline ── */
+    --ring:                   oklch(0.695 0.152 79);
 
-    /* ── Charts — gold + navy tonal scale ── */
-    --chart-1:           oklch(0.695 0.152 79);   /* Gold */
-    --chart-2:           oklch(0.305 0.112 264);  /* Navy */
-    --chart-3:           oklch(0.840 0.130 84);   /* Pale gold */
-    --chart-4:           oklch(0.480 0.125 264);  /* Mid navy */
-    --chart-5:           oklch(0.570 0.088 80);   /* Muted gold */
+    /* ── Charts — gold primary, navy secondary ── */
+    --chart-1:                oklch(0.695 0.152 79);   /* NIB Gold */
+    --chart-2:                oklch(0.305 0.112 264);  /* NIB Navy */
+    --chart-3:                oklch(0.840 0.130 84);   /* Pale gold */
+    --chart-4:                oklch(0.480 0.125 264);  /* Mid navy */
+    --chart-5:                oklch(0.570 0.088 80);   /* Muted gold */
 
-    /* ── Sidebar — deep navy bg, gold active items ── */
-    --sidebar-background:        oklch(0.248 0.105 264);
-    --sidebar-foreground:        oklch(0.930 0.014 88);
-    --sidebar-primary:           oklch(0.695 0.152 79);
-    --sidebar-primary-foreground:oklch(1 0 0);
-    --sidebar-accent:            oklch(0.320 0.110 264);
-    --sidebar-accent-foreground: oklch(0.930 0.014 88);
-    --sidebar-border:            oklch(1 0 0 / 8%);
-    --sidebar-ring:              oklch(0.695 0.152 79);
+    /* ── Sidebar — deep navy #152258, gold active items ── */
+    --sidebar-background:             oklch(0.248 0.105 264);
+    --sidebar-foreground:             oklch(0.930 0.014 88);
+    --sidebar-primary:                oklch(0.695 0.152 79);
+    --sidebar-primary-foreground:     oklch(1 0 0);
+    --sidebar-accent:                 oklch(0.320 0.110 264);
+    --sidebar-accent-foreground:      oklch(0.930 0.014 88);
+    --sidebar-border:                 oklch(1 0 0 / 8%);
+    --sidebar-ring:                   oklch(0.695 0.152 79);
 }
 
 .dark {
-    /* ── Dark base ── */
-    --background:        oklch(0.141 0.005 285.823);
-    --foreground:        oklch(0.985 0 0);
+    /* ── Dark mode page ── */
+    --background:             oklch(0.141 0.005 285.823);
+    --foreground:             oklch(0.985 0 0);
 
-    /* ── Navy-tinted card surfaces ── */
-    --card:              oklch(0.205 0.072 264);
-    --card-foreground:   oklch(0.985 0 0);
-    --popover:           oklch(0.205 0.072 264);
-    --popover-foreground:oklch(0.985 0 0);
+    /* ── Navy-tinted cards ── */
+    --card:                   oklch(0.205 0.072 264);
+    --card-foreground:        oklch(0.985 0 0);
+    --popover:                oklch(0.205 0.072 264);
+    --popover-foreground:     oklch(0.985 0 0);
 
     /* ── ✦ Primary — Gold brighter on dark, WHITE text ── */
-    --primary:           oklch(0.765 0.168 82);
-    --primary-foreground:oklch(1 0 0);
+    --primary:                oklch(0.765 0.168 82);
+    --primary-foreground:     oklch(1 0 0);
 
-    /* ── Secondary — Navy lightened ── */
-    --secondary:         oklch(0.285 0.092 264);
-    --secondary-foreground: oklch(0.985 0 0);
+    /* ── Secondary — Navy lightened for dark ── */
+    --secondary:              oklch(0.380 0.115 264);
+    --secondary-foreground:   oklch(0.985 0 0);
 
-    --muted:             oklch(0.255 0.072 264);
-    --muted-foreground:  oklch(0.670 0.055 83);
+    /* ── Muted — deep navy tint ── */
+    --muted:                  oklch(0.255 0.072 264);
+    --muted-foreground:       oklch(0.670 0.055 83);
 
-    --accent:            oklch(0.295 0.082 264);
-    --accent-foreground: oklch(0.985 0 0);
+    /* ── Accent — richer navy accent ── */
+    --accent:                 oklch(0.295 0.082 264);
+    --accent-foreground:      oklch(0.985 0 0);
 
-    --destructive:       oklch(0.704 0.191 22.216);
+    /* ── Destructive ── */
+    --destructive:            oklch(0.704 0.191 22.216);
     --destructive-foreground: oklch(0.985 0 0);
 
-    --border:            oklch(1 0 0 / 10%);
-    --input:             oklch(1 0 0 / 15%);
+    --border:                 oklch(1 0 0 / 10%);
+    --input:                  oklch(1 0 0 / 15%);
 
-    /* ── Ring — gold focus ── */
-    --ring:              oklch(0.580 0.130 80);
+    /* ── Ring — muted gold in dark ── */
+    --ring:                   oklch(0.580 0.130 80);
 
-    /* ── Charts ── */
-    --chart-1:           oklch(0.765 0.168 82);
-    --chart-2:           oklch(0.500 0.148 264);
-    --chart-3:           oklch(0.875 0.120 88);
-    --chart-4:           oklch(0.620 0.130 255);
-    --chart-5:           oklch(0.640 0.090 80);
+    /* ── Charts dark ── */
+    --chart-1:                oklch(0.765 0.168 82);
+    --chart-2:                oklch(0.500 0.148 264);
+    --chart-3:                oklch(0.875 0.120 88);
+    --chart-4:                oklch(0.620 0.130 255);
+    --chart-5:                oklch(0.640 0.090 80);
 
-    /* ── Sidebar ── */
-    --sidebar-background:        oklch(0.175 0.072 264);
-    --sidebar-foreground:        oklch(0.930 0.014 88);
-    --sidebar-primary:           oklch(0.765 0.168 82);
-    --sidebar-primary-foreground:oklch(1 0 0);
-    --sidebar-accent:            oklch(0.255 0.082 264);
-    --sidebar-accent-foreground: oklch(0.930 0.014 88);
-    --sidebar-border:            oklch(1 0 0 / 8%);
-    --sidebar-ring:              oklch(0.580 0.130 80);
+    /* ── Sidebar dark — deepest navy ── */
+    --sidebar-background:             oklch(0.175 0.072 264);
+    --sidebar-foreground:             oklch(0.930 0.014 88);
+    --sidebar-primary:                oklch(0.765 0.168 82);
+    --sidebar-primary-foreground:     oklch(1 0 0);
+    --sidebar-accent:                 oklch(0.255 0.082 264);
+    --sidebar-accent-foreground:      oklch(0.930 0.014 88);
+    --sidebar-border:                 oklch(1 0 0 / 8%);
+    --sidebar-ring:                   oklch(0.580 0.130 80);
 }
 
 @layer base {
