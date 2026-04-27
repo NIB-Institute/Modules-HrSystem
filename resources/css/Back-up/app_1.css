@@ -84,7 +84,6 @@
 :root {
     --radius: 0.65rem;
 
-    /* Base surfaces */
     --background: oklch(1 0 0);
     --foreground: oklch(0.141 0.005 285.823);
     --card: oklch(1 0 0);
@@ -92,76 +91,73 @@
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.141 0.005 285.823);
 
-    /* ✦ Primary — NIB Rich Gold #C9A227 */
-    --primary: oklch(0.70 0.155 80);
-    --primary-foreground: oklch(0.13 0.04 75);
+    /* ✦ NIB Gold — rich warm gold #D4A017 as primary brand */
+    --primary: oklch(0.72 0.165 78);
+    --primary-foreground: oklch(0.12 0.03 78);
 
-    /* ✦ Secondary — NIB Deep Navy #1B2B6B */
-    --secondary: oklch(0.30 0.115 264);
+    /* NIB Navy Blue #1B2B6B as secondary */
+    --secondary: oklch(0.32 0.12 264);
     --secondary-foreground: oklch(0.98 0 0);
 
     /* Warm gold-tinted muted surfaces */
     --muted: oklch(0.966 0.010 88);
-    --muted-foreground: oklch(0.48 0.04 80);
+    --muted-foreground: oklch(0.50 0.04 78);
 
-    /* Subtle gold accent tint */
-    --accent: oklch(0.96 0.030 82);
-    --accent-foreground: oklch(0.25 0.06 80);
+    /* Gold-tinted accent */
+    --accent: oklch(0.95 0.030 82);
+    --accent-foreground: oklch(0.22 0.05 78);
 
-    /* Destructive stays red */
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.985 0 0);
 
-    /* Warm gold-tinted borders & inputs */
-    --border: oklch(0.905 0.016 86);
-    --input: oklch(0.905 0.016 86);
+    /* Warm gold-tinted borders */
+    --border: oklch(0.91 0.015 85);
+    --input: oklch(0.91 0.015 85);
 
     /* Gold focus ring */
-    --ring: oklch(0.70 0.155 80);
+    --ring: oklch(0.72 0.165 78);
 
-    /* Chart: Gold primary, Navy secondary, tonal variants */
-    --chart-1: oklch(0.70 0.155 80);    /* NIB Gold */
-    --chart-2: oklch(0.30 0.115 264);   /* NIB Navy */
-    --chart-3: oklch(0.84 0.13 84);     /* Pale gold */
-    --chart-4: oklch(0.48 0.13 264);    /* Mid navy-blue */
-    --chart-5: oklch(0.57 0.09 80);     /* Muted gold */
+    /* Chart: Gold + Navy tonal scale */
+    --chart-1: oklch(0.72 0.165 78);   /* Gold */
+    --chart-2: oklch(0.32 0.12 264);   /* Navy */
+    --chart-3: oklch(0.85 0.14 85);    /* Light gold */
+    --chart-4: oklch(0.48 0.13 264);   /* Mid blue */
+    --chart-5: oklch(0.58 0.10 78);    /* Muted gold */
 
-    /* Sidebar — navy background, gold highlights */
-    --sidebar-background: oklch(0.27 0.11 264);
-    --sidebar-foreground: oklch(0.93 0.015 88);
-    --sidebar-primary: oklch(0.70 0.155 80);
-    --sidebar-primary-foreground: oklch(0.13 0.04 75);
-    --sidebar-accent: oklch(0.35 0.11 264);
-    --sidebar-accent-foreground: oklch(0.93 0.015 88);
-    --sidebar-border: oklch(1 0 0 / 8%);
-    --sidebar-ring: oklch(0.70 0.155 80);
+    /* Sidebar — navy background with gold highlights */
+    --sidebar-background: oklch(0.28 0.11 264);
+    --sidebar-foreground: oklch(0.95 0.01 85);
+    --sidebar-primary: oklch(0.72 0.165 78);
+    --sidebar-primary-foreground: oklch(0.12 0.03 78);
+    --sidebar-accent: oklch(0.36 0.12 264);
+    --sidebar-accent-foreground: oklch(0.95 0.01 85);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.72 0.165 78);
 }
 
 .dark {
-    /* Dark base */
     --background: oklch(0.141 0.005 285.823);
     --foreground: oklch(0.985 0 0);
 
-    /* Navy-tinted card & popover surfaces */
+    /* Deep navy card background */
     --card: oklch(0.20 0.07 264);
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.20 0.07 264);
     --popover-foreground: oklch(0.985 0 0);
 
-    /* ✦ Primary — NIB Gold, brighter on dark */
-    --primary: oklch(0.77 0.17 82);
-    --primary-foreground: oklch(0.13 0.04 75);
+    /* ✦ NIB Gold — slightly brighter for dark mode */
+    --primary: oklch(0.78 0.18 82);
+    --primary-foreground: oklch(0.12 0.03 78);
 
-    /* ✦ Secondary — Navy lighter on dark */
+    /* NIB Navy as secondary — lighter for dark mode */
     --secondary: oklch(0.28 0.09 264);
     --secondary-foreground: oklch(0.985 0 0);
 
-    /* Dark navy-tinted muted */
-    --muted: oklch(0.25 0.07 264);
-    --muted-foreground: oklch(0.67 0.055 84);
+    --muted: oklch(0.26 0.07 264);
+    --muted-foreground: oklch(0.68 0.06 82);
 
-    /* Subtle dark accent */
-    --accent: oklch(0.29 0.08 264);
+    /* Gold-tinted accent on dark */
+    --accent: oklch(0.30 0.08 264);
     --accent-foreground: oklch(0.985 0 0);
 
     --destructive: oklch(0.704 0.191 22.216);
@@ -170,25 +166,25 @@
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
 
-    /* Gold focus ring — dark mode */
-    --ring: oklch(0.58 0.13 80);
+    /* Gold ring — dark mode */
+    --ring: oklch(0.60 0.14 78);
 
-    /* Chart — dark mode */
-    --chart-1: oklch(0.77 0.17 82);     /* Bright gold */
-    --chart-2: oklch(0.50 0.15 264);    /* Medium navy */
-    --chart-3: oklch(0.88 0.12 88);     /* Pale gold */
-    --chart-4: oklch(0.62 0.13 255);    /* Soft blue */
-    --chart-5: oklch(0.64 0.09 80);     /* Muted gold */
+    /* Chart scale — dark mode */
+    --chart-1: oklch(0.78 0.18 82);    /* Bright gold */
+    --chart-2: oklch(0.50 0.16 264);   /* Medium navy */
+    --chart-3: oklch(0.88 0.14 88);    /* Pale gold */
+    --chart-4: oklch(0.62 0.14 255);   /* Soft blue */
+    --chart-5: oklch(0.65 0.10 78);    /* Muted gold */
 
     /* Sidebar — deep navy dark */
-    --sidebar-background: oklch(0.17 0.07 264);
-    --sidebar-foreground: oklch(0.93 0.015 88);
-    --sidebar-primary: oklch(0.77 0.17 82);
-    --sidebar-primary-foreground: oklch(0.13 0.04 75);
-    --sidebar-accent: oklch(0.25 0.08 264);
-    --sidebar-accent-foreground: oklch(0.93 0.015 88);
-    --sidebar-border: oklch(1 0 0 / 8%);
-    --sidebar-ring: oklch(0.58 0.13 80);
+    --sidebar-background: oklch(0.18 0.07 264);
+    --sidebar-foreground: oklch(0.95 0.01 85);
+    --sidebar-primary: oklch(0.78 0.18 82);
+    --sidebar-primary-foreground: oklch(0.12 0.03 78);
+    --sidebar-accent: oklch(0.26 0.08 264);
+    --sidebar-accent-foreground: oklch(0.95 0.01 85);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.60 0.14 78);
 }
 
 @layer base {
