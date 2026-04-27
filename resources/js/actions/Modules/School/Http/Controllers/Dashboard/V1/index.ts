@@ -10,6 +10,7 @@ import SchoolTrashController from './SchoolTrashController'
 import SchoolController from './SchoolController'
 import ProgramController from './ProgramController'
 import CourseController from './CourseController'
+import InventoryController from './InventoryController'
 import EquipmentController from './EquipmentController'
 
 const V1 = {
@@ -25,6 +26,7 @@ const V1 = {
     SchoolController: Object.assign(SchoolController, SchoolController),
     ProgramController: Object.assign(ProgramController, ProgramController),
     CourseController: Object.assign(CourseController, CourseController),
+    InventoryController: Object.assign(InventoryController, InventoryController),
     EquipmentController: Object.assign(EquipmentController, EquipmentController),
 }
 

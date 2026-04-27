@@ -1,8 +1,9 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 import departments from './departments'
 import classrooms from './classrooms'
 import courses from './courses'
 import programs from './programs'
+import inventories from './inventories'
 import equipment from './equipment'
 import schools from './schools'
 /**
@@ -50,43 +51,6 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\School\Http\Controllers\SchoolController::index
-* @see [unknown]:0
-* @route '/schools'
-*/
-const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::index
-* @see [unknown]:0
-* @route '/schools'
-*/
-indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::index
-* @see [unknown]:0
-* @route '/schools'
-*/
-indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-index.form = indexForm
-
-/**
 * @see \Modules\School\Http\Controllers\SchoolController::create
 * @see [unknown]:0
 * @route '/schools/create'
@@ -131,43 +95,6 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\School\Http\Controllers\SchoolController::create
-* @see [unknown]:0
-* @route '/schools/create'
-*/
-const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::create
-* @see [unknown]:0
-* @route '/schools/create'
-*/
-createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::create
-* @see [unknown]:0
-* @route '/schools/create'
-*/
-createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-create.form = createForm
-
-/**
 * @see \Modules\School\Http\Controllers\SchoolController::store
 * @see [unknown]:0
 * @route '/schools'
@@ -200,28 +127,6 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::store
-* @see [unknown]:0
-* @route '/schools'
-*/
-const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::store
-* @see [unknown]:0
-* @route '/schools'
-*/
-storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-store.form = storeForm
 
 /**
 * @see \Modules\School\Http\Controllers\SchoolController::show
@@ -286,43 +191,6 @@ show.head = (args: { school: string | number } | [school: string | number ] | st
 })
 
 /**
-* @see \Modules\School\Http\Controllers\SchoolController::show
-* @see [unknown]:0
-* @route '/schools/{school}'
-*/
-const showForm = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::show
-* @see [unknown]:0
-* @route '/schools/{school}'
-*/
-showForm.get = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::show
-* @see [unknown]:0
-* @route '/schools/{school}'
-*/
-showForm.head = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-show.form = showForm
-
-/**
 * @see \Modules\School\Http\Controllers\SchoolController::edit
 * @see [unknown]:0
 * @route '/schools/{school}/edit'
@@ -383,43 +251,6 @@ edit.head = (args: { school: string | number } | [school: string | number ] | st
     url: edit.url(args, options),
     method: 'head',
 })
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::edit
-* @see [unknown]:0
-* @route '/schools/{school}/edit'
-*/
-const editForm = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::edit
-* @see [unknown]:0
-* @route '/schools/{school}/edit'
-*/
-editForm.get = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::edit
-* @see [unknown]:0
-* @route '/schools/{school}/edit'
-*/
-editForm.head = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-edit.form = editForm
 
 /**
 * @see \Modules\School\Http\Controllers\SchoolController::update
@@ -484,53 +315,6 @@ update.patch = (args: { school: string | number } | [school: string | number ] |
 })
 
 /**
-* @see \Modules\School\Http\Controllers\SchoolController::update
-* @see [unknown]:0
-* @route '/schools/{school}'
-*/
-const updateForm = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::update
-* @see [unknown]:0
-* @route '/schools/{school}'
-*/
-updateForm.put = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::update
-* @see [unknown]:0
-* @route '/schools/{school}'
-*/
-updateForm.patch = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PATCH',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-update.form = updateForm
-
-/**
 * @see \Modules\School\Http\Controllers\SchoolController::destroy
 * @see [unknown]:0
 * @route '/schools/{school}'
@@ -582,38 +366,6 @@ destroy.delete = (args: { school: string | number } | [school: string | number ]
     method: 'delete',
 })
 
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::destroy
-* @see [unknown]:0
-* @route '/schools/{school}'
-*/
-const destroyForm = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\SchoolController::destroy
-* @see [unknown]:0
-* @route '/schools/{school}'
-*/
-destroyForm.delete = (args: { school: string | number } | [school: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-destroy.form = destroyForm
-
 const school = {
     departments: Object.assign(departments, departments),
     classrooms: Object.assign(classrooms, classrooms),
@@ -626,6 +378,7 @@ const school = {
     destroy: Object.assign(destroy, destroy),
     courses: Object.assign(courses, courses),
     programs: Object.assign(programs, programs),
+    inventories: Object.assign(inventories, inventories),
     equipment: Object.assign(equipment, equipment),
     schools: Object.assign(schools, schools),
 }

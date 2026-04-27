@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 import trash from './trash'
 import importMethod7367d2 from './import'
 /**
@@ -46,43 +46,6 @@ departments.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::departments
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:158
-* @route '/dashboard/employees/departments'
-*/
-const departmentsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: departments.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::departments
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:158
-* @route '/dashboard/employees/departments'
-*/
-departmentsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: departments.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::departments
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:158
-* @route '/dashboard/employees/departments'
-*/
-departmentsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: departments.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-departments.form = departmentsForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:38
 * @route '/dashboard/employees/export-options'
@@ -125,43 +88,6 @@ exportOptions.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => (
     url: exportOptions.url(options),
     method: 'head',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:38
-* @route '/dashboard/employees/export-options'
-*/
-const exportOptionsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportOptions.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:38
-* @route '/dashboard/employees/export-options'
-*/
-exportOptionsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportOptions.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:38
-* @route '/dashboard/employees/export-options'
-*/
-exportOptionsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportOptions.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-exportOptions.form = exportOptionsForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportMethod
@@ -208,43 +134,6 @@ exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:48
-* @route '/dashboard/employees/export'
-*/
-const exportMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportMethod.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:48
-* @route '/dashboard/employees/export'
-*/
-exportMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportMethod.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:48
-* @route '/dashboard/employees/export'
-*/
-exportMethodForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportMethod.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-exportMethod.form = exportMethodForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::importMethod
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:50
 * @route '/dashboard/employees/import'
@@ -287,43 +176,6 @@ importMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: importMethod.url(options),
     method: 'head',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::importMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:50
-* @route '/dashboard/employees/import'
-*/
-const importMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: importMethod.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::importMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:50
-* @route '/dashboard/employees/import'
-*/
-importMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: importMethod.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::importMethod
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:50
-* @route '/dashboard/employees/import'
-*/
-importMethodForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: importMethod.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-importMethod.form = importMethodForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::template
@@ -370,43 +222,6 @@ template.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::template
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:202
-* @route '/dashboard/employees/template'
-*/
-const templateForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: template.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::template
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:202
-* @route '/dashboard/employees/template'
-*/
-templateForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: template.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::template
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:202
-* @route '/dashboard/employees/template'
-*/
-templateForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: template.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-template.form = templateForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
 * @route '/dashboard/employees/bulk-delete'
@@ -439,38 +254,6 @@ bulkDelete.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => 
     url: bulkDelete.url(options),
     method: 'delete',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
-* @route '/dashboard/employees/bulk-delete'
-*/
-const bulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: bulkDelete.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
-* @route '/dashboard/employees/bulk-delete'
-*/
-bulkDeleteForm.delete = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: bulkDelete.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-bulkDelete.form = bulkDeleteForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::create
@@ -517,43 +300,6 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:61
-* @route '/dashboard/employees/create'
-*/
-const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:61
-* @route '/dashboard/employees/create'
-*/
-createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:61
-* @route '/dashboard/employees/create'
-*/
-createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-create.form = createForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::store
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:75
 * @route '/dashboard/employees'
@@ -586,28 +332,6 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::store
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:75
-* @route '/dashboard/employees'
-*/
-const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::store
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:75
-* @route '/dashboard/employees'
-*/
-storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-store.form = storeForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::index
@@ -652,43 +376,6 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:48
-* @route '/dashboard/employees'
-*/
-const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:48
-* @route '/dashboard/employees'
-*/
-indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:48
-* @route '/dashboard/employees'
-*/
-indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-index.form = indexForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::show
@@ -759,43 +446,6 @@ show.head = (args: { employee: string | { uuid: string } } | [employee: string |
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::show
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:87
-* @route '/dashboard/employees/{employee}'
-*/
-const showForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::show
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:87
-* @route '/dashboard/employees/{employee}'
-*/
-showForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::show
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:87
-* @route '/dashboard/employees/{employee}'
-*/
-showForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-show.form = showForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
 * @route '/dashboard/employees/{employee}/qr-badge'
@@ -862,43 +512,6 @@ qrBadge.head = (args: { employee: string | { uuid: string } } | [employee: strin
     url: qrBadge.url(args, options),
     method: 'head',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
-* @route '/dashboard/employees/{employee}/qr-badge'
-*/
-const qrBadgeForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: qrBadge.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
-* @route '/dashboard/employees/{employee}/qr-badge'
-*/
-qrBadgeForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: qrBadge.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
-* @route '/dashboard/employees/{employee}/qr-badge'
-*/
-qrBadgeForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: qrBadge.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-qrBadge.form = qrBadgeForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::edit
@@ -969,43 +582,6 @@ edit.head = (args: { employee: string | { uuid: string } } | [employee: string |
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:97
-* @route '/dashboard/employees/{employee}/edit'
-*/
-const editForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:97
-* @route '/dashboard/employees/{employee}/edit'
-*/
-editForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:97
-* @route '/dashboard/employees/{employee}/edit'
-*/
-editForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-edit.form = editForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::update
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:107
 * @route '/dashboard/employees/{employee}'
@@ -1062,38 +638,6 @@ update.put = (args: { employee: string | { uuid: string } } | [employee: string 
     url: update.url(args, options),
     method: 'put',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:107
-* @route '/dashboard/employees/{employee}'
-*/
-const updateForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:107
-* @route '/dashboard/employees/{employee}'
-*/
-updateForm.put = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-update.form = updateForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::toggleStatus
@@ -1154,38 +698,6 @@ toggleStatus.put = (args: { employee: string | { uuid: string } } | [employee: s
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::toggleStatus
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:144
-* @route '/dashboard/employees/{employee}/toggle-status'
-*/
-const toggleStatusForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: toggleStatus.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::toggleStatus
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:144
-* @route '/dashboard/employees/{employee}/toggle-status'
-*/
-toggleStatusForm.put = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: toggleStatus.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-toggleStatus.form = toggleStatusForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQr
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
 * @route '/dashboard/employees/{employee}/regenerate-qr'
@@ -1242,28 +754,6 @@ regenerateQr.post = (args: { employee: string | { uuid: string } } | [employee: 
     url: regenerateQr.url(args, options),
     method: 'post',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQr
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
-* @route '/dashboard/employees/{employee}/regenerate-qr'
-*/
-const regenerateQrForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: regenerateQr.url(args, options),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQr
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
-* @route '/dashboard/employees/{employee}/regenerate-qr'
-*/
-regenerateQrForm.post = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: regenerateQr.url(args, options),
-    method: 'post',
-})
-
-regenerateQr.form = regenerateQrForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmDelete
@@ -1334,43 +824,6 @@ confirmDelete.head = (args: { employee: string | { uuid: string } } | [employee:
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:119
-* @route '/dashboard/employees/{employee}/delete'
-*/
-const confirmDeleteForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: confirmDelete.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:119
-* @route '/dashboard/employees/{employee}/delete'
-*/
-confirmDeleteForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: confirmDelete.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:119
-* @route '/dashboard/employees/{employee}/delete'
-*/
-confirmDeleteForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: confirmDelete.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-confirmDelete.form = confirmDeleteForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::destroy
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:132
 * @route '/dashboard/employees/{employee}'
@@ -1427,38 +880,6 @@ destroy.delete = (args: { employee: string | { uuid: string } } | [employee: str
     url: destroy.url(args, options),
     method: 'delete',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:132
-* @route '/dashboard/employees/{employee}'
-*/
-const destroyForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:132
-* @route '/dashboard/employees/{employee}'
-*/
-destroyForm.delete = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-destroy.form = destroyForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::changePassword
@@ -1529,43 +950,6 @@ changePassword.head = (args: { employee: string | { uuid: string } } | [employee
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::changePassword
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:25
-* @route '/dashboard/employees/{employee}/change-password'
-*/
-const changePasswordForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: changePassword.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::changePassword
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:25
-* @route '/dashboard/employees/{employee}/change-password'
-*/
-changePasswordForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: changePassword.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::changePassword
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:25
-* @route '/dashboard/employees/{employee}/change-password'
-*/
-changePasswordForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: changePassword.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-changePassword.form = changePasswordForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::updatePassword
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:68
 * @route '/dashboard/employees/{employee}/change-password'
@@ -1622,38 +1006,6 @@ updatePassword.put = (args: { employee: string | { uuid: string } } | [employee:
     url: updatePassword.url(args, options),
     method: 'put',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::updatePassword
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:68
-* @route '/dashboard/employees/{employee}/change-password'
-*/
-const updatePasswordForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: updatePassword.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::updatePassword
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:68
-* @route '/dashboard/employees/{employee}/change-password'
-*/
-updatePasswordForm.put = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: updatePassword.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-updatePassword.form = updatePasswordForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::showCreateAccount
@@ -1724,43 +1076,6 @@ showCreateAccount.head = (args: { employee: string | { uuid: string } } | [emplo
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::showCreateAccount
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:86
-* @route '/dashboard/employees/{employee}/create-account'
-*/
-const showCreateAccountForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: showCreateAccount.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::showCreateAccount
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:86
-* @route '/dashboard/employees/{employee}/create-account'
-*/
-showCreateAccountForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: showCreateAccount.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::showCreateAccount
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:86
-* @route '/dashboard/employees/{employee}/create-account'
-*/
-showCreateAccountForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: showCreateAccount.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-showCreateAccount.form = showCreateAccountForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::createAccount
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:133
 * @route '/dashboard/employees/{employee}/create-account'
@@ -1817,28 +1132,6 @@ createAccount.post = (args: { employee: string | { uuid: string } } | [employee:
     url: createAccount.url(args, options),
     method: 'post',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::createAccount
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:133
-* @route '/dashboard/employees/{employee}/create-account'
-*/
-const createAccountForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: createAccount.url(args, options),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePasswordController::createAccount
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePasswordController.php:133
-* @route '/dashboard/employees/{employee}/create-account'
-*/
-createAccountForm.post = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: createAccount.url(args, options),
-    method: 'post',
-})
-
-createAccount.form = createAccountForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::qrCode
@@ -1907,43 +1200,6 @@ qrCode.head = (args: { employee: string | { uuid: string } } | [employee: string
     url: qrCode.url(args, options),
     method: 'head',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
-* @route '/dashboard/employees/{employee}/qr-code'
-*/
-const qrCodeForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: qrCode.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
-* @route '/dashboard/employees/{employee}/qr-code'
-*/
-qrCodeForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: qrCode.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
-* @route '/dashboard/employees/{employee}/qr-code'
-*/
-qrCodeForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: qrCode.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-qrCode.form = qrCodeForm
 
 const employees = {
     trash: Object.assign(trash, trash),
