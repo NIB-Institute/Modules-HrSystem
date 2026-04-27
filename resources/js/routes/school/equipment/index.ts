@@ -2,8 +2,89 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFo
 import importMethod7367d2 from './import'
 import trash from './trash'
 /**
+* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:238
+* @route '/dashboard/equipment/export-options'
+*/
+export const exportOptions = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: exportOptions.url(options),
+    method: 'get',
+})
+
+exportOptions.definition = {
+    methods: ["get","head"],
+    url: '/dashboard/equipment/export-options',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:238
+* @route '/dashboard/equipment/export-options'
+*/
+exportOptions.url = (options?: RouteQueryOptions) => {
+    return exportOptions.definition.url + queryParams(options)
+}
+
+/**
+* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:238
+* @route '/dashboard/equipment/export-options'
+*/
+exportOptions.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: exportOptions.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:238
+* @route '/dashboard/equipment/export-options'
+*/
+exportOptions.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: exportOptions.url(options),
+    method: 'head',
+})
+
+/**
+* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:238
+* @route '/dashboard/equipment/export-options'
+*/
+const exportOptionsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: exportOptions.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:238
+* @route '/dashboard/equipment/export-options'
+*/
+exportOptionsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: exportOptions.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:238
+* @route '/dashboard/equipment/export-options'
+*/
+exportOptionsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: exportOptions.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+exportOptions.form = exportOptionsForm
+
+/**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:203
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:248
 * @route '/dashboard/equipment/export'
 */
 export const exportMethod = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -18,7 +99,7 @@ exportMethod.definition = {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:203
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:248
 * @route '/dashboard/equipment/export'
 */
 exportMethod.url = (options?: RouteQueryOptions) => {
@@ -27,7 +108,7 @@ exportMethod.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:203
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:248
 * @route '/dashboard/equipment/export'
 */
 exportMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -37,7 +118,7 @@ exportMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:203
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:248
 * @route '/dashboard/equipment/export'
 */
 exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -47,7 +128,7 @@ exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:203
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:248
 * @route '/dashboard/equipment/export'
 */
 const exportMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -57,7 +138,7 @@ const exportMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:203
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:248
 * @route '/dashboard/equipment/export'
 */
 exportMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -67,7 +148,7 @@ exportMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'>
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:203
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:248
 * @route '/dashboard/equipment/export'
 */
 exportMethodForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -84,7 +165,7 @@ exportMethod.form = exportMethodForm
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:210
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:253
 * @route '/dashboard/equipment/import'
 */
 export const importMethod = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -99,7 +180,7 @@ importMethod.definition = {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:210
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:253
 * @route '/dashboard/equipment/import'
 */
 importMethod.url = (options?: RouteQueryOptions) => {
@@ -108,7 +189,7 @@ importMethod.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:210
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:253
 * @route '/dashboard/equipment/import'
 */
 importMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -118,7 +199,7 @@ importMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:210
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:253
 * @route '/dashboard/equipment/import'
 */
 importMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -128,7 +209,7 @@ importMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:210
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:253
 * @route '/dashboard/equipment/import'
 */
 const importMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -138,7 +219,7 @@ const importMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:210
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:253
 * @route '/dashboard/equipment/import'
 */
 importMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -148,7 +229,7 @@ importMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'>
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:210
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:253
 * @route '/dashboard/equipment/import'
 */
 importMethodForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -165,7 +246,7 @@ importMethod.form = importMethodForm
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:227
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:270
 * @route '/dashboard/equipment/template'
 */
 export const template = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -180,7 +261,7 @@ template.definition = {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:227
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:270
 * @route '/dashboard/equipment/template'
 */
 template.url = (options?: RouteQueryOptions) => {
@@ -189,7 +270,7 @@ template.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:227
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:270
 * @route '/dashboard/equipment/template'
 */
 template.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -199,7 +280,7 @@ template.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:227
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:270
 * @route '/dashboard/equipment/template'
 */
 template.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -209,7 +290,7 @@ template.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:227
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:270
 * @route '/dashboard/equipment/template'
 */
 const templateForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -219,7 +300,7 @@ const templateForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:227
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:270
 * @route '/dashboard/equipment/template'
 */
 templateForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -229,7 +310,7 @@ templateForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:227
+* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:270
 * @route '/dashboard/equipment/template'
 */
 templateForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1024,6 +1105,7 @@ destroyForm.delete = (args: { equipment: string | { uuid: string } } | [equipmen
 destroy.form = destroyForm
 
 const equipment = {
+    exportOptions: Object.assign(exportOptions, exportOptions),
     export: Object.assign(exportMethod, exportMethod),
     import: Object.assign(importMethod, importMethod7367d2),
     template: Object.assign(template, template),
