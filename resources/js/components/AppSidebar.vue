@@ -56,7 +56,7 @@ const footerNavItems = computed(() => page.props.menus?.footer || []);
         </SidebarContent>
 
         <SidebarFooter>
-            <NavDynamicModules v-if="footerNavItems.length > 0" :items="footerNavItems" label="Settings" />
+            <NavDynamicModules v-if="footerNavItems.length > 0" :items="footerNavItems" label="Settings" :default-open="false" />
             <NavUser />
         </SidebarFooter>
     </Sidebar>

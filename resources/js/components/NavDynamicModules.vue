@@ -77,10 +77,11 @@ import {
 } from 'lucide-vue-next';
 import { ref, computed, onUnmounted } from 'vue';
 
-defineProps<{
+withDefaults(defineProps<{
     items: MenuItem[];
     label?: string;
-}>();
+    defaultOpen?: boolean;
+}>(), { defaultOpen: true });
 
 const page = usePage();
 const { state, isMobile } = useSidebar();
@@ -277,7 +278,7 @@ const isModuleActive = (item: MenuItem): boolean => {
                     v-for="item in items"
                     :key="item.id"
                     as-child
-                    :default-open="isModuleActive(item)"
+                    :default-open="defaultOpen || isModuleActive(item)"
                     class="group/collapsible"
                 >
                     <SidebarMenuItem>

@@ -41,7 +41,7 @@ const isModuleActive = (item: NavModuleItem): boolean => {
                 v-for="item in items"
                 :key="item.title"
                 as-child
-                :default-open="isModuleActive(item)"
+                :default-open="true"
                 class="group/collapsible"
             >
                 <SidebarMenuItem>
