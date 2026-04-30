@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Widget;
 use App\Services\TenantService;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
@@ -23,9 +24,14 @@ class DashboardController extends Controller
 
     public function index(Request $request): Response
     {
+        $widgets = Widget::dashboard()
+            ->orderBy('sort_order')
+            ->get(['id', 'name', 'module', 'chart_type', 'sort_order', 'status']);
+
         return Inertia::render('Dashboard', [
             'employee' => $this->employeeWidgetData(),
             'school' => $this->schoolWidgetData(),
+            'widgets' => $widgets,
         ]);
     }
 

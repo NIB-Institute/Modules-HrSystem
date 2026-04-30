@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -39,10 +39,27 @@ interface SchoolWidgetData {
     recentSchools?: RecentSchool[];
 }
 
+interface DashboardWidget {
+    id: number;
+    name: string;
+    module: string;
+    chart_type: string | null;
+    sort_order: number;
+    status: boolean;
+}
+
 const props = defineProps<{
     employee?: EmployeeWidgetData;
     school?: SchoolWidgetData;
+    widgets?: DashboardWidget[];
 }>();
+
+const employeeWidgets = computed(() =>
+    (props.widgets ?? []).filter((w) => w.module === 'Employee'),
+);
+const schoolWidgets = computed(() =>
+    (props.widgets ?? []).filter((w) => w.module === 'School'),
+);
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: __('Dashboard'), href: '/dashboard' },
@@ -97,6 +114,7 @@ const handleRefresh = () => {
                         :attendance-trend="props.employee.attendanceTrend"
                         :growth-trend="props.employee.growthTrend"
                         :recent-employees="props.employee.recentEmployees"
+                        :widgets="employeeWidgets"
                         :date-range="dateRange"
                         :loading="loading"
                         @date-range-change="handleDateRangeChange"
@@ -110,6 +128,7 @@ const handleRefresh = () => {
                         :departments-by-school="props.school.departmentsBySchool"
                         :growth-trend="props.school.growthTrend"
                         :recent-schools="props.school.recentSchools"
+                        :widgets="schoolWidgets"
                         :date-range="dateRange"
                         :loading="loading"
                         @date-range-change="handleDateRangeChange"
