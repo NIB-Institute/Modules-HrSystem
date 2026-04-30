@@ -20,6 +20,10 @@ import type {
     GrowthTrendPoint as SchoolGrowthTrendPoint,
     RecentSchool,
 } from '@school/Components/Widgets';
+import { useTranslation } from '@/composables/useTranslation';
+
+const {__ } = useTranslation();
+
 
 interface EmployeeWidgetData {
     metrics: EmployeeMetrics;
@@ -41,7 +45,7 @@ const props = defineProps<{
 }>();
 
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Dashboard', href: '/dashboard' },
+    { title: __('Dashboard'), href: '/dashboard' },
 ];
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -59,18 +63,18 @@ const handleRefresh = () => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Head title="Dashboard" />
+        <Head :title="__('Dashboard')" />
 
         <div class="flex h-full flex-1 flex-col gap-6 p-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-2xl font-bold tracking-tight">Dashboard</h1>
-                    <p class="text-muted-foreground">Overview of your business modules</p>
+                    <h1 class="text-2xl font-bold tracking-tight">{{ __('Dashboard') }}</h1>
+                    <p class="text-muted-foreground">{{ __('Overview of your business modules') }}</p>
                 </div>
                 <Button variant="outline" as-child>
                     <Link href="/dashboard/settings">
                         <Settings class="mr-2 h-4 w-4" />
-                        Widget Settings
+                       {{ __(' Widget Settings') }}
                     </Link>
                 </Button>
             </div>
@@ -79,11 +83,11 @@ const handleRefresh = () => {
                 <TabsList>
                     <TabsTrigger value="employee">
                         <UserCheck class="mr-2 h-4 w-4" />
-                        Employee
+                        {{__('Employee')}}
                     </TabsTrigger>
                     <TabsTrigger value="school">
                         <GraduationCap class="mr-2 h-4 w-4" />
-                        School
+                        {{__('School')}}
                     </TabsTrigger>
                 </TabsList>
 
