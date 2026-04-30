@@ -74,7 +74,7 @@ const handleRefresh = () => {
                 <Button variant="outline" as-child>
                     <Link href="/dashboard/settings">
                         <Settings class="mr-2 h-4 w-4" />
-                       {{ __(' Widget Settings') }}
+                       {{ __('Widget Settings') }}
                     </Link>
                 </Button>
             </div>

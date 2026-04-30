@@ -14,6 +14,10 @@ import {
 import { ref, watch } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 import type { BreadcrumbItem } from '@/types';
+import { useTranslation } from '@/composables/useTranslation';
+
+
+const {__} = useTranslation();
 
 interface Widget {
     id: number;
@@ -41,8 +45,8 @@ interface Props {
 const props = defineProps<Props>();
 
 const breadcrumbItems: BreadcrumbItem[] = [
-    { title: 'Dashboard', href: '/dashboard' },
-    { title: 'Settings', href: '/dashboard/settings' },
+    { title: __('Dashboard'), href: '/dashboard' },
+    { title: __('Settings'), href: '/dashboard/settings' },
 ];
 
 const chartTypeIcons: Record<string, any> = {
@@ -54,11 +58,11 @@ const chartTypeIcons: Record<string, any> = {
 };
 
 const chartTypeLabels: Record<string, string> = {
-    stats: 'Statistics',
-    bar: 'Bar Chart',
-    donut: 'Donut Chart',
-    area: 'Area Chart',
-    line: 'Line Chart',
+    stats: __('Statistics'),
+    bar: __('Bar Chart'),
+    donut: __('Donut Chart'),
+    area: __('Area Chart'),
+    line: __('Line Chart'),
 };
 
 const moduleIcons: Record<string, any> = {
@@ -153,17 +157,17 @@ const currentWidgetTab = props.currentStatus || 'all';
                 <div>
                     <h1 class="text-2xl font-bold tracking-tight flex items-center gap-2">
                         <Settings2 class="h-6 w-6" />
-                        Dashboard Settings
+                        {{ __('Dashboard Settings') }}
                     </h1>
-                    <p class="text-muted-foreground">Manage dashboard widgets and layout</p>
+                    <p class="text-muted-foreground">{{ __('Manage dashboard widgets and layout') }}</p>
                 </div>
             </div>
 
             <!-- Stats -->
             <div class="grid gap-4 md:grid-cols-3">
-                <StatsCard title="Total" :value="props.widgetStats.total" :icon="LayoutGrid" />
-                <StatsCard title="Active" :value="props.widgetStats.active" :icon="CheckCircle" icon-color="text-green-500" />
-                <StatsCard title="Inactive" :value="props.widgetStats.inactive" :icon="XCircle" icon-color="text-red-500" />
+                <StatsCard :title="__('Total')" :value="props.widgetStats.total" :icon="LayoutGrid" />
+                <StatsCard :title="__('Active')" :value="props.widgetStats.active" :icon="CheckCircle" icon-color="text-green-500" />
+                <StatsCard :title="__('Inactive')" :value="props.widgetStats.inactive" :icon="XCircle" icon-color="text-red-500" />
             </div>
 
             <!-- Filters -->
@@ -172,15 +176,15 @@ const currentWidgetTab = props.currentStatus || 'all';
                     <TabsList>
                         <TabsTrigger value="all">
                             <LayoutGrid class="mr-2 h-4 w-4" />
-                            All Widgets
+                            {{ __('All Widgets') }}
                         </TabsTrigger>
                         <TabsTrigger value="active">
                             <CheckCircle class="mr-2 h-4 w-4" />
-                            Active
+                            {{ __('Active') }}
                         </TabsTrigger>
                         <TabsTrigger value="inactive">
                             <XCircle class="mr-2 h-4 w-4" />
-                            Inactive
+                            {{ __('Inactive') }}
                         </TabsTrigger>
                     </TabsList>
                 </Tabs>
@@ -202,25 +206,25 @@ const currentWidgetTab = props.currentStatus || 'all';
                         <div class="flex items-center gap-3">
                             <component :is="moduleIcons[module] || LayoutGrid" class="h-6 w-6" />
                             <div>
-                                <h2 class="text-lg font-semibold">{{ module }}</h2>
-                                <p class="text-sm text-muted-foreground">{{ widgets.filter(w => w.status).length }}/{{ widgets.length }} widgets active</p>
+                                <h2 class="text-lg font-semibold">{{ __(module as string) }}</h2>
+                                <p class="text-sm text-muted-foreground">{{ widgets.filter(w => w.status).length }}/{{ widgets.length }} {{ __('widgets active') }}</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="flex items-center gap-2">
-                                <span :class="['h-2.5 w-2.5 rounded-full', isModuleActive(module) ? 'bg-green-500' : 'bg-red-500']" />
-                                <span class="text-sm font-medium">{{ isModuleActive(module) ? 'Tab Visible' : 'Tab Hidden' }}</span>
+                                <span :class="['h-2.5 w-2.5 rounded-full', isModuleActive(module as string) ? 'bg-green-500' : 'bg-red-500']" />
+                                <span class="text-sm font-medium">{{ isModuleActive(module as string) ? __('Tab Visible') : __('Tab Hidden') }}</span>
                             </div>
                             <div class="flex flex-col items-end gap-1">
-                                <Switch :model-value="isModuleFullyActive(module)" @update:model-value="(value: boolean) => handleModuleToggle(module, value)" />
-                                <span class="text-xs text-muted-foreground">Toggle All</span>
+                                <Switch :model-value="isModuleFullyActive(module as string)" @update:model-value="(value: boolean) => handleModuleToggle(module as string, value)" />
+                                <span class="text-xs text-muted-foreground">{{ __('Toggle All') }}</span>
                             </div>
                         </div>
                     </div>
 
                     <VueDraggable v-model="groupedWidgets[module as string]" :class="[viewMode === 'grid' ? 'grid gap-4 md:grid-cols-2 lg:grid-cols-3' : 'flex flex-col gap-3']" handle=".drag-handle" ghost-class="opacity-50" :animation="200" @end="() => handleDragEnd(module as string)">
                         <Card v-for="widget in groupedWidgets[module as string]" :key="widget.id" class="relative group">
-                            <div class="drag-handle absolute left-2 top-1/2 -translate-y-1/2 cursor-grab opacity-0 group-hover:opacity-100 transition-opacity active:cursor-grabbing">
+                            <div class="drag-handle absolute left-2 top-1/2 -translate-y-1/2 cursor-grab opacity-60 hover:opacity-100 transition-opacity active:cursor-grabbing">
                                 <GripVertical class="h-5 w-5 text-muted-foreground" />
                             </div>
                             <div class="absolute right-3 top-3">
@@ -229,11 +233,11 @@ const currentWidgetTab = props.currentStatus || 'all';
                             <CardHeader class="pb-3 pl-10">
                                 <div class="flex items-center gap-2">
                                     <component :is="chartTypeIcons[widget.chart_type || 'stats']" class="h-5 w-5 text-muted-foreground" />
-                                    <CardTitle class="text-base">{{ widget.name }}</CardTitle>
+                                    <CardTitle class="text-base">{{ __(widget.name) }}</CardTitle>
                                 </div>
-                                <p v-if="widget.description" class="text-sm text-muted-foreground mt-1">{{ widget.description }}</p>
+                                <p v-if="widget.description" class="text-sm text-muted-foreground mt-1">{{ __(widget.description) }}</p>
                                 <div class="flex flex-wrap items-center gap-2 pt-2">
-                                    <Badge variant="outline">{{ widget.type }}</Badge>
+                                    <Badge variant="outline">{{ __(widget.type) }}</Badge>
                                     <Badge v-if="widget.chart_type" variant="default">{{ chartTypeLabels[widget.chart_type] || widget.chart_type }}</Badge>
                                 </div>
                             </CardHeader>
@@ -241,7 +245,7 @@ const currentWidgetTab = props.currentStatus || 'all';
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-2">
                                         <span :class="['h-2 w-2 rounded-full', widget.status ? 'bg-green-500' : 'bg-red-500']" />
-                                        <span class="text-sm text-muted-foreground">{{ widget.status ? 'Active' : 'Inactive' }}</span>
+                                        <span class="text-sm text-muted-foreground">{{ widget.status ? __('Active') : __('Inactive') }}</span>
                                     </div>
                                     <Switch :model-value="widget.status" @update:model-value="(value: boolean) => handleStatusChange(widget, value)" />
                                 </div>
@@ -251,7 +255,7 @@ const currentWidgetTab = props.currentStatus || 'all';
                 </div>
             </div>
 
-            <p v-if="props.widgetItems.length === 0" class="text-center text-muted-foreground py-8">No widgets found</p>
+            <p v-if="props.widgetItems.length === 0" class="text-center text-muted-foreground py-8">{{__('No widgets found')}}</p>
         </div>
     </AppLayout>
 </template>
