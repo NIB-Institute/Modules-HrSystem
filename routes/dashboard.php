@@ -63,6 +63,10 @@ Route::middleware(['auth', 'verified', 'auto.permission'])->group(function () {
     Route::post('dashboard/settings/users/{user}/unsuspend', [ActivityLogController::class, 'unsuspendUser'])->name('users.unsuspend');
     Route::post('dashboard/settings/users/{user}/force-logout', [ActivityLogController::class, 'forceLogout'])->name('users.force-logout');
     Route::delete('dashboard/settings/users/{user}', [ActivityLogController::class, 'deleteUser'])->name('users.delete');
+
+    // Media Library Routes
+    Route::get('dashboard/media', [\App\Http\Controllers\MediaController::class, 'index'])->name('media.index');
+    Route::post('dashboard/media/upload', [\App\Http\Controllers\MediaController::class, 'upload'])->name('media.upload');
 });
 
 /*
