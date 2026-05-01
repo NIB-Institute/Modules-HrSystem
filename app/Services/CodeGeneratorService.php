@@ -135,6 +135,11 @@ class CodeGeneratorService
         return str_pad($prefix, $this->prefixLength, $this->fallbackLetter);
     }
 
+    /**
+     * Generate a random suffix.
+     *
+     * @return string
+     */
     private function randomSuffix(): string
     {
         $max = (10 ** $this->suffixDigits) - 1;
