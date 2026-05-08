@@ -72,6 +72,7 @@ import {
     Store,
     Star,
     Sparkles,
+    NotebookPen,
     BedDouble,
     type LucideIcon,
 } from 'lucide-vue-next';
@@ -187,6 +188,7 @@ const iconMap: Record<string, LucideIcon> = {
     Wrench,
     Store,
     Star,
+    NotebookPen,
     Sparkles,
     BedDouble,
 };

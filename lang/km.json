@@ -716,5 +716,11 @@
     "Damaged": "ខូចខាត",
     "Broken": "ខូច",
     "Select condition": "ជ្រើសរើសលក្ខខណ្ឌ",
-    "Select equipment": "ជ្រើសរើសសម្ភារបរិក្ខារ"
+    "Select equipment": "ជ្រើសរើសសម្ភារបរិក្ខារ",
+    "Employee Plans": "ផែនការបុគ្គលិក",
+    "Employee Availability": "លទ្ធភាពបុគ្គលិក",
+    "Schedule a plan or task for an employee": "កំណត់ពេល ឬភារកិច្ចសម្រាប់បុគ្គលិក",
+    "Create Plan": "បង្កើតផែនការ",
+    "Employee plan created successfully.": "ផែនការបុគ្គលិកត្រូវបានបង្កើតដោយជោគជ័យ។"
+
 }
