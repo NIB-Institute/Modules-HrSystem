@@ -721,6 +721,8 @@
     "Employee Availability": "លទ្ធភាពបុគ្គលិក",
     "Schedule a plan or task for an employee": "កំណត់ពេល ឬភារកិច្ចសម្រាប់បុគ្គលិក",
     "Create Plan": "បង្កើតផែនការ",
-    "Employee plan created successfully.": "ផែនការបុគ្គលិកត្រូវបានបង្កើតដោយជោគជ័យ។"
+    "Employee plan created successfully.": "ផែនការបុគ្គលិកត្រូវបានបង្កើតដោយជោគជ័យ។",
+    "Availability": "លទ្ធភាព",
+    "plans": "ផែនការ"
 
 }
