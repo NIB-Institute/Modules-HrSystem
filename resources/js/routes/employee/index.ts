@@ -3,6 +3,8 @@ import employeeTypes from './employee-types'
 import attendances from './attendances'
 import locations from './locations'
 import permissionRequests from './permission-requests'
+import employeePlans from './employee-plans'
+import employeeAvailabilities from './employee-availabilities'
 
 const employee = {
     employees: Object.assign(employees, employees),
@@ -10,6 +12,8 @@ const employee = {
     attendances: Object.assign(attendances, attendances),
     locations: Object.assign(locations, locations),
     permissionRequests: Object.assign(permissionRequests, permissionRequests),
+    employeePlans: Object.assign(employeePlans, employeePlans),
+    employeeAvailabilities: Object.assign(employeeAvailabilities, employeeAvailabilities),
 }
 
 export default employee
