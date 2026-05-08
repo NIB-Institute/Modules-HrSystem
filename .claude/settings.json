@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npx vue-tsc *)",
-      "Bash(php -r ' *)"
+      "Bash(php -r ' *)",
+      "Bash(php -l Modules/Employee/database/seeders/EmployeePlanSeeder.php Modules/Employee/database/seeders/EmployeeDatabaseSeeder.php)"
     ]
   }
 }
