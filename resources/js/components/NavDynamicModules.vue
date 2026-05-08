@@ -73,6 +73,7 @@ import {
     Star,
     Sparkles,
     NotebookPen,
+    UsersRound,
     CalendarRange,
     BedDouble,
     type LucideIcon,
@@ -192,6 +193,7 @@ const iconMap: Record<string, LucideIcon> = {
     CalendarRange,
     NotebookPen,
     Sparkles,
+    UsersRound,
     BedDouble,
 };
 
