@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
-import { Eye, EyeOff, Building2, School, Store, Mail, Calendar, Upload, User, X, Lock } from 'lucide-vue-next';
+import { ImageUpload } from '@/components/shared';
+import { Eye, EyeOff, Building2, School, Store, Mail, Calendar, Lock, CheckCircle2 } from 'lucide-vue-next';
 import { ref, computed, onMounted } from 'vue';
 import { toast } from 'vue-sonner';
 import type { Role } from '@/types/roles';
@@ -51,7 +52,9 @@ const emit = defineEmits<{
 
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
-const avatarPreview = ref<string | null>(props.user?.avatar || null);
+
+// Track whether the tenant was auto-selected so we can show a hint to the user.
+const tenantAutoSelected = ref(false);
 
 // Protected super-admin user (cannot remove super-admin role)
 const PROTECTED_ADMIN_EMAIL = 'kouchlyhour@gmail.com';
@@ -127,20 +130,45 @@ const updateFormTenants = () => {
     });
 };
 
-// Initialize tenants on mount
+// Initialize tenants on mount.
+// Auto-select priority:
+//   1. If `currentUserTenants` is provided (non-super-admin with tenant context),
+//      copy all entries and respect their `is_primary` flag.
+//   2. Otherwise, if any tenants are available, auto-select the first one as
+//      primary. The user can uncheck or pick a different tenant after.
 onMounted(() => {
-    if (props.mode === 'create' && props.currentUserTenants && props.currentUserTenants.length > 0) {
-        // Auto-select current user's tenants for non-super-admin
-        selectedTenants.value = props.currentUserTenants.map(
-            t => `${t.tenant_type}:${t.tenant_id}`
-        );
+    if (props.mode !== 'create') {
+        updateFormTenants();
+        return;
+    }
 
-        const primary = props.currentUserTenants.find(t => t.is_primary);
-        if (primary) {
-            primaryTenant.value = `${primary.tenant_type}:${primary.tenant_id}`;
-        } else if (props.currentUserTenants.length > 0) {
-            primaryTenant.value = `${props.currentUserTenants[0].tenant_type}:${props.currentUserTenants[0].tenant_id}`;
+    let toSelect: TenantFormData[] = [];
+
+    if (props.currentUserTenants && props.currentUserTenants.length > 0) {
+        toSelect = [...props.currentUserTenants];
+    } else {
+        const schools = props.availableTenants?.schools ?? [];
+        const outlets = props.availableTenants?.outlets ?? [];
+        if (schools.length > 0) {
+            toSelect = [{
+                tenant_type: 'School',
+                tenant_id: Number(schools[0].id),
+                is_primary: true,
+            }];
+        } else if (outlets.length > 0) {
+            toSelect = [{
+                tenant_type: 'Outlet',
+                tenant_id: Number(outlets[0].id),
+                is_primary: true,
+            }];
         }
+    }
+
+    if (toSelect.length > 0) {
+        selectedTenants.value = toSelect.map(t => `${t.tenant_type}:${t.tenant_id}`);
+        const primary = toSelect.find(t => t.is_primary) ?? toSelect[0];
+        primaryTenant.value = `${primary.tenant_type}:${primary.tenant_id}`;
+        tenantAutoSelected.value = true;
     }
 
     updateFormTenants();
@@ -221,72 +249,13 @@ const isFormValid = computed(() => {
     return true;
 });
 
-// Avatar handling
-const avatarInput = ref<HTMLInputElement | null>(null);
-const isUploading = ref(false);
-
-const removeAvatar = () => {
-    form.avatar = '';
-    avatarPreview.value = null;
-};
-
-
-// Simple file upload for avatars (no media permission required)
-const openFileInput = () => {
-    avatarInput.value?.click();
-};
-
-const handleFileSelect = async (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
-    if (!file) return;
-
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-        toast.error('Please select an image file');
-        return;
-    }
-
-    // Validate file size (2MB max)
-    if (file.size > 2 * 1024 * 1024) {
-        toast.error('Image must be less than 2MB');
-        return;
-    }
-
-    isUploading.value = true;
-
-    try {
-        const formData = new FormData();
-        formData.append('file', file);
-        if (props.user?.id) {
-            formData.append('user_id', props.user.id.toString());
-        }
-
-        const response = await fetch('/dashboard/avatar/upload', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error('Upload failed');
-        }
-
-        const data = await response.json();
-        form.avatar = data.url;
-        avatarPreview.value = data.url;
-        toast.success('Avatar uploaded successfully');
-    } catch (error) {
-        toast.error('Failed to upload avatar');
-        console.error('Avatar upload error:', error);
-    } finally {
-        isUploading.value = false;
-        // Reset input
-        if (target) target.value = '';
-    }
-};
+// Avatar handling — bridges form.avatar (string) ↔ ImageUpload's string[]
+const avatarImages = computed<string[]>({
+    get: () => (form.avatar ? [form.avatar] : []),
+    set: (val: string[]) => {
+        form.avatar = val[0] ?? '';
+    },
+});
 
 const formatDate = (date?: string) => {
     if (!date) return 'N/A';
@@ -333,65 +302,17 @@ const handleSubmit = () => {
                 <CardContent>
                     <!-- Avatar Upload Section -->
                     <div class="flex flex-col items-center text-center gap-4 mb-6">
-                        <!-- Hidden file input -->
-                        <input
-                            ref="avatarInput"
-                            type="file"
-                            accept="image/*"
-                            class="hidden"
-                            @change="handleFileSelect"
-                        />
-
-                        <!-- Avatar preview/upload - entire area clickable -->
-                        <div
-                            class="relative group cursor-pointer"
-                            :class="{ 'opacity-50 pointer-events-none': isUploading }"
-                            @click="openFileInput"
-                        >
-                            <div
-                                v-if="avatarPreview"
-                                class="h-24 w-24 overflow-hidden rounded-full"
-                            >
-                                <img
-                                    :src="avatarPreview"
-                                    alt="Avatar preview"
-                                    class="h-full w-full object-cover"
-                                />
-                            </div>
-                            <div
-                                v-else
-                                class="flex h-24 w-24 items-center justify-center rounded-full bg-primary/10"
-                            >
-                                <User class="h-10 w-10 text-primary" />
-                            </div>
-
-                            <!-- Overlay -->
-                            <div class="absolute inset-0 flex items-center justify-center gap-1 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <Upload v-if="!isUploading" class="h-6 w-6 text-white" />
-                                <svg v-else class="h-6 w-6 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                            </div>
-
-                            <!-- Remove button (separate, stops propagation) -->
-                            <Button
-                                v-if="avatarPreview && !isUploading"
-                                type="button"
-                                variant="destructive"
-                                size="icon"
-                                class="absolute -top-1 -right-1 h-6 w-6 rounded-full"
-                                @click.stop="removeAvatar"
-                            >
-                                <X class="h-3 w-3" />
-                            </Button>
+                        <!-- Avatar via shared ImageUpload (single image) -->
+                        <div class="w-full">
+                            <ImageUpload
+                                v-model="avatarImages"
+                                :multiple="false"
+                                accept="image/*"
+                                :max-size="2"
+                                label="Avatar"
+                                :error="form.errors.avatar"
+                            />
                         </div>
-                        <p class="text-xs text-muted-foreground">
-                            {{ isUploading ? 'Uploading...' : 'Click to upload avatar (max 2MB)' }}
-                        </p>
-                        <p v-if="form.errors.avatar" class="text-xs text-destructive">
-                            {{ form.errors.avatar }}
-                        </p>
 
                         <!-- Edit mode: Show user info -->
                         <div v-if="mode === 'edit' && user" class="space-y-2">
@@ -553,6 +474,18 @@ const handleSubmit = () => {
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
+                        <!-- Auto-select hint -->
+                        <div
+                            v-if="tenantAutoSelected && mode === 'create'"
+                            class="mb-4 flex items-start gap-2 rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-700 dark:border-green-900 dark:bg-green-950/30 dark:text-green-300"
+                        >
+                            <CheckCircle2 class="mt-0.5 h-4 w-4 shrink-0" />
+                            <span>
+                                Organization auto-selected based on your account. You can adjust the
+                                selection below if needed.
+                            </span>
+                        </div>
+
                         <div class="space-y-4">
                             <!-- No Organization Option -->
                             <div

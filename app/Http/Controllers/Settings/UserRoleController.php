@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 use Inertia\Response;
+use Momentum\Modal\Modal;
 use Modules\School\Models\School;
 use Spatie\Permission\Models\Role;
 
@@ -421,6 +422,85 @@ class UserRoleController extends Controller
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully.');
+    }
+
+    /**
+     * Show the dedicated "Manage Roles" modal for a single user.
+     * Renders as a Momentum modal overlaid on the users index.
+     */
+    public function manageRoles(User $user): Modal
+    {
+        $currentUser = Auth::user();
+        $isSuperAdmin = $currentUser->hasRole('super-admin');
+
+        $rolesQuery = Role::withCount('permissions')->orderBy('name');
+        if (!$isSuperAdmin) {
+            $rolesQuery->where('name', '!=', 'super-admin');
+        }
+
+        $user->load('roles:id,name');
+
+        return Inertia::modal('dashboard/settings/users/ManageRoles', [
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $user->avatar,
+                'roles' => $user->roles->map(fn ($r) => ['id' => $r->id, 'name' => $r->name]),
+            ],
+            'roles' => $rolesQuery->get(['id', 'name'])->map(fn ($r) => [
+                'id' => $r->id,
+                'name' => $r->name,
+                'permissions_count' => $r->permissions_count,
+            ]),
+            'isSuperAdmin' => $isSuperAdmin,
+        ])->baseRoute('users.index');
+    }
+
+    /**
+     * Persist the role set for a single user. Mirrors the role-handling part
+     * of update() but doesn't touch avatar / password / tenants — useful when
+     * an admin only wants to change role assignment without re-validating
+     * the rest of the user form.
+     */
+    public function updateRoles(Request $request, User $user)
+    {
+        $currentUser = Auth::user();
+        $isSuperAdmin = $currentUser->hasRole('super-admin');
+
+        $validated = $request->validate([
+            'roles' => 'required|array',
+            'roles.*' => 'exists:roles,id',
+        ]);
+
+        // Non-super-admin can never assign super-admin role.
+        if (!$isSuperAdmin) {
+            $superAdminRole = Role::where('name', 'super-admin')->first();
+            if ($superAdminRole && in_array($superAdminRole->id, $validated['roles'])) {
+                return redirect()->back()
+                    ->with('error', 'You cannot assign super-admin role.');
+            }
+        }
+
+        // Prevent removing the last super-admin's super-admin role.
+        $superAdminRole = Role::where('name', 'super-admin')->first();
+        if (
+            $superAdminRole
+            && $user->hasRole('super-admin')
+            && !in_array($superAdminRole->id, $validated['roles'])
+        ) {
+            $superAdminCount = User::role('super-admin')->count();
+            if ($superAdminCount <= 1) {
+                return redirect()->back()
+                    ->with('error', 'Cannot remove super-admin role from the last super-admin.');
+            }
+        }
+
+        $roles = Role::whereIn('id', $validated['roles'])->get();
+        $user->syncRoles($roles);
+
+        return redirect()->route('users.index')
+            ->with('success', 'Roles updated successfully.');
     }
 
     /**

@@ -5,7 +5,9 @@
       "Bash(php -r ' *)",
       "Bash(php -l Modules/Employee/database/seeders/EmployeePlanSeeder.php Modules/Employee/database/seeders/EmployeeDatabaseSeeder.php)",
       "Bash(php -l Modules/Employee/database/seeders/EmployeeAvailabilitySeeder.php Modules/Employee/database/seeders/EmployeeDatabaseSeeder.php)",
-      "Bash(php -l Modules/Employee/app/Http/Middleware/DashboardMiddlewareHandle.php)"
+      "Bash(php -l Modules/Employee/app/Http/Middleware/DashboardMiddlewareHandle.php)",
+      "Bash(php -l Modules/Employee/app/Actions/Dashboard/V1/EmployeePlanAssignment/GetEmployeePlanAssignmentCreateDataAction.php Modules/Employee/app/Actions/Dashboard/V1/EmployeePlanAssignment/GetEmployeePlanAssignmentEditDataAction.php Modules/Employee/app/Http/Resources/Dashboard/V1/EmployeePlanAssignmentResource.php)",
+      "Bash(php -l app/Http/Controllers/Settings/UserRoleController.php routes/dashboard.php)"
     ]
   }
 }

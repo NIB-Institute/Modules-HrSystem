@@ -456,20 +456,20 @@ const handleSubmit = () => {
                                                 </div>
                                                 <div class="flex items-center gap-3">
                                                     <Badge
-                                                        :variant="isModuleFullySelected(module) ? 'default' : isModulePartiallySelected(module) ? 'secondary' : 'outline'"
+                                                        :variant="isModuleFullySelected(module as string) ? 'default' : isModulePartiallySelected(module as string) ? 'secondary' : 'outline'"
                                                         class="font-mono"
                                                     >
-                                                        {{ getModuleSelectedCount(module) }}/{{ moduleData.totalPermissions }}
+                                                        {{ getModuleSelectedCount(module as string) }}/{{ moduleData.totalPermissions }}
                                                     </Badge>
                                                     <Checkbox
-                                                        :model-value="isModuleFullySelected(module)"
-                                                        :indeterminate="isModulePartiallySelected(module)"
+                                                        :model-value="isModuleFullySelected(module as string)"
+                                                        :indeterminate="isModulePartiallySelected(module as string)"
                                                         @click.stop
-                                                        @update:model-value="toggleModulePermissions(module)"
+                                                        @update:model-value="toggleModulePermissions(module as string)"
                                                     />
                                                     <ChevronDown
                                                         class="h-4 w-4 transition-transform duration-200"
-                                                        :class="{ 'rotate-180': expandedModules[module] }"
+                                                        :class="{ 'rotate-180': expandedModules[module as string] }"
                                                     />
                                                 </div>
                                             </div>
@@ -487,14 +487,14 @@ const handleSubmit = () => {
                                                     <div class="flex items-center justify-between px-4 py-3 bg-muted/50">
                                                         <div class="flex items-center gap-3">
                                                             <Checkbox
-                                                                :model-value="isResourceFullySelected(module, resource)"
-                                                                :indeterminate="isResourcePartiallySelected(module, resource)"
-                                                                @update:model-value="toggleResourcePermissions(module, resource)"
+                                                                :model-value="isResourceFullySelected(module as string, resource as string)"
+                                                                :indeterminate="isResourcePartiallySelected(module as string, resource as string)"
+                                                                @update:model-value="toggleResourcePermissions(module as string, resource as string)"
                                                             />
-                                                            <span class="font-medium text-sm">{{ formatName(resource) }}</span>
+                                                            <span class="font-medium text-sm">{{ formatName(resource as string) }}</span>
                                                         </div>
                                                         <Badge variant="outline" class="text-xs">
-                                                            {{ getResourceSelectedCount(module, resource) }}/{{ permissions.length }}
+                                                            {{ getResourceSelectedCount(module as string, resource as string) }}/{{ permissions.length }}
                                                         </Badge>
                                                     </div>
 

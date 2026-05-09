@@ -50,6 +50,8 @@ Route::middleware(['auth', 'verified', 'auto.permission'])->group(function () {
     Route::get('dashboard/settings/users', [UserRoleController::class, 'index'])->name('users.index');
     Route::get('dashboard/settings/users/{user}/edit', [UserRoleController::class, 'edit'])->name('users.edit');
     Route::put('dashboard/settings/users/{user}', [UserRoleController::class, 'update'])->name('users.update');
+    Route::get('dashboard/settings/users/{user}/manage-roles', [UserRoleController::class, 'manageRoles'])->name('users.manage-roles');
+    Route::put('dashboard/settings/users/{user}/manage-roles', [UserRoleController::class, 'updateRoles'])->name('users.manage-roles.update');
     Route::post('dashboard/settings/users/{user}/assign-role', [UserRoleController::class, 'assignRole'])->name('users.assign-role');
     Route::post('dashboard/settings/users/{user}/remove-role', [UserRoleController::class, 'removeRole'])->name('users.remove-role');
 

@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/select';
 import { TableReusable } from '@/components/shared';
 import type { TableColumn, TableAction } from '@/components/shared/TableReusable/TableReusable.vue';
-import { Users, ArrowLeft, Plus, Edit, Trash2, Ban, CheckCircle, User } from 'lucide-vue-next';
+import { Users, ArrowLeft, Plus, Edit, Trash2, Ban, CheckCircle, User, Shield } from 'lucide-vue-next';
 import type { BreadcrumbItem } from '@/types';
 import type { Role } from '@/types/roles';
 import type { UserWithRoles } from '@/types/users';
@@ -105,6 +105,14 @@ const actions: TableAction<UserWithRoles>[] = [
         onClick: (user) => {
             router.visit(`/dashboard/settings/users/${user.id}/edit`);
         },
+    },
+    {
+        label: 'Manage Roles',
+        icon: Shield,
+        onClick: (user) => {
+            router.visit(`/dashboard/settings/users/${user.id}/manage-roles`);
+        },
+        separator: true,
     },
     {
         label: 'Suspend',

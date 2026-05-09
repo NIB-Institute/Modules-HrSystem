@@ -5,12 +5,12 @@ import { computed, type HTMLAttributes } from 'vue';
 
 const props = defineProps<{
     class?: HTMLAttributes['class'];
-    modelValue?: string;
-    defaultValue?: string;
+    modelValue?: string | null;
+    defaultValue?: string | null;
 }>();
 
 const emits = defineEmits<{
-    'update:modelValue': [value: string];
+    'update:modelValue': [value: string | null];
 }>();
 
 const modelValue = useVModel(props, 'modelValue', emits, {
