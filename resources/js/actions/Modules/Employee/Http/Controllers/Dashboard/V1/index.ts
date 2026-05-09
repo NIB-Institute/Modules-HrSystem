@@ -10,6 +10,7 @@ import SelfServiceAttendanceController from './SelfServiceAttendanceController'
 import AttendanceController from './AttendanceController'
 import PermissionRequestController from './PermissionRequestController'
 import EmployeePlanController from './EmployeePlanController'
+import EmployeePlanAssignmentController from './EmployeePlanAssignmentController'
 import EmployeeAvailabilityController from './EmployeeAvailabilityController'
 
 const V1 = {
@@ -25,6 +26,7 @@ const V1 = {
     AttendanceController: Object.assign(AttendanceController, AttendanceController),
     PermissionRequestController: Object.assign(PermissionRequestController, PermissionRequestController),
     EmployeePlanController: Object.assign(EmployeePlanController, EmployeePlanController),
+    EmployeePlanAssignmentController: Object.assign(EmployeePlanAssignmentController, EmployeePlanAssignmentController),
     EmployeeAvailabilityController: Object.assign(EmployeeAvailabilityController, EmployeeAvailabilityController),
 }
 

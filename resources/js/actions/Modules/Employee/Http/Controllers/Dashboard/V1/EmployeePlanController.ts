@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../../../../wayfinder'
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:43
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:44
 * @route '/dashboard/employee-plans/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ create.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:43
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:44
 * @route '/dashboard/employee-plans/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:43
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:44
 * @route '/dashboard/employee-plans/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:43
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:44
 * @route '/dashboard/employee-plans/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:43
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:44
 * @route '/dashboard/employee-plans/create'
 */
 const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -55,7 +55,7 @@ const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:43
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:44
 * @route '/dashboard/employee-plans/create'
 */
 createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -65,7 +65,7 @@ createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:43
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:44
 * @route '/dashboard/employee-plans/create'
 */
 createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -138,7 +138,7 @@ store.form = storeForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:33
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:34
 * @route '/dashboard/employee-plans'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -153,7 +153,7 @@ index.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:33
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:34
 * @route '/dashboard/employee-plans'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -162,7 +162,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:33
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:34
 * @route '/dashboard/employee-plans'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -172,7 +172,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:33
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:34
 * @route '/dashboard/employee-plans'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -182,7 +182,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:33
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:34
 * @route '/dashboard/employee-plans'
 */
 const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -192,7 +192,7 @@ const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:33
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:34
 * @route '/dashboard/employee-plans'
 */
 indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -202,7 +202,7 @@ indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:33
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:34
 * @route '/dashboard/employee-plans'
 */
 indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -219,7 +219,7 @@ index.form = indexForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:64
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
 export const edit = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -234,7 +234,7 @@ edit.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:64
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
 edit.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -267,7 +267,7 @@ edit.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: s
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:64
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
 edit.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -277,7 +277,7 @@ edit.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: s
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:64
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
 edit.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -287,7 +287,7 @@ edit.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:64
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
 const editForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -297,7 +297,7 @@ const editForm = (args: { employeePlan: string | { uuid: string } } | [employeeP
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:64
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
 editForm.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -307,7 +307,7 @@ editForm.get = (args: { employeePlan: string | { uuid: string } } | [employeePla
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:64
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
 editForm.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -324,7 +324,7 @@ edit.form = editForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 const update725045ebf2e59ef65e44f8cf5abf470c = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -339,7 +339,7 @@ update725045ebf2e59ef65e44f8cf5abf470c.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 update725045ebf2e59ef65e44f8cf5abf470c.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -372,7 +372,7 @@ update725045ebf2e59ef65e44f8cf5abf470c.url = (args: { employeePlan: string | { u
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 update725045ebf2e59ef65e44f8cf5abf470c.put = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -382,7 +382,7 @@ update725045ebf2e59ef65e44f8cf5abf470c.put = (args: { employeePlan: string | { u
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 const update725045ebf2e59ef65e44f8cf5abf470cForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -397,7 +397,7 @@ const update725045ebf2e59ef65e44f8cf5abf470cForm = (args: { employeePlan: string
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 update725045ebf2e59ef65e44f8cf5abf470cForm.put = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -413,7 +413,7 @@ update725045ebf2e59ef65e44f8cf5abf470cForm.put = (args: { employeePlan: string |
 update725045ebf2e59ef65e44f8cf5abf470c.form = update725045ebf2e59ef65e44f8cf5abf470cForm
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 const update725045ebf2e59ef65e44f8cf5abf470c = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -428,7 +428,7 @@ update725045ebf2e59ef65e44f8cf5abf470c.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 update725045ebf2e59ef65e44f8cf5abf470c.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -461,7 +461,7 @@ update725045ebf2e59ef65e44f8cf5abf470c.url = (args: { employeePlan: string | { u
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 update725045ebf2e59ef65e44f8cf5abf470c.patch = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -471,7 +471,7 @@ update725045ebf2e59ef65e44f8cf5abf470c.patch = (args: { employeePlan: string | {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 const update725045ebf2e59ef65e44f8cf5abf470cForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -486,7 +486,7 @@ const update725045ebf2e59ef65e44f8cf5abf470cForm = (args: { employeePlan: string
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:69
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:72
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 update725045ebf2e59ef65e44f8cf5abf470cForm.patch = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -508,7 +508,7 @@ export const update = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:78
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:81
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
 export const confirmDelete = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -523,7 +523,7 @@ confirmDelete.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:78
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:81
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
 confirmDelete.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -556,7 +556,7 @@ confirmDelete.url = (args: { employeePlan: string | { uuid: string } } | [employ
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:78
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:81
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
 confirmDelete.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -566,7 +566,7 @@ confirmDelete.get = (args: { employeePlan: string | { uuid: string } } | [employ
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:78
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:81
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
 confirmDelete.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -576,7 +576,7 @@ confirmDelete.head = (args: { employeePlan: string | { uuid: string } } | [emplo
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:78
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:81
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
 const confirmDeleteForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -586,7 +586,7 @@ const confirmDeleteForm = (args: { employeePlan: string | { uuid: string } } | [
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:78
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:81
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
 confirmDeleteForm.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -596,7 +596,7 @@ confirmDeleteForm.get = (args: { employeePlan: string | { uuid: string } } | [em
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:78
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:81
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
 confirmDeleteForm.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -613,7 +613,7 @@ confirmDelete.form = confirmDeleteForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:87
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:90
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 export const destroy = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -628,7 +628,7 @@ destroy.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:87
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:90
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 destroy.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -661,7 +661,7 @@ destroy.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:87
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:90
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 destroy.delete = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -671,7 +671,7 @@ destroy.delete = (args: { employeePlan: string | { uuid: string } } | [employeeP
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:87
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:90
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 const destroyForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -686,7 +686,7 @@ const destroyForm = (args: { employeePlan: string | { uuid: string } } | [employ
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:87
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:90
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
 destroyForm.delete = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
