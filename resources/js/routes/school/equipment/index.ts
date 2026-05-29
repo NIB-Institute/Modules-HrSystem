@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 import importMethod7367d2 from './import'
 import trash from './trash'
 /**
@@ -46,43 +46,6 @@ exportOptions.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => (
 })
 
 /**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:304
-* @route '/dashboard/equipment/export-options'
-*/
-const exportOptionsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportOptions.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:304
-* @route '/dashboard/equipment/export-options'
-*/
-exportOptionsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportOptions.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportOptions
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:304
-* @route '/dashboard/equipment/export-options'
-*/
-exportOptionsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportOptions.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-exportOptions.form = exportOptionsForm
-
-/**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:314
 * @route '/dashboard/equipment/export'
@@ -125,43 +88,6 @@ exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: exportMethod.url(options),
     method: 'head',
 })
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:314
-* @route '/dashboard/equipment/export'
-*/
-const exportMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportMethod.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:314
-* @route '/dashboard/equipment/export'
-*/
-exportMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportMethod.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::exportMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:314
-* @route '/dashboard/equipment/export'
-*/
-exportMethodForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: exportMethod.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-exportMethod.form = exportMethodForm
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
@@ -208,43 +134,6 @@ importMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:319
-* @route '/dashboard/equipment/import'
-*/
-const importMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: importMethod.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:319
-* @route '/dashboard/equipment/import'
-*/
-importMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: importMethod.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::importMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:319
-* @route '/dashboard/equipment/import'
-*/
-importMethodForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: importMethod.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-importMethod.form = importMethodForm
-
-/**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:336
 * @route '/dashboard/equipment/template'
@@ -289,43 +178,6 @@ template.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:336
-* @route '/dashboard/equipment/template'
-*/
-const templateForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: template.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:336
-* @route '/dashboard/equipment/template'
-*/
-templateForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: template.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\SchoolImportExportController::template
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/SchoolImportExportController.php:336
-* @route '/dashboard/equipment/template'
-*/
-templateForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: template.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-template.form = templateForm
-
-/**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::bulkDelete
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:147
 * @route '/dashboard/equipment/bulk-delete'
@@ -358,38 +210,6 @@ bulkDelete.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => 
     url: bulkDelete.url(options),
     method: 'delete',
 })
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::bulkDelete
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:147
-* @route '/dashboard/equipment/bulk-delete'
-*/
-const bulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: bulkDelete.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::bulkDelete
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:147
-* @route '/dashboard/equipment/bulk-delete'
-*/
-bulkDeleteForm.delete = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: bulkDelete.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-bulkDelete.form = bulkDeleteForm
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::create
@@ -436,43 +256,6 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::create
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:53
-* @route '/dashboard/equipment/create'
-*/
-const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::create
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:53
-* @route '/dashboard/equipment/create'
-*/
-createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::create
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:53
-* @route '/dashboard/equipment/create'
-*/
-createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-create.form = createForm
-
-/**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::store
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:64
 * @route '/dashboard/equipment'
@@ -505,28 +288,6 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::store
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:64
-* @route '/dashboard/equipment'
-*/
-const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::store
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:64
-* @route '/dashboard/equipment'
-*/
-storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-store.form = storeForm
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::index
@@ -571,43 +332,6 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::index
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:40
-* @route '/dashboard/equipment'
-*/
-const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::index
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:40
-* @route '/dashboard/equipment'
-*/
-indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::index
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:40
-* @route '/dashboard/equipment'
-*/
-indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-index.form = indexForm
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::show
@@ -678,43 +402,6 @@ show.head = (args: { equipment: string | number | { uuid: string | number } } | 
 })
 
 /**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::show
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:76
-* @route '/dashboard/equipment/{equipment}'
-*/
-const showForm = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::show
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:76
-* @route '/dashboard/equipment/{equipment}'
-*/
-showForm.get = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::show
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:76
-* @route '/dashboard/equipment/{equipment}'
-*/
-showForm.head = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-show.form = showForm
-
-/**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::edit
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:86
 * @route '/dashboard/equipment/{equipment}/edit'
@@ -783,43 +470,6 @@ edit.head = (args: { equipment: string | number | { uuid: string | number } } | 
 })
 
 /**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::edit
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:86
-* @route '/dashboard/equipment/{equipment}/edit'
-*/
-const editForm = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::edit
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:86
-* @route '/dashboard/equipment/{equipment}/edit'
-*/
-editForm.get = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::edit
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:86
-* @route '/dashboard/equipment/{equipment}/edit'
-*/
-editForm.head = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-edit.form = editForm
-
-/**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::update
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:97
 * @route '/dashboard/equipment/{equipment}'
@@ -876,38 +526,6 @@ update.put = (args: { equipment: string | number | { uuid: string | number } } |
     url: update.url(args, options),
     method: 'put',
 })
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::update
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:97
-* @route '/dashboard/equipment/{equipment}'
-*/
-const updateForm = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::update
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:97
-* @route '/dashboard/equipment/{equipment}'
-*/
-updateForm.put = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-update.form = updateForm
 
 /**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::deleteMethod
@@ -978,43 +596,6 @@ deleteMethod.head = (args: { equipment: string | number | { uuid: string | numbe
 })
 
 /**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::deleteMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:109
-* @route '/dashboard/equipment/{equipment}/delete'
-*/
-const deleteMethodForm = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: deleteMethod.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::deleteMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:109
-* @route '/dashboard/equipment/{equipment}/delete'
-*/
-deleteMethodForm.get = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: deleteMethod.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::deleteMethod
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:109
-* @route '/dashboard/equipment/{equipment}/delete'
-*/
-deleteMethodForm.head = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: deleteMethod.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-deleteMethod.form = deleteMethodForm
-
-/**
 * @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::destroy
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:121
 * @route '/dashboard/equipment/{equipment}'
@@ -1071,38 +652,6 @@ destroy.delete = (args: { equipment: string | number | { uuid: string | number }
     url: destroy.url(args, options),
     method: 'delete',
 })
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::destroy
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:121
-* @route '/dashboard/equipment/{equipment}'
-*/
-const destroyForm = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\School\Http\Controllers\Dashboard\V1\EquipmentController::destroy
-* @see Modules/School/app/Http/Controllers/Dashboard/V1/EquipmentController.php:121
-* @route '/dashboard/equipment/{equipment}'
-*/
-destroyForm.delete = (args: { equipment: string | number | { uuid: string | number } } | [equipment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-destroy.form = destroyForm
 
 const equipment = {
     exportOptions: Object.assign(exportOptions, exportOptions),

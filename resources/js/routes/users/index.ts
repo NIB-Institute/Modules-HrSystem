@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 import manageRolesEfdf97 from './manage-roles'
 /**
 * @see \App\Http\Controllers\Settings\UserRoleController::create
@@ -45,43 +45,6 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\Settings\UserRoleController::create
-* @see app/Http/Controllers/Settings/UserRoleController.php:104
-* @route '/dashboard/settings/users/create'
-*/
-const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::create
-* @see app/Http/Controllers/Settings/UserRoleController.php:104
-* @route '/dashboard/settings/users/create'
-*/
-createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::create
-* @see app/Http/Controllers/Settings/UserRoleController.php:104
-* @route '/dashboard/settings/users/create'
-*/
-createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-create.form = createForm
-
-/**
 * @see \App\Http\Controllers\Settings\UserRoleController::store
 * @see app/Http/Controllers/Settings/UserRoleController.php:178
 * @route '/dashboard/settings/users'
@@ -114,28 +77,6 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::store
-* @see app/Http/Controllers/Settings/UserRoleController.php:178
-* @route '/dashboard/settings/users'
-*/
-const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::store
-* @see app/Http/Controllers/Settings/UserRoleController.php:178
-* @route '/dashboard/settings/users'
-*/
-storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\Settings\UserRoleController::index
@@ -180,43 +121,6 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::index
-* @see app/Http/Controllers/Settings/UserRoleController.php:26
-* @route '/dashboard/settings/users'
-*/
-const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::index
-* @see app/Http/Controllers/Settings/UserRoleController.php:26
-* @route '/dashboard/settings/users'
-*/
-indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::index
-* @see app/Http/Controllers/Settings/UserRoleController.php:26
-* @route '/dashboard/settings/users'
-*/
-indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-index.form = indexForm
 
 /**
 * @see \App\Http\Controllers\Settings\UserRoleController::edit
@@ -287,43 +191,6 @@ edit.head = (args: { user: string | number | { id: string | number } } | [user: 
 })
 
 /**
-* @see \App\Http\Controllers\Settings\UserRoleController::edit
-* @see app/Http/Controllers/Settings/UserRoleController.php:263
-* @route '/dashboard/settings/users/{user}/edit'
-*/
-const editForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::edit
-* @see app/Http/Controllers/Settings/UserRoleController.php:263
-* @route '/dashboard/settings/users/{user}/edit'
-*/
-editForm.get = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::edit
-* @see app/Http/Controllers/Settings/UserRoleController.php:263
-* @route '/dashboard/settings/users/{user}/edit'
-*/
-editForm.head = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-edit.form = editForm
-
-/**
 * @see \App\Http\Controllers\Settings\UserRoleController::update
 * @see app/Http/Controllers/Settings/UserRoleController.php:341
 * @route '/dashboard/settings/users/{user}'
@@ -380,38 +247,6 @@ update.put = (args: { user: string | number | { id: string | number } } | [user:
     url: update.url(args, options),
     method: 'put',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::update
-* @see app/Http/Controllers/Settings/UserRoleController.php:341
-* @route '/dashboard/settings/users/{user}'
-*/
-const updateForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::update
-* @see app/Http/Controllers/Settings/UserRoleController.php:341
-* @route '/dashboard/settings/users/{user}'
-*/
-updateForm.put = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-update.form = updateForm
 
 /**
 * @see \App\Http\Controllers\Settings\UserRoleController::manageRoles
@@ -482,43 +317,6 @@ manageRoles.head = (args: { user: string | number | { id: string | number } } | 
 })
 
 /**
-* @see \App\Http\Controllers\Settings\UserRoleController::manageRoles
-* @see app/Http/Controllers/Settings/UserRoleController.php:431
-* @route '/dashboard/settings/users/{user}/manage-roles'
-*/
-const manageRolesForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: manageRoles.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::manageRoles
-* @see app/Http/Controllers/Settings/UserRoleController.php:431
-* @route '/dashboard/settings/users/{user}/manage-roles'
-*/
-manageRolesForm.get = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: manageRoles.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::manageRoles
-* @see app/Http/Controllers/Settings/UserRoleController.php:431
-* @route '/dashboard/settings/users/{user}/manage-roles'
-*/
-manageRolesForm.head = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: manageRoles.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-manageRoles.form = manageRolesForm
-
-/**
 * @see \App\Http\Controllers\Settings\UserRoleController::assignRole
 * @see app/Http/Controllers/Settings/UserRoleController.php:509
 * @route '/dashboard/settings/users/{user}/assign-role'
@@ -575,28 +373,6 @@ assignRole.post = (args: { user: string | number | { id: string | number } } | [
     url: assignRole.url(args, options),
     method: 'post',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::assignRole
-* @see app/Http/Controllers/Settings/UserRoleController.php:509
-* @route '/dashboard/settings/users/{user}/assign-role'
-*/
-const assignRoleForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: assignRole.url(args, options),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::assignRole
-* @see app/Http/Controllers/Settings/UserRoleController.php:509
-* @route '/dashboard/settings/users/{user}/assign-role'
-*/
-assignRoleForm.post = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: assignRole.url(args, options),
-    method: 'post',
-})
-
-assignRole.form = assignRoleForm
 
 /**
 * @see \App\Http\Controllers\Settings\UserRoleController::removeRole
@@ -657,28 +433,6 @@ removeRole.post = (args: { user: string | number | { id: string | number } } | [
 })
 
 /**
-* @see \App\Http\Controllers\Settings\UserRoleController::removeRole
-* @see app/Http/Controllers/Settings/UserRoleController.php:524
-* @route '/dashboard/settings/users/{user}/remove-role'
-*/
-const removeRoleForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: removeRole.url(args, options),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::removeRole
-* @see app/Http/Controllers/Settings/UserRoleController.php:524
-* @route '/dashboard/settings/users/{user}/remove-role'
-*/
-removeRoleForm.post = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: removeRole.url(args, options),
-    method: 'post',
-})
-
-removeRole.form = removeRoleForm
-
-/**
 * @see \App\Http\Controllers\Settings\ActivityLogController::suspend
 * @see app/Http/Controllers/Settings/ActivityLogController.php:114
 * @route '/dashboard/settings/users/{user}/suspend'
@@ -735,28 +489,6 @@ suspend.post = (args: { user: string | number | { id: string | number } } | [use
     url: suspend.url(args, options),
     method: 'post',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\ActivityLogController::suspend
-* @see app/Http/Controllers/Settings/ActivityLogController.php:114
-* @route '/dashboard/settings/users/{user}/suspend'
-*/
-const suspendForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: suspend.url(args, options),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\ActivityLogController::suspend
-* @see app/Http/Controllers/Settings/ActivityLogController.php:114
-* @route '/dashboard/settings/users/{user}/suspend'
-*/
-suspendForm.post = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: suspend.url(args, options),
-    method: 'post',
-})
-
-suspend.form = suspendForm
 
 /**
 * @see \App\Http\Controllers\Settings\ActivityLogController::unsuspend
@@ -817,28 +549,6 @@ unsuspend.post = (args: { user: string | number | { id: string | number } } | [u
 })
 
 /**
-* @see \App\Http\Controllers\Settings\ActivityLogController::unsuspend
-* @see app/Http/Controllers/Settings/ActivityLogController.php:138
-* @route '/dashboard/settings/users/{user}/unsuspend'
-*/
-const unsuspendForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: unsuspend.url(args, options),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\ActivityLogController::unsuspend
-* @see app/Http/Controllers/Settings/ActivityLogController.php:138
-* @route '/dashboard/settings/users/{user}/unsuspend'
-*/
-unsuspendForm.post = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: unsuspend.url(args, options),
-    method: 'post',
-})
-
-unsuspend.form = unsuspendForm
-
-/**
 * @see \App\Http\Controllers\Settings\ActivityLogController::forceLogout
 * @see app/Http/Controllers/Settings/ActivityLogController.php:154
 * @route '/dashboard/settings/users/{user}/force-logout'
@@ -897,28 +607,6 @@ forceLogout.post = (args: { user: string | number | { id: string | number } } | 
 })
 
 /**
-* @see \App\Http\Controllers\Settings\ActivityLogController::forceLogout
-* @see app/Http/Controllers/Settings/ActivityLogController.php:154
-* @route '/dashboard/settings/users/{user}/force-logout'
-*/
-const forceLogoutForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: forceLogout.url(args, options),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\ActivityLogController::forceLogout
-* @see app/Http/Controllers/Settings/ActivityLogController.php:154
-* @route '/dashboard/settings/users/{user}/force-logout'
-*/
-forceLogoutForm.post = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: forceLogout.url(args, options),
-    method: 'post',
-})
-
-forceLogout.form = forceLogoutForm
-
-/**
 * @see \App\Http\Controllers\Settings\ActivityLogController::deleteMethod
 * @see app/Http/Controllers/Settings/ActivityLogController.php:188
 * @route '/dashboard/settings/users/{user}'
@@ -975,38 +663,6 @@ deleteMethod.delete = (args: { user: string | number | { id: string | number } }
     url: deleteMethod.url(args, options),
     method: 'delete',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\ActivityLogController::deleteMethod
-* @see app/Http/Controllers/Settings/ActivityLogController.php:188
-* @route '/dashboard/settings/users/{user}'
-*/
-const deleteMethodForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: deleteMethod.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\ActivityLogController::deleteMethod
-* @see app/Http/Controllers/Settings/ActivityLogController.php:188
-* @route '/dashboard/settings/users/{user}'
-*/
-deleteMethodForm.delete = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: deleteMethod.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-deleteMethod.form = deleteMethodForm
 
 const users = {
     create: Object.assign(create, create),

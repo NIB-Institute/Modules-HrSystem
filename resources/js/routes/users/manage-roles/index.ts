@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Settings\UserRoleController::update
 * @see app/Http/Controllers/Settings/UserRoleController.php:466
@@ -56,38 +56,6 @@ update.put = (args: { user: string | number | { id: string | number } } | [user:
     url: update.url(args, options),
     method: 'put',
 })
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::update
-* @see app/Http/Controllers/Settings/UserRoleController.php:466
-* @route '/dashboard/settings/users/{user}/manage-roles'
-*/
-const updateForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \App\Http\Controllers\Settings\UserRoleController::update
-* @see app/Http/Controllers/Settings/UserRoleController.php:466
-* @route '/dashboard/settings/users/{user}/manage-roles'
-*/
-updateForm.put = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-update.form = updateForm
 
 const manageRoles = {
     update: Object.assign(update, update),

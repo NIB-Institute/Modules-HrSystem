@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::create
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:48
@@ -44,43 +44,6 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:48
-* @route '/dashboard/employee-plan-assignments/create'
-*/
-const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:48
-* @route '/dashboard/employee-plan-assignments/create'
-*/
-createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::create
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:48
-* @route '/dashboard/employee-plan-assignments/create'
-*/
-createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: create.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-create.form = createForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::store
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:62
 * @route '/dashboard/employee-plan-assignments'
@@ -115,28 +78,6 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::store
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:62
-* @route '/dashboard/employee-plan-assignments'
-*/
-const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::store
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:62
-* @route '/dashboard/employee-plan-assignments'
-*/
-storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: store.url(options),
-    method: 'post',
-})
-
-store.form = storeForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::bulkAssign
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:71
 * @route '/dashboard/employee-plan-assignments/bulk-assign'
@@ -169,28 +110,6 @@ bulkAssign.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: bulkAssign.url(options),
     method: 'post',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::bulkAssign
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:71
-* @route '/dashboard/employee-plan-assignments/bulk-assign'
-*/
-const bulkAssignForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: bulkAssign.url(options),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::bulkAssign
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:71
-* @route '/dashboard/employee-plan-assignments/bulk-assign'
-*/
-bulkAssignForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: bulkAssign.url(options),
-    method: 'post',
-})
-
-bulkAssign.form = bulkAssignForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::index
@@ -235,43 +154,6 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:38
-* @route '/dashboard/employee-plan-assignments'
-*/
-const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:38
-* @route '/dashboard/employee-plan-assignments'
-*/
-indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::index
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:38
-* @route '/dashboard/employee-plan-assignments'
-*/
-indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: index.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-index.form = indexForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::edit
@@ -342,43 +224,6 @@ edit.head = (args: { employeePlanAssignment: string | number | { uuid: string | 
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:95
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}/edit'
-*/
-const editForm = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:95
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}/edit'
-*/
-editForm.get = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:95
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}/edit'
-*/
-editForm.head = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: edit.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-edit.form = editForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::show
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:88
 * @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
@@ -447,43 +292,6 @@ show.head = (args: { employeePlanAssignment: string | number | { uuid: string | 
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::show
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:88
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
-*/
-const showForm = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::show
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:88
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
-*/
-showForm.get = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::show
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:88
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
-*/
-showForm.head = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: show.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-show.form = showForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::update
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:103
 * @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
@@ -540,38 +348,6 @@ update.put = (args: { employeePlanAssignment: string | number | { uuid: string |
     url: update.url(args, options),
     method: 'put',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:103
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
-*/
-const updateForm = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:103
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
-*/
-updateForm.put = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: update.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PUT',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-update.form = updateForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::confirmDelete
@@ -642,43 +418,6 @@ confirmDelete.head = (args: { employeePlanAssignment: string | number | { uuid: 
 })
 
 /**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:112
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}/delete'
-*/
-const confirmDeleteForm = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: confirmDelete.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:112
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}/delete'
-*/
-confirmDeleteForm.get = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: confirmDelete.url(args, options),
-    method: 'get',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:112
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}/delete'
-*/
-confirmDeleteForm.head = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: confirmDelete.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-confirmDelete.form = confirmDeleteForm
-
-/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::destroy
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:121
 * @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
@@ -735,38 +474,6 @@ destroy.delete = (args: { employeePlanAssignment: string | number | { uuid: stri
     url: destroy.url(args, options),
     method: 'delete',
 })
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:121
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
-*/
-const destroyForm = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-/**
-* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanAssignmentController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanAssignmentController.php:121
-* @route '/dashboard/employee-plan-assignments/{employeePlanAssignment}'
-*/
-destroyForm.delete = (args: { employeePlanAssignment: string | number | { uuid: string | number } } | [employeePlanAssignment: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(args, {
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'DELETE',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'post',
-})
-
-destroy.form = destroyForm
 
 const employeePlanAssignments = {
     create: Object.assign(create, create),
