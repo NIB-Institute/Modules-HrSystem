@@ -1,6 +1,7 @@
 # Railway / Nixpacks build configuration for hrSystem (Laravel 12 + Inertia + Vue).
 # - PHP 8.2 + Composer
 # - Node 20 + Yarn (frozen lockfile, no dev deps)
+# - Installs SSH key from $GIT_SSH_KEY env var so private submodules can be cloned
 # - Builds frontend assets, links storage, caches config/routes/views
 # - Migrations run separately via .railway/release.sh on each deploy
 
@@ -10,16 +11,21 @@ nixPkgs = [
     "php82Packages.composer",
     "nodejs_20",
     "yarn",
-]
-aptPkgs = [
-    # Required so Composer can clone private submodule repos over SSH at build time.
-    "openssh-client",
+    "git",
+    "openssh",
 ]
 
 [phases.install]
-# Submodules are already fetched by Railway from the parent repo via Deploy Key.
-# (See docs/deploy-railway.md for the SSH key setup.)
+# Step 1: install SSH deploy key (from GIT_SSH_KEY env var set in Railway dashboard).
+# Step 2: re-init submodules now that SSH works. Railway's first clone may have
+#         failed silently on the private submodules; this fixes it.
+# Step 3: install PHP + Node deps.
 cmds = [
+    "mkdir -p $HOME/.ssh && chmod 700 $HOME/.ssh",
+    'printf "%s\n" "$GIT_SSH_KEY" > $HOME/.ssh/id_ed25519 && chmod 600 $HOME/.ssh/id_ed25519',
+    "ssh-keyscan -t rsa,ed25519 github.com >> $HOME/.ssh/known_hosts 2>/dev/null",
+    "git submodule sync --recursive",
+    "git submodule update --init --recursive --force",
     "composer install --no-dev --optimize-autoloader --no-interaction --no-progress",
     "yarn install --frozen-lockfile",
 ]
