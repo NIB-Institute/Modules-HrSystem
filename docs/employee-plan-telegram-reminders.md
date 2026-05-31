@@ -246,7 +246,11 @@ Open the Telegram group — you should see a widget-style card.
 
 1. Dashboard → **Employee Plans → Assignments → Create**.
 2. Pick the plan, check 1+ employees, click **Assign**.
-3. Within seconds (assuming `QUEUE_CONNECTION=sync` or queue worker running), the group receives one alert per newly-assigned employee.
+3. Within seconds (assuming `QUEUE_CONNECTION=sync` or queue worker running):
+   - **Bulk-assign UI** (multiple checked): the group receives **one consolidated message** listing every newly-assigned employee.
+   - **Single-assign API** (`POST /dashboard/employee-plan-assignments`): the group receives one message per single-employee POST.
+
+Already-assigned employees are silently skipped (no duplicate Telegram message).
 
 ### 🔴 Test C — simulate the 1-day countdown reminder
 
@@ -438,11 +442,13 @@ Modules/Employee/
 │   ├── Enums/
 │   │   └── EmployeePlanReminderTierEnum.php         ← fire-window definitions
 │   ├── Events/
-│   │   └── EmployeePlanAssignmentCreated.php
+│   │   ├── EmployeePlanAssignmentCreated.php        ← single-assign endpoint
+│   │   └── EmployeesAssignedToPlan.php              ← bulk-assign endpoint (batched)
 │   ├── Jobs/
 │   │   └── SendPlanReminderJob.php                  ← queued, idempotent
 │   ├── Listeners/
-│   │   └── SendOnAssignmentReminderListener.php     ← queued
+│   │   ├── SendOnAssignmentReminderListener.php           ← single-assign, queued
+│   │   └── SendBatchAssignmentNotificationListener.php    ← bulk-assign, queued
 │   ├── Models/
 │   │   ├── EmployeePlanReminderLog.php
 │   │   └── EmployeeTelegramLinkToken.php            ← reserved for future use
