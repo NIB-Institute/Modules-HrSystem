@@ -1,0 +1,38 @@
+# Railway / Nixpacks build configuration for hrSystem (Laravel 12 + Inertia + Vue).
+# - PHP 8.2 + Composer
+# - Node 20 + Yarn (frozen lockfile, no dev deps)
+# - Builds frontend assets, links storage, caches config/routes/views
+# - Migrations run separately via .railway/release.sh on each deploy
+
+[phases.setup]
+nixPkgs = [
+    "php82",
+    "php82Packages.composer",
+    "nodejs_20",
+    "yarn",
+]
+aptPkgs = [
+    # Required so Composer can clone private submodule repos over SSH at build time.
+    "openssh-client",
+]
+
+[phases.install]
+# Submodules are already fetched by Railway from the parent repo via Deploy Key.
+# (See docs/deploy-railway.md for the SSH key setup.)
+cmds = [
+    "composer install --no-dev --optimize-autoloader --no-interaction --no-progress",
+    "yarn install --frozen-lockfile",
+]
+
+[phases.build]
+cmds = [
+    "yarn build",
+    # Don't cache config until env vars are loaded at start time (see [start] below).
+]
+
+[start]
+# 1. Apply migrations on each boot (idempotent; safe to run repeatedly).
+# 2. storage:link (idempotent; creates public/storage symlink if missing).
+# 3. Cache config/route/view AFTER env is loaded (Railway injects env at runtime).
+# 4. Serve via PHP's built-in server. Swap to Octane/RoadRunner later for higher throughput.
+cmd = "php artisan migrate --force && php artisan storage:link || true && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan serve --host=0.0.0.0 --port=$PORT"
