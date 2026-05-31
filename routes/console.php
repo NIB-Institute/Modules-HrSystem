@@ -32,3 +32,10 @@ Schedule::command('backup:clean --disable-notifications')
     ->name('cleanup-old-backups')
     ->withoutOverlapping()
     ->onOneServer();
+
+// Hourly: dispatch Telegram group reminders for upcoming plan occurrences (T-3d, T-1d).
+Schedule::command('employee:send-plan-reminders')
+    ->hourly()
+    ->name('employee-plan-reminders')
+    ->withoutOverlapping()
+    ->onOneServer();

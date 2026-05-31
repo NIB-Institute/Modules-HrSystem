@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../../../../wayfinder'
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::create
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:43
@@ -44,6 +44,43 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:43
+* @route '/dashboard/employee-availabilities/create'
+*/
+const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:43
+* @route '/dashboard/employee-availabilities/create'
+*/
+createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:43
+* @route '/dashboard/employee-availabilities/create'
+*/
+createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+create.form = createForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::store
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:52
 * @route '/dashboard/employee-availabilities'
@@ -76,6 +113,28 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::store
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:52
+* @route '/dashboard/employee-availabilities'
+*/
+const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: store.url(options),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::store
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:52
+* @route '/dashboard/employee-availabilities'
+*/
+storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: store.url(options),
+    method: 'post',
+})
+
+store.form = storeForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::index
@@ -122,11 +181,48 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:33
+* @route '/dashboard/employee-availabilities'
+*/
+const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:33
+* @route '/dashboard/employee-availabilities'
+*/
+indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:33
+* @route '/dashboard/employee-availabilities'
+*/
+indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+index.form = indexForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::edit
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:61
 * @route '/dashboard/employee-availabilities/{employeeAvailability}/edit'
 */
-export const edit = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -141,7 +237,7 @@ edit.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:61
 * @route '/dashboard/employee-availabilities/{employeeAvailability}/edit'
 */
-edit.url = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+edit.url = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeeAvailability: args }
     }
@@ -174,7 +270,7 @@ edit.url = (args: { employeeAvailability: string | number | { uuid: string | num
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:61
 * @route '/dashboard/employee-availabilities/{employeeAvailability}/edit'
 */
-edit.get = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -184,17 +280,54 @@ edit.get = (args: { employeeAvailability: string | number | { uuid: string | num
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:61
 * @route '/dashboard/employee-availabilities/{employeeAvailability}/edit'
 */
-edit.head = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:61
+* @route '/dashboard/employee-availabilities/{employeeAvailability}/edit'
+*/
+const editForm = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:61
+* @route '/dashboard/employee-availabilities/{employeeAvailability}/edit'
+*/
+editForm.get = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:61
+* @route '/dashboard/employee-availabilities/{employeeAvailability}/edit'
+*/
+editForm.head = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+edit.form = editForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::update
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-const update4cd3e1748995720a2609b37616d0e0c8 = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+const update4cd3e1748995720a2609b37616d0e0c8 = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update4cd3e1748995720a2609b37616d0e0c8.url(args, options),
     method: 'put',
 })
@@ -209,7 +342,7 @@ update4cd3e1748995720a2609b37616d0e0c8.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-update4cd3e1748995720a2609b37616d0e0c8.url = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+update4cd3e1748995720a2609b37616d0e0c8.url = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeeAvailability: args }
     }
@@ -242,7 +375,7 @@ update4cd3e1748995720a2609b37616d0e0c8.url = (args: { employeeAvailability: stri
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-update4cd3e1748995720a2609b37616d0e0c8.put = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update4cd3e1748995720a2609b37616d0e0c8.put = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update4cd3e1748995720a2609b37616d0e0c8.url(args, options),
     method: 'put',
 })
@@ -252,7 +385,38 @@ update4cd3e1748995720a2609b37616d0e0c8.put = (args: { employeeAvailability: stri
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-const update4cd3e1748995720a2609b37616d0e0c8 = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+const update4cd3e1748995720a2609b37616d0e0c8Form = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: update4cd3e1748995720a2609b37616d0e0c8.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PUT',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
+* @route '/dashboard/employee-availabilities/{employeeAvailability}'
+*/
+update4cd3e1748995720a2609b37616d0e0c8Form.put = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: update4cd3e1748995720a2609b37616d0e0c8.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PUT',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+update4cd3e1748995720a2609b37616d0e0c8.form = update4cd3e1748995720a2609b37616d0e0c8Form
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
+* @route '/dashboard/employee-availabilities/{employeeAvailability}'
+*/
+const update4cd3e1748995720a2609b37616d0e0c8 = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update4cd3e1748995720a2609b37616d0e0c8.url(args, options),
     method: 'patch',
 })
@@ -267,7 +431,7 @@ update4cd3e1748995720a2609b37616d0e0c8.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-update4cd3e1748995720a2609b37616d0e0c8.url = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+update4cd3e1748995720a2609b37616d0e0c8.url = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeeAvailability: args }
     }
@@ -300,10 +464,42 @@ update4cd3e1748995720a2609b37616d0e0c8.url = (args: { employeeAvailability: stri
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-update4cd3e1748995720a2609b37616d0e0c8.patch = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update4cd3e1748995720a2609b37616d0e0c8.patch = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update4cd3e1748995720a2609b37616d0e0c8.url(args, options),
     method: 'patch',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
+* @route '/dashboard/employee-availabilities/{employeeAvailability}'
+*/
+const update4cd3e1748995720a2609b37616d0e0c8Form = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: update4cd3e1748995720a2609b37616d0e0c8.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PATCH',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:69
+* @route '/dashboard/employee-availabilities/{employeeAvailability}'
+*/
+update4cd3e1748995720a2609b37616d0e0c8Form.patch = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: update4cd3e1748995720a2609b37616d0e0c8.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PATCH',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+update4cd3e1748995720a2609b37616d0e0c8.form = update4cd3e1748995720a2609b37616d0e0c8Form
 
 export const update = {
     '/dashboard/employee-availabilities/{employeeAvailability}': update4cd3e1748995720a2609b37616d0e0c8,
@@ -315,7 +511,7 @@ export const update = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:78
 * @route '/dashboard/employee-availabilities/{employeeAvailability}/delete'
 */
-export const confirmDelete = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const confirmDelete = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -330,7 +526,7 @@ confirmDelete.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:78
 * @route '/dashboard/employee-availabilities/{employeeAvailability}/delete'
 */
-confirmDelete.url = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+confirmDelete.url = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeeAvailability: args }
     }
@@ -363,7 +559,7 @@ confirmDelete.url = (args: { employeeAvailability: string | number | { uuid: str
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:78
 * @route '/dashboard/employee-availabilities/{employeeAvailability}/delete'
 */
-confirmDelete.get = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+confirmDelete.get = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -373,17 +569,54 @@ confirmDelete.get = (args: { employeeAvailability: string | number | { uuid: str
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:78
 * @route '/dashboard/employee-availabilities/{employeeAvailability}/delete'
 */
-confirmDelete.head = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+confirmDelete.head = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: confirmDelete.url(args, options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::confirmDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:78
+* @route '/dashboard/employee-availabilities/{employeeAvailability}/delete'
+*/
+const confirmDeleteForm = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmDelete.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::confirmDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:78
+* @route '/dashboard/employee-availabilities/{employeeAvailability}/delete'
+*/
+confirmDeleteForm.get = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmDelete.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::confirmDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:78
+* @route '/dashboard/employee-availabilities/{employeeAvailability}/delete'
+*/
+confirmDeleteForm.head = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmDelete.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+confirmDelete.form = confirmDeleteForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::destroy
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:87
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-export const destroy = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -398,7 +631,7 @@ destroy.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:87
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-destroy.url = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeeAvailability: args }
     }
@@ -431,10 +664,42 @@ destroy.url = (args: { employeeAvailability: string | number | { uuid: string | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:87
 * @route '/dashboard/employee-availabilities/{employeeAvailability}'
 */
-destroy.delete = (args: { employeeAvailability: string | number | { uuid: string | number } } | [employeeAvailability: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::destroy
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:87
+* @route '/dashboard/employee-availabilities/{employeeAvailability}'
+*/
+const destroyForm = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroy.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'DELETE',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeAvailabilityController::destroy
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeAvailabilityController.php:87
+* @route '/dashboard/employee-availabilities/{employeeAvailability}'
+*/
+destroyForm.delete = (args: { employeeAvailability: string | { uuid: string } } | [employeeAvailability: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroy.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'DELETE',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+destroy.form = destroyForm
 
 const EmployeeAvailabilityController = { create, store, index, edit, update, confirmDelete, destroy }
 

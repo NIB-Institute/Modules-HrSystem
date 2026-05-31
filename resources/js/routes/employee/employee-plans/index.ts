@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:46
@@ -44,6 +44,43 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:46
+* @route '/dashboard/employee-plans/create'
+*/
+const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:46
+* @route '/dashboard/employee-plans/create'
+*/
+createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:46
+* @route '/dashboard/employee-plans/create'
+*/
+createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+create.form = createForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::store
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:54
 * @route '/dashboard/employee-plans'
@@ -76,6 +113,28 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::store
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:54
+* @route '/dashboard/employee-plans'
+*/
+const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: store.url(options),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::store
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:54
+* @route '/dashboard/employee-plans'
+*/
+storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: store.url(options),
+    method: 'post',
+})
+
+store.form = storeForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
@@ -122,11 +181,48 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:36
+* @route '/dashboard/employee-plans'
+*/
+const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:36
+* @route '/dashboard/employee-plans'
+*/
+indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:36
+* @route '/dashboard/employee-plans'
+*/
+indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+index.form = indexForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:74
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
-export const edit = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -141,7 +237,7 @@ edit.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:74
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
-edit.url = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+edit.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeePlan: args }
     }
@@ -174,7 +270,7 @@ edit.url = (args: { employeePlan: string | number | { uuid: string | number } } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:74
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
-edit.get = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -184,17 +280,54 @@ edit.get = (args: { employeePlan: string | number | { uuid: string | number } } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:74
 * @route '/dashboard/employee-plans/{employeePlan}/edit'
 */
-edit.head = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:74
+* @route '/dashboard/employee-plans/{employeePlan}/edit'
+*/
+const editForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:74
+* @route '/dashboard/employee-plans/{employeePlan}/edit'
+*/
+editForm.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:74
+* @route '/dashboard/employee-plans/{employeePlan}/edit'
+*/
+editForm.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+edit.form = editForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::show
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:66
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-export const show = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -209,7 +342,7 @@ show.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:66
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-show.url = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+show.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeePlan: args }
     }
@@ -242,7 +375,7 @@ show.url = (args: { employeePlan: string | number | { uuid: string | number } } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:66
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-show.get = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -252,17 +385,54 @@ show.get = (args: { employeePlan: string | number | { uuid: string | number } } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:66
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-show.head = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::show
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:66
+* @route '/dashboard/employee-plans/{employeePlan}'
+*/
+const showForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: show.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::show
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:66
+* @route '/dashboard/employee-plans/{employeePlan}'
+*/
+showForm.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: show.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::show
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:66
+* @route '/dashboard/employee-plans/{employeePlan}'
+*/
+showForm.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: show.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+show.form = showForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:82
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-export const update = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -277,7 +447,7 @@ update.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:82
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-update.url = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+update.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeePlan: args }
     }
@@ -310,17 +480,49 @@ update.url = (args: { employeePlan: string | number | { uuid: string | number } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:82
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-update.put = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:82
+* @route '/dashboard/employee-plans/{employeePlan}'
+*/
+const updateForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: update.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PUT',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:82
+* @route '/dashboard/employee-plans/{employeePlan}'
+*/
+updateForm.put = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: update.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PUT',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+update.form = updateForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:91
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
-export const confirmDelete = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const confirmDelete = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -335,7 +537,7 @@ confirmDelete.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:91
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
-confirmDelete.url = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+confirmDelete.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeePlan: args }
     }
@@ -368,7 +570,7 @@ confirmDelete.url = (args: { employeePlan: string | number | { uuid: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:91
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
-confirmDelete.get = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+confirmDelete.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -378,17 +580,54 @@ confirmDelete.get = (args: { employeePlan: string | number | { uuid: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:91
 * @route '/dashboard/employee-plans/{employeePlan}/delete'
 */
-confirmDelete.head = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+confirmDelete.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: confirmDelete.url(args, options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:91
+* @route '/dashboard/employee-plans/{employeePlan}/delete'
+*/
+const confirmDeleteForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmDelete.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:91
+* @route '/dashboard/employee-plans/{employeePlan}/delete'
+*/
+confirmDeleteForm.get = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmDelete.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::confirmDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:91
+* @route '/dashboard/employee-plans/{employeePlan}/delete'
+*/
+confirmDeleteForm.head = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmDelete.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+confirmDelete.form = confirmDeleteForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::destroy
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:100
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-export const destroy = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -403,7 +642,7 @@ destroy.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:100
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-destroy.url = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employeePlan: args }
     }
@@ -436,10 +675,42 @@ destroy.url = (args: { employeePlan: string | number | { uuid: string | number }
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:100
 * @route '/dashboard/employee-plans/{employeePlan}'
 */
-destroy.delete = (args: { employeePlan: string | number | { uuid: string | number } } | [employeePlan: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::destroy
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:100
+* @route '/dashboard/employee-plans/{employeePlan}'
+*/
+const destroyForm = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroy.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'DELETE',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeePlanController::destroy
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeePlanController.php:100
+* @route '/dashboard/employee-plans/{employeePlan}'
+*/
+destroyForm.delete = (args: { employeePlan: string | { uuid: string } } | [employeePlan: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroy.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'DELETE',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+destroy.form = destroyForm
 
 const employeePlans = {
     create: Object.assign(create, create),

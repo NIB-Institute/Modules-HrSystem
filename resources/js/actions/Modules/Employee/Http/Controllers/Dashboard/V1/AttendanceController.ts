@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../../../../wayfinder'
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::scanner
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:186
@@ -44,6 +44,43 @@ scanner.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::scanner
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:186
+* @route '/dashboard/attendances/scanner'
+*/
+const scannerForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: scanner.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::scanner
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:186
+* @route '/dashboard/attendances/scanner'
+*/
+scannerForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: scanner.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::scanner
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:186
+* @route '/dashboard/attendances/scanner'
+*/
+scannerForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: scanner.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+scanner.form = scannerForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::processScan
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:215
 * @route '/dashboard/attendances/scan'
@@ -76,6 +113,28 @@ processScan.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: processScan.url(options),
     method: 'post',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::processScan
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:215
+* @route '/dashboard/attendances/scan'
+*/
+const processScanForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: processScan.url(options),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::processScan
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:215
+* @route '/dashboard/attendances/scan'
+*/
+processScanForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: processScan.url(options),
+    method: 'post',
+})
+
+processScan.form = processScanForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::todaySummary
@@ -122,6 +181,43 @@ todaySummary.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::todaySummary
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:330
+* @route '/dashboard/attendances/today-summary'
+*/
+const todaySummaryForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: todaySummary.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::todaySummary
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:330
+* @route '/dashboard/attendances/today-summary'
+*/
+todaySummaryForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: todaySummary.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::todaySummary
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:330
+* @route '/dashboard/attendances/today-summary'
+*/
+todaySummaryForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: todaySummary.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+todaySummary.form = todaySummaryForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::analytics
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:291
 * @route '/dashboard/attendances/analytics'
@@ -164,6 +260,43 @@ analytics.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: analytics.url(options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::analytics
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:291
+* @route '/dashboard/attendances/analytics'
+*/
+const analyticsForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: analytics.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::analytics
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:291
+* @route '/dashboard/attendances/analytics'
+*/
+analyticsForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: analytics.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::analytics
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:291
+* @route '/dashboard/attendances/analytics'
+*/
+analyticsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: analytics.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+analytics.form = analyticsForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::confirmBulkDelete
@@ -210,6 +343,43 @@ confirmBulkDelete.head = (options?: RouteQueryOptions): RouteDefinition<'head'> 
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::confirmBulkDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:154
+* @route '/dashboard/attendances/bulk-delete'
+*/
+const confirmBulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmBulkDelete.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::confirmBulkDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:154
+* @route '/dashboard/attendances/bulk-delete'
+*/
+confirmBulkDeleteForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmBulkDelete.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::confirmBulkDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:154
+* @route '/dashboard/attendances/bulk-delete'
+*/
+confirmBulkDeleteForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: confirmBulkDelete.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+confirmBulkDelete.form = confirmBulkDeleteForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::bulkDelete
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:168
 * @route '/dashboard/attendances/bulk-delete'
@@ -242,6 +412,38 @@ bulkDelete.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => 
     url: bulkDelete.url(options),
     method: 'delete',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::bulkDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:168
+* @route '/dashboard/attendances/bulk-delete'
+*/
+const bulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: bulkDelete.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'DELETE',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::bulkDelete
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:168
+* @route '/dashboard/attendances/bulk-delete'
+*/
+bulkDeleteForm.delete = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: bulkDelete.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'DELETE',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+bulkDelete.form = bulkDeleteForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::create
@@ -288,6 +490,43 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:61
+* @route '/dashboard/attendances/create'
+*/
+const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:61
+* @route '/dashboard/attendances/create'
+*/
+createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::create
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:61
+* @route '/dashboard/attendances/create'
+*/
+createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: create.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+create.form = createForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::store
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:91
 * @route '/dashboard/attendances'
@@ -320,6 +559,28 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::store
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:91
+* @route '/dashboard/attendances'
+*/
+const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: store.url(options),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::store
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:91
+* @route '/dashboard/attendances'
+*/
+storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: store.url(options),
+    method: 'post',
+})
+
+store.form = storeForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::index
@@ -366,11 +627,48 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:44
+* @route '/dashboard/attendances'
+*/
+const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:44
+* @route '/dashboard/attendances'
+*/
+indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::index
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:44
+* @route '/dashboard/attendances'
+*/
+indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: index.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+index.form = indexForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::show
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:103
 * @route '/dashboard/attendances/{attendance}'
 */
-export const show = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -385,7 +683,7 @@ show.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:103
 * @route '/dashboard/attendances/{attendance}'
 */
-show.url = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+show.url = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { attendance: args }
     }
@@ -418,7 +716,7 @@ show.url = (args: { attendance: string | number | { uuid: string | number } } | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:103
 * @route '/dashboard/attendances/{attendance}'
 */
-show.get = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -428,17 +726,54 @@ show.get = (args: { attendance: string | number | { uuid: string | number } } | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:103
 * @route '/dashboard/attendances/{attendance}'
 */
-show.head = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::show
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:103
+* @route '/dashboard/attendances/{attendance}'
+*/
+const showForm = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: show.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::show
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:103
+* @route '/dashboard/attendances/{attendance}'
+*/
+showForm.get = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: show.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::show
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:103
+* @route '/dashboard/attendances/{attendance}'
+*/
+showForm.head = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: show.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+show.form = showForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::edit
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:117
 * @route '/dashboard/attendances/{attendance}/edit'
 */
-export const edit = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -453,7 +788,7 @@ edit.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:117
 * @route '/dashboard/attendances/{attendance}/edit'
 */
-edit.url = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+edit.url = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { attendance: args }
     }
@@ -486,7 +821,7 @@ edit.url = (args: { attendance: string | number | { uuid: string | number } } | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:117
 * @route '/dashboard/attendances/{attendance}/edit'
 */
-edit.get = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -496,17 +831,54 @@ edit.get = (args: { attendance: string | number | { uuid: string | number } } | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:117
 * @route '/dashboard/attendances/{attendance}/edit'
 */
-edit.head = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:117
+* @route '/dashboard/attendances/{attendance}/edit'
+*/
+const editForm = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:117
+* @route '/dashboard/attendances/{attendance}/edit'
+*/
+editForm.get = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::edit
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:117
+* @route '/dashboard/attendances/{attendance}/edit'
+*/
+editForm.head = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+edit.form = editForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::update
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
 * @route '/dashboard/attendances/{attendance}'
 */
-const updatef4029296a6d0638064bffb3613f567eb = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+const updatef4029296a6d0638064bffb3613f567eb = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: updatef4029296a6d0638064bffb3613f567eb.url(args, options),
     method: 'put',
 })
@@ -521,7 +893,7 @@ updatef4029296a6d0638064bffb3613f567eb.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
 * @route '/dashboard/attendances/{attendance}'
 */
-updatef4029296a6d0638064bffb3613f567eb.url = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+updatef4029296a6d0638064bffb3613f567eb.url = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { attendance: args }
     }
@@ -554,7 +926,7 @@ updatef4029296a6d0638064bffb3613f567eb.url = (args: { attendance: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
 * @route '/dashboard/attendances/{attendance}'
 */
-updatef4029296a6d0638064bffb3613f567eb.put = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+updatef4029296a6d0638064bffb3613f567eb.put = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: updatef4029296a6d0638064bffb3613f567eb.url(args, options),
     method: 'put',
 })
@@ -564,7 +936,38 @@ updatef4029296a6d0638064bffb3613f567eb.put = (args: { attendance: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
 * @route '/dashboard/attendances/{attendance}'
 */
-const updatef4029296a6d0638064bffb3613f567eb = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+const updatef4029296a6d0638064bffb3613f567ebForm = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updatef4029296a6d0638064bffb3613f567eb.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PUT',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
+* @route '/dashboard/attendances/{attendance}'
+*/
+updatef4029296a6d0638064bffb3613f567ebForm.put = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updatef4029296a6d0638064bffb3613f567eb.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PUT',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+updatef4029296a6d0638064bffb3613f567eb.form = updatef4029296a6d0638064bffb3613f567ebForm
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
+* @route '/dashboard/attendances/{attendance}'
+*/
+const updatef4029296a6d0638064bffb3613f567eb = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: updatef4029296a6d0638064bffb3613f567eb.url(args, options),
     method: 'patch',
 })
@@ -579,7 +982,7 @@ updatef4029296a6d0638064bffb3613f567eb.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
 * @route '/dashboard/attendances/{attendance}'
 */
-updatef4029296a6d0638064bffb3613f567eb.url = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+updatef4029296a6d0638064bffb3613f567eb.url = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { attendance: args }
     }
@@ -612,10 +1015,42 @@ updatef4029296a6d0638064bffb3613f567eb.url = (args: { attendance: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
 * @route '/dashboard/attendances/{attendance}'
 */
-updatef4029296a6d0638064bffb3613f567eb.patch = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+updatef4029296a6d0638064bffb3613f567eb.patch = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: updatef4029296a6d0638064bffb3613f567eb.url(args, options),
     method: 'patch',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
+* @route '/dashboard/attendances/{attendance}'
+*/
+const updatef4029296a6d0638064bffb3613f567ebForm = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updatef4029296a6d0638064bffb3613f567eb.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PATCH',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::update
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:130
+* @route '/dashboard/attendances/{attendance}'
+*/
+updatef4029296a6d0638064bffb3613f567ebForm.patch = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: updatef4029296a6d0638064bffb3613f567eb.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PATCH',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+updatef4029296a6d0638064bffb3613f567eb.form = updatef4029296a6d0638064bffb3613f567ebForm
 
 export const update = {
     '/dashboard/attendances/{attendance}': updatef4029296a6d0638064bffb3613f567eb,
@@ -627,7 +1062,7 @@ export const update = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:142
 * @route '/dashboard/attendances/{attendance}'
 */
-export const destroy = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -642,7 +1077,7 @@ destroy.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:142
 * @route '/dashboard/attendances/{attendance}'
 */
-destroy.url = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { attendance: args }
     }
@@ -675,17 +1110,49 @@ destroy.url = (args: { attendance: string | number | { uuid: string | number } }
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:142
 * @route '/dashboard/attendances/{attendance}'
 */
-destroy.delete = (args: { attendance: string | number | { uuid: string | number } } | [attendance: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::destroy
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:142
+* @route '/dashboard/attendances/{attendance}'
+*/
+const destroyForm = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroy.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'DELETE',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::destroy
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:142
+* @route '/dashboard/attendances/{attendance}'
+*/
+destroyForm.delete = (args: { attendance: string | { uuid: string } } | [attendance: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroy.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'DELETE',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+destroy.form = destroyForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::generateEmployeeQr
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
 * @route '/dashboard/employees/{employee}/qr-code'
 */
-export const generateEmployeeQr = (args: { employee: string | number | { uuid: string | number } } | [employee: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const generateEmployeeQr = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: generateEmployeeQr.url(args, options),
     method: 'get',
 })
@@ -700,7 +1167,7 @@ generateEmployeeQr.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
 * @route '/dashboard/employees/{employee}/qr-code'
 */
-generateEmployeeQr.url = (args: { employee: string | number | { uuid: string | number } } | [employee: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+generateEmployeeQr.url = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employee: args }
     }
@@ -733,7 +1200,7 @@ generateEmployeeQr.url = (args: { employee: string | number | { uuid: string | n
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
 * @route '/dashboard/employees/{employee}/qr-code'
 */
-generateEmployeeQr.get = (args: { employee: string | number | { uuid: string | number } } | [employee: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+generateEmployeeQr.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: generateEmployeeQr.url(args, options),
     method: 'get',
 })
@@ -743,10 +1210,47 @@ generateEmployeeQr.get = (args: { employee: string | number | { uuid: string | n
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
 * @route '/dashboard/employees/{employee}/qr-code'
 */
-generateEmployeeQr.head = (args: { employee: string | number | { uuid: string | number } } | [employee: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+generateEmployeeQr.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: generateEmployeeQr.url(args, options),
     method: 'head',
 })
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::generateEmployeeQr
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
+* @route '/dashboard/employees/{employee}/qr-code'
+*/
+const generateEmployeeQrForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: generateEmployeeQr.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::generateEmployeeQr
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
+* @route '/dashboard/employees/{employee}/qr-code'
+*/
+generateEmployeeQrForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: generateEmployeeQr.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::generateEmployeeQr
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/AttendanceController.php:252
+* @route '/dashboard/employees/{employee}/qr-code'
+*/
+generateEmployeeQrForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: generateEmployeeQr.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+generateEmployeeQr.form = generateEmployeeQrForm
 
 const AttendanceController = { scanner, processScan, todaySummary, analytics, confirmBulkDelete, bulkDelete, create, store, index, show, edit, update, destroy, generateEmployeeQr }
 
