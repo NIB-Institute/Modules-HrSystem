@@ -1,6 +1,7 @@
 import employees from './employees'
 import employeeTypes from './employee-types'
 import attendances from './attendances'
+import documents from './documents'
 import locations from './locations'
 import permissionRequests from './permission-requests'
 import employeePlans from './employee-plans'
@@ -11,6 +12,7 @@ const employee = {
     employees: Object.assign(employees, employees),
     employeeTypes: Object.assign(employeeTypes, employeeTypes),
     attendances: Object.assign(attendances, attendances),
+    documents: Object.assign(documents, documents),
     locations: Object.assign(locations, locations),
     permissionRequests: Object.assign(permissionRequests, permissionRequests),
     employeePlans: Object.assign(employeePlans, employeePlans),

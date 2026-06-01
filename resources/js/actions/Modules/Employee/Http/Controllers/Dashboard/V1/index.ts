@@ -5,6 +5,7 @@ import EmployeeController from './EmployeeController'
 import EmployeeImportExportController from './EmployeeImportExportController'
 import EmployeePasswordController from './EmployeePasswordController'
 import EmployeeTypeController from './EmployeeTypeController'
+import DocumentController from './DocumentController'
 import LocationController from './LocationController'
 import SelfServiceAttendanceController from './SelfServiceAttendanceController'
 import AttendanceController from './AttendanceController'
@@ -21,6 +22,7 @@ const V1 = {
     EmployeeImportExportController: Object.assign(EmployeeImportExportController, EmployeeImportExportController),
     EmployeePasswordController: Object.assign(EmployeePasswordController, EmployeePasswordController),
     EmployeeTypeController: Object.assign(EmployeeTypeController, EmployeeTypeController),
+    DocumentController: Object.assign(DocumentController, DocumentController),
     LocationController: Object.assign(LocationController, LocationController),
     SelfServiceAttendanceController: Object.assign(SelfServiceAttendanceController, SelfServiceAttendanceController),
     AttendanceController: Object.assign(AttendanceController, AttendanceController),
