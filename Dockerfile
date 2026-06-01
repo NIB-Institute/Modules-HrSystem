@@ -1,7 +1,7 @@
 # Single-image Dockerfile for Laravel + Inertia/Vue on Railway.
 # Bypasses Nixpacks/Railpack auto-detection so we control exactly what runs.
 
-FROM php:8.2-cli-bookworm
+FROM php:8.4-cli-bookworm
 
 # 1. System deps + PHP extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \
