@@ -1,6 +1,6 @@
 [submodule "Modules/School"]
 	path = Modules/School
-	url = git@github.com:24lyhour/Modules-HrSystem-School.git
+	url = https://github.com/24lyhour/Modules-HrSystem-School.git
 [submodule "Modules/Employee"]
 	path = Modules/Employee
-	url = git@github.com:24lyhour/Modules-HrSystem-Employee.git
+	url = https://github.com/24lyhour/Modules-HrSystem-Employee.git
