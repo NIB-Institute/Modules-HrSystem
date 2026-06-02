@@ -79,4 +79,4 @@ EXPOSE 8080
 #    unready DB) doesn't prevent the web server from starting — we want the
 #    container to come up, healthcheck to pass on /up, and errors to be debuggable
 #    in `railway logs` instead of a silent restart loop.
-CMD ["bash", "-c", "php artisan migrate --force; php artisan storage:link; php artisan config:cache; php artisan route:cache; php artisan view:cache; exec php -S 0.0.0.0:${PORT:-8080} -t public public/index.php"]
+CMD ["bash", "-c", "php artisan migrate --force; php artisan storage:link; php artisan config:cache; php artisan route:cache; php artisan view:cache; exec php -S 0.0.0.0:${PORT:-8080} -t public server.php"]
