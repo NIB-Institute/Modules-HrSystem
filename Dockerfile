@@ -32,8 +32,31 @@ RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
     elif [ -f package-lock.json ]; then npm ci; \
     else npm install; fi
 
-# 6. Copy everything else (incl. submodules' contents, already checked out by Railway)
+# 6. Copy everything else (incl. submodules' contents if Railway populated them)
 COPY . .
+
+# 6b. Submodule safety net.
+#     Railway's GitHub App SHOULD checkout submodules, but in practice the build
+#     context often arrives with empty Modules/Employee + Modules/School dirs.
+#     If that happened, refetch via https + GITHUB_TOKEN (PAT with repo scope,
+#     set in Railway's Variables tab).
+ARG GITHUB_TOKEN
+RUN if [ ! -f Modules/Employee/resources/js/Components/Widgets/index.ts ] \
+    || [ ! -f Modules/School/resources/js/Components/Widgets/index.ts ]; then \
+        echo ">>> Submodules empty — Railway didn't populate them. Refetching."; \
+        if [ -z "$GITHUB_TOKEN" ]; then \
+            echo "!!! ERROR: submodule contents missing AND GITHUB_TOKEN build arg is not set."; \
+            echo "!!! Set GITHUB_TOKEN in Railway Variables (PAT with 'repo' scope on the two submodule repos)."; \
+            exit 1; \
+        fi; \
+        rm -rf Modules/Employee Modules/School; \
+        git clone --depth=1 "https://${GITHUB_TOKEN}@github.com/24lyhour/Modules-HrSystem-Employee.git" Modules/Employee; \
+        git clone --depth=1 "https://${GITHUB_TOKEN}@github.com/24lyhour/Modules-HrSystem-School.git" Modules/School; \
+        rm -rf Modules/Employee/.git Modules/School/.git; \
+        echo ">>> Submodules refetched."; \
+    else \
+        echo ">>> Submodules already populated by Railway."; \
+    fi
 
 # 7. Finish composer (regenerate autoload with all source present)
 RUN composer dump-autoload --optimize --classmap-authoritative
