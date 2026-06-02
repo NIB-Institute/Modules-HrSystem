@@ -62,6 +62,9 @@ RUN if [ ! -f Modules/Employee/resources/js/Components/Widgets/index.ts ] \
 RUN composer dump-autoload --optimize --classmap-authoritative
 
 # 8. Build frontend assets
+#    NODE_OPTIONS bumps Node's heap to 4GB so Vite doesn't OOM on Railway's
+#    container during the bundle phase (562 vendored module files = bigger graph).
+ENV NODE_OPTIONS=--max-old-space-size=4096
 RUN if [ -f yarn.lock ]; then yarn build; else npm run build; fi
 
 # 9. Permissions for Laravel storage + cache
