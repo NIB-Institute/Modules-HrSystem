@@ -7,7 +7,20 @@
       "Bash(php -l Modules/Employee/database/seeders/EmployeeAvailabilitySeeder.php Modules/Employee/database/seeders/EmployeeDatabaseSeeder.php)",
       "Bash(php -l Modules/Employee/app/Http/Middleware/DashboardMiddlewareHandle.php)",
       "Bash(php -l Modules/Employee/app/Actions/Dashboard/V1/EmployeePlanAssignment/GetEmployeePlanAssignmentCreateDataAction.php Modules/Employee/app/Actions/Dashboard/V1/EmployeePlanAssignment/GetEmployeePlanAssignmentEditDataAction.php Modules/Employee/app/Http/Resources/Dashboard/V1/EmployeePlanAssignmentResource.php)",
-      "Bash(php -l app/Http/Controllers/Settings/UserRoleController.php routes/dashboard.php)"
+      "Bash(php -l app/Http/Controllers/Settings/UserRoleController.php routes/dashboard.php)",
+      "Bash(curl -sS -o /tmp/railway_check.html -w \"HTTP %{http_code} | size=%{size_download}b | time=%{time_total}s\\\\n\" --max-time 15 -L https://jh2zs8oa.up.railway.app/)",
+      "Bash(curl -sS -o /tmp/custom_check.html -w \"HTTP %{http_code} | size=%{size_download}b | time=%{time_total}s\\\\n\" --max-time 15 -L https://hrsite.online/)",
+      "Bash(curl -sS -o /tmp/login.html -w \"HTTP %{http_code} | size=%{size_download}b | server=%{header.server}\\\\n\" --max-time 15 -L -D /tmp/login_headers.txt https://jh2zs8oa.up.railway.app/login)",
+      "Bash(tail -30 /private/tmp/claude-501/-Users-kouchlyhour-Documents-Dev-portfolio-projects-backends-portfolios-hrSystem/80465122-bbf2-4de3-8f22-1629ad09a5be/tasks/b9ir820n0.output 2>/dev/null; echo \"---\"; ls public/build/manifest.json && rm -rf public/build 2>&1 | head -2; echo \"cleaned local build artifacts\")",
+      "Bash(yarn install *)",
+      "Bash(git ls-tree *)",
+      "Bash(awk '{print \" files:\", $1}')",
+      "Bash(awk '{print \"  disk:\", $1}')",
+      "Bash(awk '{print \" disk:\", $1}')",
+      "Bash(awk '{print \"  parent \\(no deps\\):\", $1}')"
+    ],
+    "additionalDirectories": [
+      "/Users/kouchlyhour/Documents/Dev/portfolio_projects/backends_portfolios/hrSystem/public/build"
     ]
   }
 }
