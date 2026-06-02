@@ -1,6 +1,0 @@
-[submodule "Modules/School"]
-	path = Modules/School
-	url = https://github.com/24lyhour/Modules-HrSystem-School.git
-[submodule "Modules/Employee"]
-	path = Modules/Employee
-	url = https://github.com/24lyhour/Modules-HrSystem-Employee.git
