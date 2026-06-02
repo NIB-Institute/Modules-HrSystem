@@ -74,11 +74,9 @@ RUN mkdir -p storage/framework/{cache,sessions,views} storage/logs bootstrap/cac
 # 10. Expose port — Railway sets $PORT at runtime
 EXPOSE 8080
 
-# 11. Start: run migrations, link storage, cache, then start PHP built-in server.
-#    Bind to 0.0.0.0:$PORT so Railway's edge can reach us.
-CMD php artisan migrate --force \
-    && php artisan storage:link || true \
-    && php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache \
-    && php -S 0.0.0.0:${PORT:-8080} -t public public/index.php
+# 11. Start: run migrations + caches, then always start PHP built-in server.
+#    Uses ';' between artisan calls so a single failure (e.g. migrate against an
+#    unready DB) doesn't prevent the web server from starting — we want the
+#    container to come up, healthcheck to pass on /up, and errors to be debuggable
+#    in `railway logs` instead of a silent restart loop.
+CMD ["bash", "-c", "php artisan migrate --force; php artisan storage:link; php artisan config:cache; php artisan route:cache; php artisan view:cache; exec php -S 0.0.0.0:${PORT:-8080} -t public public/index.php"]
