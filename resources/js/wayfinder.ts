@@ -8,6 +8,7 @@ export type RouteQueryOptions = {
 export type RouteDefinition<T extends string | string[] = string> = {
     url: string;
     method: T extends string[] ? T[number] : T;
+    methods?: T extends string[] ? T : T[];
 };
 
 export type RouteFormDefinition<T extends string> = {
