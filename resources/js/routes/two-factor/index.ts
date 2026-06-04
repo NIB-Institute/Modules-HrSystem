@@ -12,39 +12,64 @@ export const login = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 login.definition = {
-    methods: ["get","head","post"],
+    methods: ["get","head"],
     url: '/two-factor-challenge',
-} satisfies RouteDefinition<["get","head","post"]>
+} satisfies RouteDefinition<["get","head"]>
 
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @route '/two-factor-challenge'
+*/
 login.url = (options?: RouteQueryOptions) => {
     return login.definition.url + queryParams(options)
 }
 
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @route '/two-factor-challenge'
+*/
 login.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: login.url(options),
     method: 'get',
 })
 
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @route '/two-factor-challenge'
+*/
 login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: login.url(options),
     method: 'head',
 })
 
-login.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: login.url(options),
-    method: 'post',
-})
-
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @route '/two-factor-challenge'
+*/
 const loginForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: login.url(options),
     method: 'get',
 })
 
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @route '/two-factor-challenge'
+*/
 loginForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: login.url(options),
     method: 'get',
 })
 
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @route '/two-factor-challenge'
+*/
 loginForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: login.url({
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
@@ -55,6 +80,57 @@ loginForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     method: 'get',
 })
 
+login.form = loginForm
+
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:56
+* @route '/two-factor-challenge'
+*/
+export const login = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: login.url(options),
+    method: 'post',
+})
+
+login.definition = {
+    methods: ["post"],
+    url: '/two-factor-challenge',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:56
+* @route '/two-factor-challenge'
+*/
+login.url = (options?: RouteQueryOptions) => {
+    return login.definition.url + queryParams(options)
+}
+
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:56
+* @route '/two-factor-challenge'
+*/
+login.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: login.url(options),
+    method: 'post',
+})
+
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:56
+* @route '/two-factor-challenge'
+*/
+const loginForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: login.url(options),
+    method: 'post',
+})
+
+/**
+* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
+* @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:56
+* @route '/two-factor-challenge'
+*/
 loginForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: login.url(options),
     method: 'post',
