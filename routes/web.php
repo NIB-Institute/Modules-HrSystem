@@ -4,8 +4,6 @@ use App\Http\Controllers\Auth\TwoFactorEmailController;
 use App\Http\Middleware\Check2FALockout;
 use App\Http\Middleware\CheckLoginLockout;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use Laravel\Fortify\Features;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController;
 
@@ -14,10 +12,13 @@ Route::middleware(['web', CheckLoginLockout::class])
     ->post('/login', [AuthenticatedSessionController::class, 'store'])
     ->name('login.store');
 
-// Override Fortify two-factor login route with 2FA lockout middleware
+// Override Fortify two-factor login POST with 2FA lockout middleware.
+// Unique name (not `two-factor.login`) so Wayfinder doesn't emit duplicate
+// `export const login` entries — the GET keeps the `two-factor.login` name
+// from Fortify, JS still calls route('two-factor.login') for the URL.
 Route::middleware(['web', Check2FALockout::class])
     ->post('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'store'])
-    ->name('two-factor.login');
+    ->name('two-factor.login.submit');
 
 // Two-factor email authentication routes (for users in 2FA challenge)
 Route::middleware(['web', Check2FALockout::class])->group(function () {

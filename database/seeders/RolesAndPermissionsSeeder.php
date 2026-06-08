@@ -157,6 +157,10 @@ class RolesAndPermissionsSeeder extends Seeder
             EmployeePermission::LOCATIONS_VIEW->value,
             EmployeePermission::LOCATIONS_VIEW_ANY->value,
             EmployeePermission::LOCATIONS_SCAN_QR->value,
+            // Employee documents (own docs — view/download)
+            EmployeePermission::EMPLOYEE_DOCUMENTS_VIEW->value,
+            EmployeePermission::EMPLOYEE_DOCUMENTS_VIEW_ANY->value,
+            EmployeePermission::EMPLOYEE_DOCUMENTS_DOWNLOAD->value,
         ]);
 
         // Viewer - read-only

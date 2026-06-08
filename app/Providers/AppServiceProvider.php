@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\NewDeviceLogin;
+use App\Listeners\SendLoginAlertToTelegram;
 use App\Services\MenuService;
 use App\Services\TenantService;
+use Illuminate\Auth\Events\Failed;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +30,17 @@ class AppServiceProvider extends ServiceProvider
         }
 
         $this->registerDashboardMenuItems();
+        $this->registerLoginAlertListener();
+    }
+
+    /**
+     * binding login-related events to the Telegram alert listener. Notification
+     */
+    protected function registerLoginAlertListener(): void
+    {
+        foreach ([Login::class, Failed::class, Logout::class, NewDeviceLogin::class] as $event) {
+            Event::listen($event, SendLoginAlertToTelegram::class);
+        }
     }
 
     /**
@@ -42,6 +59,17 @@ class AppServiceProvider extends ServiceProvider
                 order: 50,
                 permissions: 'settings.view_any',
                 route: 'dashboard.settings'
+            );
+
+            MenuService::addSubmenuItem(
+                'footer',
+                'dashboard-settings',
+                __('General'),
+                '/settings/general',
+                5,
+                null, // No permission — any authenticated user can access their general settings
+                'general.edit',
+                'Settings2'
             );
 
             MenuService::addSubmenuItem(

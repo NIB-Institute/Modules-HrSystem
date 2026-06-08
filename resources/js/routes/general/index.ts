@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../wayfinder'
 /**
-* @see routes/settings.php:37
-* @route '/settings/appearance'
+* @see routes/settings.php:16
+* @route '/settings/general'
 */
 export const edit = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(options),
@@ -10,20 +10,20 @@ export const edit = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 edit.definition = {
     methods: ["get","head"],
-    url: '/settings/appearance',
+    url: '/settings/general',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/settings.php:37
-* @route '/settings/appearance'
+* @see routes/settings.php:16
+* @route '/settings/general'
 */
 edit.url = (options?: RouteQueryOptions) => {
     return edit.definition.url + queryParams(options)
 }
 
 /**
-* @see routes/settings.php:37
-* @route '/settings/appearance'
+* @see routes/settings.php:16
+* @route '/settings/general'
 */
 edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(options),
@@ -31,8 +31,8 @@ edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/settings.php:37
-* @route '/settings/appearance'
+* @see routes/settings.php:16
+* @route '/settings/general'
 */
 edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(options),
@@ -40,8 +40,8 @@ edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/settings.php:37
-* @route '/settings/appearance'
+* @see routes/settings.php:16
+* @route '/settings/general'
 */
 const editForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(options),
@@ -49,8 +49,8 @@ const editForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/settings.php:37
-* @route '/settings/appearance'
+* @see routes/settings.php:16
+* @route '/settings/general'
 */
 editForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(options),
@@ -58,8 +58,8 @@ editForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/settings.php:37
-* @route '/settings/appearance'
+* @see routes/settings.php:16
+* @route '/settings/general'
 */
 editForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url({
@@ -73,8 +73,8 @@ editForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 edit.form = editForm
 
-const appearance = {
+const general = {
     edit: Object.assign(edit, edit),
 }
 
-export default appearance
+export default general

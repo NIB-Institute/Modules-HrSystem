@@ -1,15 +1,28 @@
 <?php
 
 use App\Http\Controllers\Settings\BackupController;
+use App\Http\Controllers\Settings\LoginAlertsController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\TwoFactorAuthenticationController;
 use App\Http\Controllers\Settings\WidgetController;
+use App\Services\LoginAlertsService;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::middleware('auth')->group(function () {
-    Route::redirect('settings', '/settings/profile');
+    Route::redirect('settings', '/settings/general');
+
+    Route::get('settings/general', function (LoginAlertsService $service) {
+        return Inertia::render('settings/General', [
+            'loginAlerts' => $service->getForDisplay(),
+            'roles' => \Spatie\Permission\Models\Role::orderBy('name')->pluck('name'),
+        ]);
+    })->name('general.edit');
+
+    Route::patch('settings/login-alerts', [LoginAlertsController::class, 'update'])->name('login-alerts.update');
+    Route::delete('settings/login-alerts/token', [LoginAlertsController::class, 'clearToken'])->name('login-alerts.clear-token');
+    Route::post('settings/login-alerts/test', [LoginAlertsController::class, 'sendTest'])->name('login-alerts.test');
 
     Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('settings/profile', [ProfileController::class, 'update'])->name('profile.update');

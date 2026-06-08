@@ -1,4 +1,5 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../wayfinder'
+import loginDf2c2a from './login'
 import email from './email'
 import method from './method'
 /**
@@ -12,9 +13,9 @@ export const login = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 login.definition = {
-    methods: ["get","head","post"],
+    methods: ["get","head"],
     url: '/two-factor-challenge',
-} satisfies RouteDefinition<["get","head","post"]>
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
@@ -78,16 +79,6 @@ loginForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         }
     }),
     method: 'get',
-})
-
-login.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: login.url(options),
-    method: 'post',
-})
-
-loginForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: login.url(options),
-    method: 'post',
 })
 
 login.form = loginForm
@@ -651,7 +642,7 @@ showForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 show.form = showForm
 
 const twoFactor = {
-    login: Object.assign(login, login),
+    login: Object.assign(login, loginDf2c2a),
     enable: Object.assign(enable, enable),
     confirm: Object.assign(confirm, confirm),
     disable: Object.assign(disable, disable),

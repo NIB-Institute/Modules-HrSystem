@@ -60,6 +60,7 @@ import {
     QrCode,
     School,
     Settings,
+    Settings2,
     Shield,
     ShoppingBag,
     ShoppingCart,
@@ -179,6 +180,7 @@ const iconMap: Record<string, LucideIcon> = {
     QrCode,
     School,
     Settings,
+    Settings2,
     Shield,
     ShoppingBag,
     ShoppingCart,
@@ -222,54 +224,29 @@ const isModuleActive = (item: MenuItem): boolean => {
         <SidebarMenu>
             <!-- Collapsed state: Show dropdown on hover -->
             <template v-if="isCollapsed">
-                <SidebarMenuItem
-                    v-for="item in items"
-                    :key="item.id"
-                    @pointerenter="handleMouseEnter(item.id)"
-                    @pointerleave="handleMouseLeave(item.id)"
-                >
-                    <DropdownMenu
-                        :open="openMenus[item.id] || false"
-                        :modal="false"
-                        @update:open="(val: boolean) => handleOpenChange(item.id, val)"
-                    >
+                <SidebarMenuItem v-for="item in items" :key="item.id" @pointerenter="handleMouseEnter(item.id)"
+                    @pointerleave="handleMouseLeave(item.id)">
+                    <DropdownMenu :open="openMenus[item.id] || false" :modal="false"
+                        @update:open="(val: boolean) => handleOpenChange(item.id, val)">
                         <DropdownMenuTrigger as-child>
-                            <SidebarMenuButton
-                                :is-active="isModuleActive(item)"
-                                class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                            >
+                            <SidebarMenuButton :is-active="isModuleActive(item)"
+                                class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
                                 <component :is="getIcon(item.icon)" />
                                 <span>{{ item.title }}</span>
                                 <ChevronRight class="ml-auto" />
                             </SidebarMenuButton>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent
-                            side="right"
-                            align="start"
-                            :side-offset="4"
-                            class="min-w-56 rounded-lg"
-                            @pointerenter="handleMouseEnter(item.id)"
-                            @pointerleave="handleMouseLeave(item.id)"
-                        >
+                        <DropdownMenuContent side="right" align="start" :side-offset="4" class="min-w-56 rounded-lg"
+                            @pointerenter="handleMouseEnter(item.id)" @pointerleave="handleMouseLeave(item.id)">
                             <DropdownMenuLabel class="text-muted-foreground text-xs">
                                 {{ item.title }}
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem
-                                v-for="subItem in item.items"
-                                :key="subItem.title"
-                                as-child
-                            >
-                                <Link
-                                    :href="subItem.url"
-                                    class="flex items-center gap-2"
-                                    :class="{ 'bg-accent': isRouteActive(subItem.route) }"
-                                >
-                                    <component
-                                        v-if="getIcon(subItem.icon)"
-                                        :is="getIcon(subItem.icon)"
-                                        class="h-4 w-4"
-                                    />
+                            <DropdownMenuItem v-for="subItem in item.items" :key="subItem.title" as-child>
+                                <Link :href="subItem.url" class="flex items-center gap-2"
+                                    :class="{ 'bg-accent': isRouteActive(subItem.route) }">
+                                    <component v-if="getIcon(subItem.icon)" :is="getIcon(subItem.icon)"
+                                        class="h-4 w-4" />
                                     <span>{{ subItem.title }}</span>
                                 </Link>
                             </DropdownMenuItem>
@@ -280,38 +257,24 @@ const isModuleActive = (item: MenuItem): boolean => {
 
             <!-- Expanded state: Show collapsible menu -->
             <template v-else>
-                <Collapsible
-                    v-for="item in items"
-                    :key="item.id"
-                    as-child
-                    :default-open="defaultOpen || isModuleActive(item)"
-                    class="group/collapsible"
-                >
+                <Collapsible v-for="item in items" :key="item.id" as-child
+                    :default-open="defaultOpen || isModuleActive(item)" class="group/collapsible">
                     <SidebarMenuItem>
                         <CollapsibleTrigger as-child>
-                            <SidebarMenuButton
-                                :tooltip="item.title"
-                                :is-active="isModuleActive(item)"
-                            >
+                            <SidebarMenuButton :tooltip="item.title" :is-active="isModuleActive(item)">
                                 <component :is="getIcon(item.icon)" />
                                 <span>{{ item.title }}</span>
                                 <ChevronRight
-                                    class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
-                                />
+                                    class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                             </SidebarMenuButton>
                         </CollapsibleTrigger>
                         <CollapsibleContent>
                             <SidebarMenuSub>
-                                <SidebarMenuSubItem
-                                    v-for="subItem in item.items"
-                                    :key="subItem.title"
-                                >
-                                    <SidebarMenuSubButton
-                                        as-child
-                                        :is-active="isRouteActive(subItem.route)"
-                                    >
+                                <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
+                                    <SidebarMenuSubButton as-child :is-active="isRouteActive(subItem.route)">
                                         <Link :href="subItem.url" class="flex items-center gap-2">
-                                            <component v-if="getIcon(subItem.icon)" :is="getIcon(subItem.icon)" class="h-4 w-4" />
+                                            <component v-if="getIcon(subItem.icon)" :is="getIcon(subItem.icon)"
+                                                class="h-4 w-4" />
                                             <span>{{ subItem.title }}</span>
                                         </Link>
                                     </SidebarMenuSubButton>

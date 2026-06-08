@@ -4,6 +4,7 @@ import RoleController from './RoleController'
 import UserRoleController from './UserRoleController'
 import ActivityLogController from './ActivityLogController'
 import AvatarController from './AvatarController'
+import LoginAlertsController from './LoginAlertsController'
 import ProfileController from './ProfileController'
 import PasswordController from './PasswordController'
 import TwoFactorAuthenticationController from './TwoFactorAuthenticationController'
@@ -16,6 +17,7 @@ const Settings = {
     UserRoleController: Object.assign(UserRoleController, UserRoleController),
     ActivityLogController: Object.assign(ActivityLogController, ActivityLogController),
     AvatarController: Object.assign(AvatarController, AvatarController),
+    LoginAlertsController: Object.assign(LoginAlertsController, LoginAlertsController),
     ProfileController: Object.assign(ProfileController, ProfileController),
     PasswordController: Object.assign(PasswordController, PasswordController),
     TwoFactorAuthenticationController: Object.assign(TwoFactorAuthenticationController, TwoFactorAuthenticationController),

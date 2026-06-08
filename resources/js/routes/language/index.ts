@@ -1,6 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
-* @see routes/web.php:31
+* @see routes/web.php:32
 * @route '/language/{locale}'
 */
 export const switchMethod = (args: { locale: string | number } | [locale: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -14,7 +14,7 @@ switchMethod.definition = {
 } satisfies RouteDefinition<["post"]>
 
 /**
-* @see routes/web.php:31
+* @see routes/web.php:32
 * @route '/language/{locale}'
 */
 switchMethod.url = (args: { locale: string | number } | [locale: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -40,7 +40,7 @@ switchMethod.url = (args: { locale: string | number } | [locale: string | number
 }
 
 /**
-* @see routes/web.php:31
+* @see routes/web.php:32
 * @route '/language/{locale}'
 */
 switchMethod.post = (args: { locale: string | number } | [locale: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -49,7 +49,7 @@ switchMethod.post = (args: { locale: string | number } | [locale: string | numbe
 })
 
 /**
-* @see routes/web.php:31
+* @see routes/web.php:32
 * @route '/language/{locale}'
 */
 const switchMethodForm = (args: { locale: string | number } | [locale: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -58,7 +58,7 @@ const switchMethodForm = (args: { locale: string | number } | [locale: string | 
 })
 
 /**
-* @see routes/web.php:31
+* @see routes/web.php:32
 * @route '/language/{locale}'
 */
 switchMethodForm.post = (args: { locale: string | number } | [locale: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

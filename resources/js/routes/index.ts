@@ -402,7 +402,7 @@ dashboardForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> =
 dashboard.form = dashboardForm
 
 /**
-* @see routes/web.php:93
+* @see routes/web.php:94
 * @route '/'
 */
 export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -416,7 +416,7 @@ home.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/web.php:93
+* @see routes/web.php:94
 * @route '/'
 */
 home.url = (options?: RouteQueryOptions) => {
@@ -424,7 +424,7 @@ home.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/web.php:93
+* @see routes/web.php:94
 * @route '/'
 */
 home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -433,7 +433,7 @@ home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:93
+* @see routes/web.php:94
 * @route '/'
 */
 home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -442,7 +442,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see routes/web.php:93
+* @see routes/web.php:94
 * @route '/'
 */
 const homeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -451,7 +451,7 @@ const homeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:93
+* @see routes/web.php:94
 * @route '/'
 */
 homeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -460,7 +460,7 @@ homeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 /**
-* @see routes/web.php:93
+* @see routes/web.php:94
 * @route '/'
 */
 homeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
