@@ -3,7 +3,9 @@
 use App\Http\Controllers\Settings\BackupController;
 use App\Http\Controllers\Settings\LoginAlertsController;
 use App\Http\Controllers\Settings\PasswordController;
+use App\Http\Controllers\Settings\PlanNotificationController;
 use App\Http\Controllers\Settings\ProfileController;
+use App\Http\Controllers\Settings\TelegramChatsController;
 use App\Http\Controllers\Settings\TwoFactorAuthenticationController;
 use App\Http\Controllers\Settings\WidgetController;
 use App\Services\LoginAlertsService;
@@ -23,6 +25,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('settings/login-alerts', [LoginAlertsController::class, 'update'])->name('login-alerts.update');
     Route::delete('settings/login-alerts/token', [LoginAlertsController::class, 'clearToken'])->name('login-alerts.clear-token');
     Route::post('settings/login-alerts/test', [LoginAlertsController::class, 'sendTest'])->name('login-alerts.test');
+
+    Route::get('settings/employee/plan-notifications', [PlanNotificationController::class, 'index'])->name('plan-notifications.edit');
+    Route::patch('settings/employee/plan-notifications', [PlanNotificationController::class, 'update'])->name('plan-notifications.update');
+    Route::post('settings/employee/plan-notifications/test', [PlanNotificationController::class, 'sendTest'])->name('plan-notifications.test');
+
+    Route::get('settings/telegram/available-chats', [TelegramChatsController::class, 'index'])->name('telegram.available-chats');
 
     Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('settings/profile', [ProfileController::class, 'update'])->name('profile.update');

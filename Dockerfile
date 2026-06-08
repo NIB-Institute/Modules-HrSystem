@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.4
 # Single-image Dockerfile for Laravel + Inertia/Vue on Railway.
 # Bypasses Nixpacks/Railpack auto-detection so we control exactly what runs.
 
@@ -36,26 +37,45 @@ RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
 COPY . .
 
 # 6b. Submodule safety net.
-#     Railway's GitHub App SHOULD checkout submodules, but in practice the build
-#     context often arrives with empty Modules/Employee + Modules/School dirs.
-#     If that happened, refetch via https + GITHUB_TOKEN (PAT with repo scope,
-#     set in Railway's Variables tab).
+#     Uses BuildKit secrets (--mount=type=secret) so the token NEVER appears
+#     in build logs, even on failure. The token is mounted as a file at
+#     /run/secrets/github_token and read into a shell variable inline.
+#
+#     Railway side: in Variables tab, the variable named GITHUB_TOKEN must
+#     be marked as a "Build Secret" (or Railway must expose Variables as
+#     buildtime secrets automatically). If not available, fallback ARG is
+#     also supported below.
 ARG GITHUB_TOKEN
-RUN if [ ! -f Modules/Employee/resources/js/Components/Widgets/index.ts ] \
-    || [ ! -f Modules/School/resources/js/Components/Widgets/index.ts ]; then \
-        echo ">>> Submodules empty — Railway didn't populate them. Refetching."; \
-        if [ -z "$GITHUB_TOKEN" ]; then \
-            echo "!!! ERROR: submodule contents missing AND GITHUB_TOKEN build arg is not set."; \
-            echo "!!! Set GITHUB_TOKEN in Railway Variables (PAT with 'repo' scope on the two submodule repos)."; \
+RUN --mount=type=secret,id=github_token \
+    set -e; \
+    if [ ! -f Modules/Employee/resources/js/Components/Widgets/index.ts ] \
+       || [ ! -f Modules/School/resources/js/Components/Widgets/index.ts ]; then \
+        echo ">>> Submodules empty - refetching via HTTPS"; \
+        if [ -f /run/secrets/github_token ]; then \
+            TOKEN=$(cat /run/secrets/github_token); \
+        else \
+            TOKEN="$GITHUB_TOKEN"; \
+        fi; \
+        if [ -z "$TOKEN" ]; then \
+            echo "!!! ERROR: no token available. Set GITHUB_TOKEN in Railway Variables (fine-grained PAT, Contents:Read on the 2 submodule repos)."; \
             exit 1; \
         fi; \
         rm -rf Modules/Employee Modules/School; \
-        git clone --depth=1 "https://${GITHUB_TOKEN}@github.com/24lyhour/Modules-HrSystem-Employee.git" Modules/Employee; \
-        git clone --depth=1 "https://${GITHUB_TOKEN}@github.com/24lyhour/Modules-HrSystem-School.git" Modules/School; \
-        rm -rf Modules/Employee/.git Modules/School/.git; \
-        echo ">>> Submodules refetched."; \
+        git -c "http.extraHeader=Authorization: Bearer ${TOKEN}" \
+            clone --depth=1 --quiet \
+            "https://github.com/24lyhour/Modules-HrSystem-Employee.git" Modules/Employee \
+            >/dev/null 2>/tmp/clone_err_emp \
+            || { echo "!!! Employee clone failed (token permissions wrong? 403/401?)"; grep -iv 'token\|password\|bearer' /tmp/clone_err_emp || true; exit 1; }; \
+        git -c "http.extraHeader=Authorization: Bearer ${TOKEN}" \
+            clone --depth=1 --quiet \
+            "https://github.com/24lyhour/Modules-HrSystem-School.git" Modules/School \
+            >/dev/null 2>/tmp/clone_err_sch \
+            || { echo "!!! School clone failed (token permissions wrong? 403/401?)"; grep -iv 'token\|password\|bearer' /tmp/clone_err_sch || true; exit 1; }; \
+        unset TOKEN; \
+        rm -rf Modules/Employee/.git Modules/School/.git /tmp/clone_err_*; \
+        echo ">>> Submodules refetched OK"; \
     else \
-        echo ">>> Submodules already populated by Railway."; \
+        echo ">>> Submodules already populated by Railway"; \
     fi
 
 # 7. Finish composer (regenerate autoload with all source present)

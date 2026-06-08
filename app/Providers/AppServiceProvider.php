@@ -97,6 +97,17 @@ class AppServiceProvider extends ServiceProvider
             MenuService::addSubmenuItem(
                 'footer',
                 'dashboard-settings',
+                __('Plan Assignment Notification'),
+                '/settings/employee/plan-notifications',
+                35,
+                null,
+                'plan-notifications.edit',
+                'BellRing'
+            );
+
+            MenuService::addSubmenuItem(
+                'footer',
+                'dashboard-settings',
                 __('Roles & Permissions'),
                 '/dashboard/settings/roles',
                 50,
