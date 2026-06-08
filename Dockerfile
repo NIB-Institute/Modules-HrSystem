@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1.4
 # Single-image Dockerfile for Laravel + Inertia/Vue on Railway.
 # Bypasses Nixpacks/Railpack auto-detection so we control exactly what runs.
 
@@ -37,41 +36,29 @@ RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
 COPY . .
 
 # 6b. Submodule safety net.
-#     Uses BuildKit secrets (--mount=type=secret) so the token NEVER appears
-#     in build logs, even on failure. The token is mounted as a file at
-#     /run/secrets/github_token and read into a shell variable inline.
-#
-#     Railway side: in Variables tab, the variable named GITHUB_TOKEN must
-#     be marked as a "Build Secret" (or Railway must expose Variables as
-#     buildtime secrets automatically). If not available, fallback ARG is
-#     also supported below.
+#     Railway only supports --mount=type=cache (not type=secret), so we keep
+#     the token in ARG but use Authorization header + filtered error output
+#     so the token value never appears verbatim in build log error messages.
 ARG GITHUB_TOKEN
-RUN --mount=type=secret,id=github_token \
-    set -e; \
+RUN set -e; \
     if [ ! -f Modules/Employee/resources/js/Components/Widgets/index.ts ] \
        || [ ! -f Modules/School/resources/js/Components/Widgets/index.ts ]; then \
         echo ">>> Submodules empty - refetching via HTTPS"; \
-        if [ -f /run/secrets/github_token ]; then \
-            TOKEN=$(cat /run/secrets/github_token); \
-        else \
-            TOKEN="$GITHUB_TOKEN"; \
-        fi; \
-        if [ -z "$TOKEN" ]; then \
-            echo "!!! ERROR: no token available. Set GITHUB_TOKEN in Railway Variables (fine-grained PAT, Contents:Read on the 2 submodule repos)."; \
+        if [ -z "$GITHUB_TOKEN" ]; then \
+            echo "!!! ERROR: GITHUB_TOKEN not set. Set fine-grained PAT (Contents:Read on the 2 submodule repos) in Railway Variables."; \
             exit 1; \
         fi; \
         rm -rf Modules/Employee Modules/School; \
-        git -c "http.extraHeader=Authorization: Bearer ${TOKEN}" \
+        git -c "http.extraHeader=Authorization: Bearer ${GITHUB_TOKEN}" \
             clone --depth=1 --quiet \
             "https://github.com/24lyhour/Modules-HrSystem-Employee.git" Modules/Employee \
             >/dev/null 2>/tmp/clone_err_emp \
-            || { echo "!!! Employee clone failed (token permissions wrong? 403/401?)"; grep -iv 'token\|password\|bearer' /tmp/clone_err_emp || true; exit 1; }; \
-        git -c "http.extraHeader=Authorization: Bearer ${TOKEN}" \
+            || { echo "!!! Employee clone failed - check token permissions (403 = wrong repos selected or missing Contents:Read)"; sed -E "s/${GITHUB_TOKEN}/REDACTED/g; s/github_pat_[A-Za-z0-9_]+/REDACTED/g" /tmp/clone_err_emp 2>/dev/null || true; exit 1; }; \
+        git -c "http.extraHeader=Authorization: Bearer ${GITHUB_TOKEN}" \
             clone --depth=1 --quiet \
             "https://github.com/24lyhour/Modules-HrSystem-School.git" Modules/School \
             >/dev/null 2>/tmp/clone_err_sch \
-            || { echo "!!! School clone failed (token permissions wrong? 403/401?)"; grep -iv 'token\|password\|bearer' /tmp/clone_err_sch || true; exit 1; }; \
-        unset TOKEN; \
+            || { echo "!!! School clone failed - check token permissions (403 = wrong repos selected or missing Contents:Read)"; sed -E "s/${GITHUB_TOKEN}/REDACTED/g; s/github_pat_[A-Za-z0-9_]+/REDACTED/g" /tmp/clone_err_sch 2>/dev/null || true; exit 1; }; \
         rm -rf Modules/Employee/.git Modules/School/.git /tmp/clone_err_*; \
         echo ">>> Submodules refetched OK"; \
     else \
