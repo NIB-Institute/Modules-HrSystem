@@ -37,6 +37,10 @@ export type { CardAction, CardBadge } from './CardWidget';
 export { SidebarFilter } from './SidebarFilter';
 export type { FilterItem } from './SidebarFilter';
 
+// Inner Sidebar Nav (in-page vertical channel/tab switcher with content slot)
+export { InnerSidebarNav } from './InnerSidebarNav';
+export type { InnerSidebarItem } from './InnerSidebarNav';
+
 // Geofence Map
 export { GeofenceMap } from './GeofenceMap';
 export type { GeofenceType, GeofenceData, LatLng } from './GeofenceMap';

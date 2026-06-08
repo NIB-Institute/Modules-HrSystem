@@ -24,9 +24,11 @@ import {
     Database,
     ChevronRight,
     Bell,
+    BellRing,
     KeyRound,
     ShieldCheck,
     LayoutDashboard,
+    Users,
     type LucideIcon,
 } from 'lucide-vue-next';
 
@@ -44,6 +46,13 @@ const navTree: NavEntry[] = [
         icon: Settings2,
         children: [
             { title: 'Login Alerts', href: '/settings/general', icon: Bell },
+        ],
+    },
+    {
+        title: 'Employee Settings',
+        icon: Users,
+        children: [
+            { title: 'Notification Plan', href: '/settings/employee/plan-notifications', icon: BellRing },
         ],
     },
     {
@@ -91,43 +100,30 @@ const orderedGroups = computed(() => navTree);
 
 <template>
     <div class="px-4 py-6">
-        <Heading
-            title="Dashboard Settings"
-            description="Manage your account, dashboard preferences and notifications"
-        />
+        <Heading title="Dashboard Settings"
+            description="Manage your account, dashboard preferences and notifications" />
 
         <div class="flex flex-col lg:flex-row lg:space-x-12">
             <aside class="w-full max-w-xl lg:w-60">
                 <nav class="flex flex-col space-y-1">
                     <template v-for="entry in orderedGroups" :key="entry.title">
                         <!-- Group with children -->
-                        <Collapsible
-                            v-if="isGroup(entry)"
-                            v-model:open="openState[entry.title]"
-                        >
+                        <Collapsible v-if="isGroup(entry)" v-model:open="openState[entry.title]">
                             <CollapsibleTrigger as-child>
-                                <Button
-                                    variant="ghost"
-                                    class="w-full justify-start group/collapsible"
-                                    :class="{ 'bg-muted/40': groupHasActive(entry) }"
-                                >
+                                <Button variant="ghost" class="w-full justify-start group/collapsible"
+                                    :class="{ 'bg-muted/40': groupHasActive(entry) }">
                                     <component :is="entry.icon" class="h-4 w-4 mr-2" />
                                     <span class="flex-1 text-left">{{ entry.title }}</span>
                                     <ChevronRight
-                                        class="h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
-                                    />
+                                        class="h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                                 </Button>
                             </CollapsibleTrigger>
                             <CollapsibleContent>
                                 <div class="ml-6 mt-1 flex flex-col space-y-1 border-l pl-2">
-                                    <Button
-                                        v-for="child in entry.children"
-                                        :key="toUrl(child.href)"
-                                        variant="ghost"
+                                    <Button v-for="child in entry.children" :key="toUrl(child.href)" variant="ghost"
                                         size="sm"
                                         :class="['w-full justify-start', { 'bg-muted': isActive(child.href) }]"
-                                        as-child
-                                    >
+                                        as-child>
                                         <Link :href="child.href">
                                             <component v-if="child.icon" :is="child.icon" class="h-4 w-4 mr-2" />
                                             {{ child.title }}
@@ -138,12 +134,8 @@ const orderedGroups = computed(() => navTree);
                         </Collapsible>
 
                         <!-- Flat item -->
-                        <Button
-                            v-else
-                            variant="ghost"
-                            :class="['w-full justify-start', { 'bg-muted': isActive(entry.href) }]"
-                            as-child
-                        >
+                        <Button v-else variant="ghost"
+                            :class="['w-full justify-start', { 'bg-muted': isActive(entry.href) }]" as-child>
                             <Link :href="entry.href">
                                 <component v-if="entry.icon" :is="entry.icon" class="h-4 w-4 mr-2" />
                                 {{ entry.title }}
@@ -155,8 +147,8 @@ const orderedGroups = computed(() => navTree);
 
             <Separator class="my-6 lg:hidden" />
 
-            <div class="flex-1 md:max-w-2xl">
-                <section class="max-w-xl space-y-12">
+            <div class="flex-1 min-w-0">
+                <section class="space-y-12">
                     <slot />
                 </section>
             </div>
