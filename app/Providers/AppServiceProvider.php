@@ -97,7 +97,7 @@ class AppServiceProvider extends ServiceProvider
             MenuService::addSubmenuItem(
                 'footer',
                 'dashboard-settings',
-                __('Plan Assignment Notification'),
+                __('Workshop Notification'),
                 '/settings/employee/plan-notifications',
                 35,
                 null,

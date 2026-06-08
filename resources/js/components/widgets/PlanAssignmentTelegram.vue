@@ -130,9 +130,9 @@ const sendTest = async () => {
         <CardHeader>
             <div class="flex items-start justify-between gap-4">
                 <div>
-                    <CardTitle>Plan Assignment Notification</CardTitle>
+                    <CardTitle>Workshop Notification</CardTitle>
                     <CardDescription>
-                        Notify the team via Telegram when an employee is assigned to a plan, and before the plan starts.
+                        One chat receives notifications for ALL plans — on assignment and before each plan starts.
                     </CardDescription>
                 </div>
                 <Badge :variant="form.enabled ? 'default' : 'secondary'">
@@ -215,7 +215,7 @@ const sendTest = async () => {
                 <Label for="default_chat_id">Default chat / group ID</Label>
                 <Input id="default_chat_id" v-model="form.default_chat_id" placeholder="-5244139148" class="font-mono" />
                 <p class="text-muted-foreground text-xs">
-                    Fallback chat used when an Employee Plan has no chat ID of its own. Leave empty to require per-plan IDs.
+                    All plan notifications (assignments + countdown reminders) post to this chat. Per-plan chat IDs are no longer used.
                 </p>
                 <p v-if="form.errors.default_chat_id" class="text-destructive text-xs">{{ form.errors.default_chat_id }}</p>
 

@@ -14,20 +14,20 @@ defineProps<{ planNotifications: PlanNotificationData; botStatus: BotStatus }>()
 
 const breadcrumbItems: BreadcrumbItem[] = [
     { title: 'Settings', href: '/dashboard/settings' },
-    { title: 'Plan Assignment Notification', href: '/settings/employee/plan-notifications' },
+    { title: 'Workshop Notification', href: '/settings/employee/plan-notifications' },
 ];
 </script>
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
 
-        <Head title="Plan Assignment Notification" />
+        <Head title="Workshop Notification" />
 
         <SettingsLayout>
             <div class="space-y-6">
                 <HeadingSmall
-                    title="Plan Assignment Notification"
-                    description="Configure Telegram notifications fired on assignment + countdown reminders before the plan starts."
+                    title="Workshop Notification"
+                    description="One central Telegram chat for all workshop/plan notifications — assignments + countdown reminders."
                 />
 
                 <PlanAssignmentTelegram :data="planNotifications" :bot-status="botStatus" />

@@ -37,9 +37,19 @@ class SendOnAssignmentReminderListener implements ShouldQueue
             return;
         }
 
-        $chatId = $plan->telegram_group_chat_id;
+        $settings = \App\Models\Setting::getGroup('plan_notifications');
+        if (! ($settings['enabled'] ?? true)) {
+            return;
+        }
+        if (! ($settings['telegram_enabled'] ?? true)) {
+            return;
+        }
+        if (! ($settings['on_assignment'] ?? true)) {
+            return;
+        }
+        $chatId = $settings['default_chat_id'] ?? '';
         if (! $chatId) {
-            return; // Plan has no group configured — silently skip.
+            return;
         }
 
         $employeeName = trim(($employee->first_name ?? '') . ' ' . ($employee->last_name ?? '')) ?: 'An employee';
