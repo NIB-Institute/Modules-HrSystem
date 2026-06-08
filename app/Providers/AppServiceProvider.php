@@ -94,16 +94,16 @@ class AppServiceProvider extends ServiceProvider
                 'LogIn'
             );
 
-            MenuService::addSubmenuItem(
-                'footer',
-                'dashboard-settings',
-                __('Workshop Notification'),
-                '/settings/employee/plan-notifications',
-                35,
-                null,
-                'plan-notifications.edit',
-                'BellRing'
-            );
+            // MenuService::addSubmenuItem(
+            //     'footer',
+            //     'dashboard-settings',
+            //     __('Workshop Notification'),
+            //     '/settings/employee/plan-notifications',
+            //     35,
+            //     null,
+            //     'plan-notifications.edit',
+            //     'BellRing'
+            // );
 
             MenuService::addSubmenuItem(
                 'footer',
