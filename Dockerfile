@@ -6,9 +6,9 @@ FROM php:8.4-cli-bookworm
 # 1. System deps + PHP extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git unzip zip curl ca-certificates \
-    libzip-dev libonig-dev libxml2-dev libpng-dev libjpeg-dev libfreetype6-dev libicu-dev \
+    libzip-dev libonig-dev libxml2-dev libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libpq-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) pdo_mysql mbstring exif pcntl bcmath gd zip intl opcache \
+    && docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd zip intl opcache \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. Composer
