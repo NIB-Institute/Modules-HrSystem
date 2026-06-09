@@ -181,6 +181,22 @@ class Employee extends Model
     }
 
     /**
+     * Get all ID cards for the employee (national ID, driver licence, work permit, etc.).
+     */
+    public function idCards(): HasMany
+    {
+        return $this->hasMany(EmployeeIdCard::class)->orderBy('sort_order')->orderByDesc('is_primary');
+    }
+
+    /**
+     * Get the primary ID card (if marked).
+     */
+    public function primaryIdCard()
+    {
+        return $this->hasOne(EmployeeIdCard::class)->where('is_primary', true);
+    }
+
+    /**
      * Get the spouse of the employee.
      */
     public function spouse(): HasMany

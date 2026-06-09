@@ -25,4 +25,8 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 
-.env    
+# Local-only nested .git folders inside vendored modules — keeps VSCode showing
+# Modules/Employee and Modules/School as separate Source Control entries while
+# the parent repo continues to vendor the files normally.
+Modules/Employee/.git
+Modules/School/.git

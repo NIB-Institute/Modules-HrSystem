@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": "hrSystem (parent)",
+      "path": "."
+    },
+    {
+      "name": "Modules/Employee",
+      "path": "Modules/Employee"
+    },
+    {
+      "name": "Modules/School",
+      "path": "Modules/School"
+    }
+  ],
+  "settings": {
+    "git.autoRepositoryDetection": "subFolders",
+    "git.openRepositoryInParentFolders": "always",
+    "git.detectSubmodules": true,
+    "files.exclude": {
+      "**/.git": false
+    }
+  }
+}

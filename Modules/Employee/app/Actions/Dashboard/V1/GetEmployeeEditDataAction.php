@@ -17,7 +17,7 @@ class GetEmployeeEditDataAction
     public function execute(Employee $employee): array
     {
         // Load relationships
-        $employee->load(['familyMembers', 'academicLevels', 'foreignLanguages', 'jobExperiences']);
+        $employee->load(['familyMembers', 'academicLevels', 'foreignLanguages', 'jobExperiences', 'idCards']);
         try {
             $schools = School::where('status', true)
                 ->select('id', 'name')

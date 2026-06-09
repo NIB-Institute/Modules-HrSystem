@@ -162,3 +162,4 @@ class AppServiceProvider extends ServiceProvider
         // Telescope removed; not installed in hrSystem.
     }
 }
+ 

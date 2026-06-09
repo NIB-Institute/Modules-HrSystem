@@ -292,11 +292,8 @@ export interface EmployeeFormData {
     birth_place: string;
     ethnicity: string;
     current_address: string;
-    id_card_number: string;
-    id_card_front_url: string;
-    id_card_back_url: string;
-    id_card_issued_date: string;
-    id_card_expiry_date: string;
+    // Multiple ID cards per employee (replaces old flat id_card_* fields).
+    id_cards: IdCardFormData[];
     school_id: number | null;
     department_id: number | null;
     position_id: number | null;
@@ -325,6 +322,19 @@ export interface EmployeeFormData {
     create_account?: boolean;
     password?: string;
     password_confirmation?: string;
+}
+
+export interface IdCardFormData {
+    id?: number;
+    label: string | null;
+    card_number: string | null;
+    front_url: string | null;
+    back_url: string | null;
+    issued_date: string | null;
+    expiry_date: string | null;
+    is_primary: boolean;
+    sort_order: number;
+    _key?: string;
 }
 
 export interface MaritalStatusOption {
