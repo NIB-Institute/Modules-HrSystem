@@ -753,6 +753,11 @@ update1ec8d453beb44da62346d3a284db4f47Form.patch = (args: { employee_type: strin
 
 update1ec8d453beb44da62346d3a284db4f47.form = update1ec8d453beb44da62346d3a284db4f47Form
 
+/**
+* Multiple routes resolve to \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeTypeController::update, so this export is a
+* dictionary keyed by URI rather than a callable. Call a specific route with `update['<uri>'](...)`,
+* or import the route by name from your generated `routes/` directory.
+*/
 export const update = {
     '/dashboard/employee-types/{employee_type}': update1ec8d453beb44da62346d3a284db4f47,
     '/dashboard/employee-types/{employee_type}': update1ec8d453beb44da62346d3a284db4f47,

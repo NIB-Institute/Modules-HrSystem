@@ -1052,6 +1052,11 @@ updatef4029296a6d0638064bffb3613f567ebForm.patch = (args: { attendance: string |
 
 updatef4029296a6d0638064bffb3613f567eb.form = updatef4029296a6d0638064bffb3613f567ebForm
 
+/**
+* Multiple routes resolve to \Modules\Employee\Http\Controllers\Dashboard\V1\AttendanceController::update, so this export is a
+* dictionary keyed by URI rather than a callable. Call a specific route with `update['<uri>'](...)`,
+* or import the route by name from your generated `routes/` directory.
+*/
 export const update = {
     '/dashboard/attendances/{attendance}': updatef4029296a6d0638064bffb3613f567eb,
     '/dashboard/attendances/{attendance}': updatef4029296a6d0638064bffb3613f567eb,

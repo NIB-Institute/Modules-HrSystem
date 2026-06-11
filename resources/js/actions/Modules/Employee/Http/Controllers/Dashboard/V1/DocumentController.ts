@@ -491,6 +491,11 @@ update029a589f4896ca1ceb5db39344d51307Form.post = (args: { document: string | { 
 
 update029a589f4896ca1ceb5db39344d51307.form = update029a589f4896ca1ceb5db39344d51307Form
 
+/**
+* Multiple routes resolve to \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update, so this export is a
+* dictionary keyed by URI rather than a callable. Call a specific route with `update['<uri>'](...)`,
+* or import the route by name from your generated `routes/` directory.
+*/
 export const update = {
     '/dashboard/documents/{document}': update029a589f4896ca1ceb5db39344d51307,
     '/dashboard/documents/{document}': update029a589f4896ca1ceb5db39344d51307,

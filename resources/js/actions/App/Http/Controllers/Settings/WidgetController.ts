@@ -160,6 +160,11 @@ indexece6000b7bfaa8222ecc252466848ad9Form.head = (options?: RouteQueryOptions): 
 
 indexece6000b7bfaa8222ecc252466848ad9.form = indexece6000b7bfaa8222ecc252466848ad9Form
 
+/**
+* Multiple routes resolve to \App\Http\Controllers\Settings\WidgetController::index, so this export is a
+* dictionary keyed by URI rather than a callable. Call a specific route with `index['<uri>'](...)`,
+* or import the route by name from your generated `routes/` directory.
+*/
 export const index = {
     '/dashboard/settings': index4afa5860ec9efce08b0baa86e7a3f13f,
     '/settings/widgets': indexece6000b7bfaa8222ecc252466848ad9,
@@ -344,6 +349,11 @@ update685d674c98896447044b43e90e172ed7Form.patch = (args: { widget: number | { i
 
 update685d674c98896447044b43e90e172ed7.form = update685d674c98896447044b43e90e172ed7Form
 
+/**
+* Multiple routes resolve to \App\Http\Controllers\Settings\WidgetController::update, so this export is a
+* dictionary keyed by URI rather than a callable. Call a specific route with `update['<uri>'](...)`,
+* or import the route by name from your generated `routes/` directory.
+*/
 export const update = {
     '/dashboard/settings/widgets/{widget}': updatebe0eed584efe07a5bb507a31908977b1,
     '/settings/widgets/{widget}': update685d674c98896447044b43e90e172ed7,
@@ -460,6 +470,11 @@ updateOrderbb97ee3df2ee7f654f907b60b18e72c8Form.post = (options?: RouteQueryOpti
 
 updateOrderbb97ee3df2ee7f654f907b60b18e72c8.form = updateOrderbb97ee3df2ee7f654f907b60b18e72c8Form
 
+/**
+* Multiple routes resolve to \App\Http\Controllers\Settings\WidgetController::updateOrder, so this export is a
+* dictionary keyed by URI rather than a callable. Call a specific route with `updateOrder['<uri>'](...)`,
+* or import the route by name from your generated `routes/` directory.
+*/
 export const updateOrder = {
     '/dashboard/settings/widgets/order': updateOrderedf5d6349c8c6255e1d987cebc720d24,
     '/settings/widgets/order': updateOrderbb97ee3df2ee7f654f907b60b18e72c8,

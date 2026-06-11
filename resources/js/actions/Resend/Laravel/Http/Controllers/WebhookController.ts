@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../../../wayfinder'
 /**
 * @see \Resend\Laravel\Http\Controllers\WebhookController::handleWebhook
-* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:41
+* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:42
 * @route '/resend/webhook'
 */
 export const handleWebhook = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ handleWebhook.definition = {
 
 /**
 * @see \Resend\Laravel\Http\Controllers\WebhookController::handleWebhook
-* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:41
+* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:42
 * @route '/resend/webhook'
 */
 handleWebhook.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ handleWebhook.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Resend\Laravel\Http\Controllers\WebhookController::handleWebhook
-* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:41
+* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:42
 * @route '/resend/webhook'
 */
 handleWebhook.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ handleWebhook.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 /**
 * @see \Resend\Laravel\Http\Controllers\WebhookController::handleWebhook
-* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:41
+* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:42
 * @route '/resend/webhook'
 */
 const handleWebhookForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -45,7 +45,7 @@ const handleWebhookForm = (options?: RouteQueryOptions): RouteFormDefinition<'po
 
 /**
 * @see \Resend\Laravel\Http\Controllers\WebhookController::handleWebhook
-* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:41
+* @see vendor/resend/resend-laravel/src/Http/Controllers/WebhookController.php:42
 * @route '/resend/webhook'
 */
 handleWebhookForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

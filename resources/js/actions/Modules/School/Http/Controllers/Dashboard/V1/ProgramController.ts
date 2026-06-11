@@ -834,6 +834,11 @@ updateffcfde5b84da1505203f38950229873eForm.patch = (args: { program: string | { 
 
 updateffcfde5b84da1505203f38950229873e.form = updateffcfde5b84da1505203f38950229873eForm
 
+/**
+* Multiple routes resolve to \Modules\School\Http\Controllers\Dashboard\V1\ProgramController::update, so this export is a
+* dictionary keyed by URI rather than a callable. Call a specific route with `update['<uri>'](...)`,
+* or import the route by name from your generated `routes/` directory.
+*/
 export const update = {
     '/dashboard/programs/{program}': updateffcfde5b84da1505203f38950229873e,
     '/dashboard/programs/{program}': updateffcfde5b84da1505203f38950229873e,

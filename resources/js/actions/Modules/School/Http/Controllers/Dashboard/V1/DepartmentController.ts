@@ -939,6 +939,11 @@ update72872a0d0bc1a79cf184f4176464fbaeForm.patch = (args: { department: string |
 
 update72872a0d0bc1a79cf184f4176464fbae.form = update72872a0d0bc1a79cf184f4176464fbaeForm
 
+/**
+* Multiple routes resolve to \Modules\School\Http\Controllers\Dashboard\V1\DepartmentController::update, so this export is a
+* dictionary keyed by URI rather than a callable. Call a specific route with `update['<uri>'](...)`,
+* or import the route by name from your generated `routes/` directory.
+*/
 export const update = {
     '/dashboard/departments/{department}': update72872a0d0bc1a79cf184f4176464fbae,
     '/dashboard/departments/{department}': update72872a0d0bc1a79cf184f4176464fbae,
