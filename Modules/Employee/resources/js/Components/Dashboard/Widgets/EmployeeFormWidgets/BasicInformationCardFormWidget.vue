@@ -13,11 +13,9 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { ImageUpload } from '@/components/shared';
-import { Button } from '@/components/ui/button';
-import { Switch } from '@/components/ui/switch';
-import { User, Mail, Phone, Calendar, MapPin, Heart, CreditCard, Plus, Trash2, Star } from 'lucide-vue-next';
+import { User, Mail, Phone, Calendar, MapPin, Heart, CreditCard } from 'lucide-vue-next';
 import type { InertiaForm } from '@inertiajs/vue3';
-import type { EmployeeFormData, IdCardFormData, MaritalStatusOption } from '../../../../types';
+import type { EmployeeFormData, MaritalStatusOption } from '../../../../types';
 
 interface Props {
     form: InertiaForm<EmployeeFormData>;
@@ -60,58 +58,19 @@ const selectedMaritalStatus = computed({
     },
 });
 
-// --- ID cards (multi-card support) ---
-const newCardKey = () => 'new-' + Math.random().toString(36).slice(2, 9);
-
-const blankCard = (sortOrder = 0): IdCardFormData => ({
-    label: '',
-    card_number: '',
-    front_url: '',
-    back_url: '',
-    issued_date: '',
-    expiry_date: '',
-    is_primary: false,
-    sort_order: sortOrder,
-    _key: newCardKey(),
+const idCardFrontImages = computed({
+    get: () => (props.form.id_card_front_url ? [props.form.id_card_front_url] : []),
+    set: (value: string[]) => {
+        props.form.id_card_front_url = value.length > 0 ? value[0] : '';
+    },
 });
 
-const addIdCard = () => {
-    const order = props.form.id_cards.length;
-    const card = blankCard(order);
-    if (props.form.id_cards.length === 0) card.is_primary = true;
-    props.form.id_cards.push(card);
-};
-
-const removeIdCard = (index: number) => {
-    const removed = props.form.id_cards[index];
-    props.form.id_cards.splice(index, 1);
-    // If we removed the primary, promote the first remaining card.
-    if (removed?.is_primary && props.form.id_cards.length > 0) {
-        props.form.id_cards[0].is_primary = true;
-    }
-    // Re-index sort_order.
-    props.form.id_cards.forEach((c, i) => (c.sort_order = i));
-};
-
-const setPrimary = (index: number) => {
-    props.form.id_cards.forEach((c, i) => (c.is_primary = i === index));
-};
-
-const idCardImagesGet = (key: 'front_url' | 'back_url', index: number): string[] => {
-    const v = props.form.id_cards[index]?.[key];
-    return v ? [v] : [];
-};
-
-const idCardImagesSet = (key: 'front_url' | 'back_url', index: number, value: string[]) => {
-    if (props.form.id_cards[index]) {
-        props.form.id_cards[index][key] = value.length > 0 ? value[0] : '';
-    }
-};
-
-const errorFor = (index: number, field: keyof IdCardFormData): string | undefined => {
-    // Inertia errors look like { 'id_cards.0.card_number': 'msg' }
-    return (props.form.errors as Record<string, string>)?.[`id_cards.${index}.${field}`];
-};
+const idCardBackImages = computed({
+    get: () => (props.form.id_card_back_url ? [props.form.id_card_back_url] : []),
+    set: (value: string[]) => {
+        props.form.id_card_back_url = value.length > 0 ? value[0] : '';
+    },
+});
 </script>
 
 <template>
@@ -275,115 +234,75 @@ const errorFor = (index: number, field: keyof IdCardFormData): string | undefine
                 </div>
             </div>
 
-            <!-- ID Cards Section (multi-card) -->
+            <!-- ID Card Section -->
             <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                        <CreditCard class="h-4 w-4" />
-                        <span>{{ __('ID Cards') }}</span>
-                        <span v-if="form.id_cards.length > 0" class="text-xs text-muted-foreground">({{ form.id_cards.length }})</span>
-                    </div>
-                    <Button type="button" variant="outline" size="sm" @click="addIdCard">
-                        <Plus class="mr-1 h-3 w-3" />
-                        {{ __('Add card') }}
-                    </Button>
+                <div class="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                    <CreditCard class="h-4 w-4" />
+                    <span>{{ __('ID Card') }}</span>
                 </div>
-
-                <!-- Empty state -->
-                <div
-                    v-if="form.id_cards.length === 0"
-                    class="rounded-lg border border-dashed bg-muted/20 p-6 text-center text-sm text-muted-foreground"
-                >
-                    {{ __('No ID cards added yet. Click "Add card" to register one.') }}
-                </div>
-
-                <!-- Per-card cards -->
-                <div
-                    v-for="(card, index) in form.id_cards"
-                    :key="card._key ?? `card-${index}`"
-                    class="space-y-4 rounded-lg border bg-muted/30 p-4"
-                >
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                            <CreditCard class="h-4 w-4" />
-                            <span>{{ card.label || __('ID Card') }} #{{ index + 1 }}</span>
-                            <span v-if="card.is_primary" class="inline-flex items-center gap-1 rounded-full bg-yellow-100 px-2 py-0.5 text-[10px] font-medium text-yellow-900">
-                                <Star class="h-3 w-3" />
-                                {{ __('Primary') }}
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="flex items-center gap-2">
-                                <Label :for="`primary-${index}`" class="text-xs">{{ __('Primary') }}</Label>
-                                <Switch :id="`primary-${index}`" :model-value="card.is_primary" @update:model-value="(v: boolean) => v && setPrimary(index)" />
+                <div class="space-y-4 rounded-lg border bg-muted/30 p-4">
+                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        <!-- ID Card Number -->
+                        <div class="space-y-2">
+                            <Label for="id_card_number" class="text-xs font-medium">{{ __('ID Card Number') }}</Label>
+                            <div class="relative">
+                                <CreditCard class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Input id="id_card_number" v-model="form.id_card_number" type="text" :placeholder="__('e.g. 010101010')" class="pl-10 bg-background" />
                             </div>
-                            <Button type="button" variant="ghost" size="icon" class="h-7 w-7 text-destructive" @click="removeIdCard(index)">
-                                <Trash2 class="h-4 w-4" />
-                            </Button>
-                        </div>
-                    </div>
-
-                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                        <!-- Label / type -->
-                        <div class="space-y-2">
-                            <Label :for="`label-${index}`" class="text-xs font-medium">{{ __('Label') }}</Label>
-                            <Input :id="`label-${index}`" v-model="card.label" type="text" :placeholder="__('e.g. National ID, Driver Licence')" class="bg-background" />
-                            <p v-if="errorFor(index, 'label')" class="text-xs text-destructive">{{ errorFor(index, 'label') }}</p>
+                            <p v-if="form.errors.id_card_number" class="text-xs text-destructive">
+                                {{ form.errors.id_card_number }}
+                            </p>
                         </div>
 
-                        <!-- Card number -->
+                        <!-- Issued Date -->
                         <div class="space-y-2">
-                            <Label :for="`number-${index}`" class="text-xs font-medium">{{ __('Card Number') }}</Label>
-                            <Input :id="`number-${index}`" v-model="card.card_number" type="text" :placeholder="__('e.g. 010101010')" class="bg-background" />
-                            <p v-if="errorFor(index, 'card_number')" class="text-xs text-destructive">{{ errorFor(index, 'card_number') }}</p>
-                        </div>
-
-                        <!-- Issued date -->
-                        <div class="space-y-2">
-                            <Label :for="`issued-${index}`" class="text-xs font-medium">{{ __('Issued Date') }}</Label>
+                            <Label for="id_card_issued_date" class="text-xs font-medium">{{ __('Issued Date') }}</Label>
                             <div class="relative">
                                 <Calendar class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                                <Input :id="`issued-${index}`" v-model="card.issued_date" type="date" class="pl-10 bg-background" />
+                                <Input id="id_card_issued_date" v-model="form.id_card_issued_date" type="date" class="pl-10 bg-background" />
                             </div>
-                            <p v-if="errorFor(index, 'issued_date')" class="text-xs text-destructive">{{ errorFor(index, 'issued_date') }}</p>
+                            <p v-if="form.errors.id_card_issued_date" class="text-xs text-destructive">
+                                {{ form.errors.id_card_issued_date }}
+                            </p>
                         </div>
 
-                        <!-- Expiry date -->
+                        <!-- Expiry Date -->
                         <div class="space-y-2">
-                            <Label :for="`expiry-${index}`" class="text-xs font-medium">{{ __('Expiry Date') }}</Label>
+                            <Label for="id_card_expiry_date" class="text-xs font-medium">{{ __('Expiry Date') }}</Label>
                             <div class="relative">
                                 <Calendar class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                                <Input :id="`expiry-${index}`" v-model="card.expiry_date" type="date" class="pl-10 bg-background" />
+                                <Input id="id_card_expiry_date" v-model="form.id_card_expiry_date" type="date" class="pl-10 bg-background" />
                             </div>
-                            <p v-if="errorFor(index, 'expiry_date')" class="text-xs text-destructive">{{ errorFor(index, 'expiry_date') }}</p>
+                            <p v-if="form.errors.id_card_expiry_date" class="text-xs text-destructive">
+                                {{ form.errors.id_card_expiry_date }}
+                            </p>
                         </div>
                     </div>
 
                     <div class="grid gap-4 sm:grid-cols-2">
-                        <!-- Front image -->
+                        <!-- ID Card Front -->
                         <div class="space-y-2">
-                            <Label class="text-xs font-medium">{{ __('Front Image') }}</Label>
+                            <Label class="text-xs font-medium">{{ __('ID Card Front') }}</Label>
                             <ImageUpload
-                                :model-value="idCardImagesGet('front_url', index)"
+                                v-model="idCardFrontImages"
                                 label=""
                                 :multiple="false"
                                 :max-files="1"
                                 :max-size="5"
-                                :error="errorFor(index, 'front_url')"
-                                @update:model-value="(v: string[]) => idCardImagesSet('front_url', index, v)"
+                                :error="form.errors.id_card_front_url"
                             />
                         </div>
-                        <!-- Back image -->
+
+                        <!-- ID Card Back -->
                         <div class="space-y-2">
-                            <Label class="text-xs font-medium">{{ __('Back Image') }}</Label>
+                            <Label class="text-xs font-medium">{{ __('ID Card Back') }}</Label>
                             <ImageUpload
-                                :model-value="idCardImagesGet('back_url', index)"
+                                v-model="idCardBackImages"
                                 label=""
                                 :multiple="false"
                                 :max-files="1"
                                 :max-size="5"
-                                :error="errorFor(index, 'back_url')"
-                                @update:model-value="(v: string[]) => idCardImagesSet('back_url', index, v)"
+                                :error="form.errors.id_card_back_url"
                             />
                         </div>
                     </div>

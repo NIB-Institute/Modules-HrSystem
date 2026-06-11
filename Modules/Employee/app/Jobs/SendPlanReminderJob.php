@@ -60,27 +60,9 @@ class SendPlanReminderJob implements ShouldQueue
                 return;
             }
 
-            $settings = \App\Models\Setting::getGroup('plan_notifications');
-            if (! ($settings['enabled'] ?? true)) {
-                $this->markSkipped($log, 'Plan notifications disabled in settings.');
-                return;
-            }
-            if (! ($settings['telegram_enabled'] ?? true)) {
-                $this->markSkipped($log, 'Telegram channel disabled in settings.');
-                return;
-            }
-            $tierKey = match ($this->tier) {
-                'group_3d' => 'tier_3d',
-                'group_1d' => 'tier_1d',
-                default => null,
-            };
-            if ($tierKey !== null && ! ($settings[$tierKey] ?? true)) {
-                $this->markSkipped($log, "Tier {$this->tier} disabled in settings.");
-                return;
-            }
-            $chatId = $settings['default_chat_id'] ?? '';
+            $chatId = $plan->telegram_group_chat_id;
             if (! $chatId) {
-                $this->markSkipped($log, 'No default chat ID configured in Workshop Notification settings.');
+                $this->markSkipped($log, 'Plan has no telegram_group_chat_id.');
                 return;
             }
 

@@ -42,17 +42,7 @@ class SendBatchAssignmentNotificationListener implements ShouldQueue
             return;
         }
 
-        $settings = \App\Models\Setting::getGroup('plan_notifications');
-        if (! ($settings['enabled'] ?? true)) {
-            return;
-        }
-        if (! ($settings['telegram_enabled'] ?? true)) {
-            return;
-        }
-        if (! ($settings['on_assignment'] ?? true)) {
-            return;
-        }
-        $chatId = $settings['default_chat_id'] ?? '';
+        $chatId = $plan->telegram_group_chat_id;
         if (! $chatId) {
             return;
         }

@@ -24,7 +24,6 @@ class CreateEmployeeAction
             $academicLevels = $data['academic_levels'] ?? [];
             $foreignLanguages = $data['foreign_languages'] ?? [];
             $jobExperiences = $data['job_experiences'] ?? [];
-            $idCards = $data['id_cards'] ?? [];
 
             // Remove non-employee fields
             unset(
@@ -34,8 +33,7 @@ class CreateEmployeeAction
                 $data['family_members'],
                 $data['academic_levels'],
                 $data['foreign_languages'],
-                $data['job_experiences'],
-                $data['id_cards']
+                $data['job_experiences']
             );
 
             // Create User account if requested
@@ -85,11 +83,6 @@ class CreateEmployeeAction
             // Create job experiences if provided
             if (!empty($jobExperiences)) {
                 $this->createJobExperiences($employee, $jobExperiences);
-            }
-
-            // Create ID cards if provided
-            if (!empty($idCards)) {
-                $this->createIdCards($employee, $idCards);
             }
 
             return $employee;
@@ -165,43 +158,6 @@ class CreateEmployeeAction
 
             $expData = $this->cleanEmptyStrings($expData);
             $employee->jobExperiences()->create($expData);
-        }
-    }
-
-    /**
-     * Create ID cards for the employee. Skips fully-empty rows.
-     * Ensures exactly one is_primary (defaults to first non-empty card).
-     */
-    protected function createIdCards(Employee $employee, array $idCards): void
-    {
-        $primarySeen = false;
-        foreach ($idCards as $idx => $card) {
-            unset($card['_key'], $card['id']);
-
-            $isEmpty = empty($card['card_number'])
-                && empty($card['front_url'])
-                && empty($card['back_url'])
-                && empty($card['label']);
-            if ($isEmpty) {
-                continue;
-            }
-
-            $card = $this->cleanEmptyStrings($card);
-            $card['is_primary'] = (bool) ($card['is_primary'] ?? false);
-            $card['sort_order'] = $card['sort_order'] ?? $idx;
-
-            if ($card['is_primary']) {
-                $primarySeen = true;
-            }
-
-            $employee->idCards()->create($card);
-        }
-
-        if (! $primarySeen) {
-            $first = $employee->idCards()->orderBy('sort_order')->first();
-            if ($first) {
-                $first->update(['is_primary' => true]);
-            }
         }
     }
 

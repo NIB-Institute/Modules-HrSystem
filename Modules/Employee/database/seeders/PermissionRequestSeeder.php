@@ -15,8 +15,7 @@ class PermissionRequestSeeder extends Seeder
     public function run(): void
     {
         // Get a reviewer (first available user)
-        /** @var User|null $reviewer */
-        $reviewer = User::query()->first();
+        $reviewer = User::first();
         if (!$reviewer) {
             $this->command->warn('No users found. Please seed users first.');
             return;

@@ -16,14 +16,12 @@ class UpdateEmployeeAction
             $academicLevels = $data['academic_levels'] ?? null;
             $foreignLanguages = $data['foreign_languages'] ?? null;
             $jobExperiences = $data['job_experiences'] ?? null;
-            $idCards = $data['id_cards'] ?? null;
 
             unset(
                 $data['family_members'],
                 $data['academic_levels'],
                 $data['foreign_languages'],
-                $data['job_experiences'],
-                $data['id_cards']
+                $data['job_experiences']
             );
 
             // Update employee
@@ -50,12 +48,7 @@ class UpdateEmployeeAction
                 $this->syncRelatedData($employee, 'jobExperiences', $jobExperiences, 'company');
             }
 
-            // Sync ID cards if provided
-            if ($idCards !== null) {
-                $this->syncIdCards($employee, $idCards);
-            }
-
-            return $employee->fresh(['familyMembers', 'academicLevels', 'foreignLanguages', 'jobExperiences', 'idCards']);
+            return $employee->fresh(['familyMembers', 'academicLevels', 'foreignLanguages', 'jobExperiences']);
         });
     }
 
@@ -100,62 +93,6 @@ class UpdateEmployeeAction
                 // Create new item
                 unset($itemData['id']);
                 $employee->$relationship()->create($itemData);
-            }
-        }
-    }
-
-    /**
-     * Sync ID cards: an item is "real" if it has a number OR an image URL.
-     * Ensures at most one is_primary; if none marked, the first becomes primary.
-     */
-    protected function syncIdCards(Employee $employee, array $items): void
-    {
-        $submittedIds = collect($items)
-            ->filter(fn ($i) => isset($i['id']))
-            ->pluck('id')
-            ->toArray();
-
-        $employee->idCards()
-            ->whereNotIn('id', $submittedIds)
-            ->delete();
-
-        $primarySeen = false;
-        foreach ($items as $idx => $card) {
-            unset($card['_key']);
-
-            $isEmpty = empty($card['card_number'])
-                && empty($card['front_url'])
-                && empty($card['back_url'])
-                && empty($card['label']);
-            if ($isEmpty) {
-                continue;
-            }
-
-            $card = $this->cleanEmptyStrings($card);
-            $card['is_primary'] = (bool) ($card['is_primary'] ?? false);
-            $card['sort_order'] = $card['sort_order'] ?? $idx;
-
-            if ($card['is_primary']) {
-                $primarySeen = true;
-            }
-
-            if (isset($card['id'])) {
-                if ($item = $employee->idCards()->find($card['id'])) {
-                    $id = $card['id'];
-                    unset($card['id']);
-                    $item->update($card);
-                }
-            } else {
-                unset($card['id']);
-                $employee->idCards()->create($card);
-            }
-        }
-
-        if (! $primarySeen) {
-            $first = $employee->idCards()->orderBy('sort_order')->first();
-            if ($first) {
-                $employee->idCards()->where('id', '!=', $first->id)->update(['is_primary' => false]);
-                $first->update(['is_primary' => true]);
             }
         }
     }
