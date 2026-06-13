@@ -251,7 +251,7 @@ const formatStatus = (status: string | boolean): string => {
                 </CardContent>
             </Card>
 
-            <Card>
+            <Card v-if="showAttendance">
                 <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle class="text-sm font-medium">{{ __("Today's Attendance") }}</CardTitle>
                     <Calendar class="h-4 w-4 text-blue-500" />

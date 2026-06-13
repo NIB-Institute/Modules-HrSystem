@@ -117,6 +117,7 @@ const handleRefresh = () => {
                         :widgets="employeeWidgets"
                         :date-range="dateRange"
                         :loading="loading"
+                        :show-attendance="false"
                         @date-range-change="handleDateRangeChange"
                         @refresh="handleRefresh"
                     />

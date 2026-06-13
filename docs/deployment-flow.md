@@ -80,6 +80,8 @@ The container's start command (`CMD` in the Dockerfile) runs every time the cont
 
 ```bash
 php artisan migrate --force; \
+php artisan db:seed --class=RolesAndPermissionsSeeder --force; \
+php artisan db:seed --class=UserSeeder --force; \
 php artisan storage:link; \
 php artisan config:cache; \
 php artisan route:cache; \
@@ -92,6 +94,14 @@ exec php -S 0.0.0.0:${PORT:-8080} -t public server.php
   visible in `railway logs` instead of a silent restart loop.
 - `migrate --force` is what applies new migrations on deploy (e.g. `id_cards`, `certificates`,
   `position` columns ship automatically).
+- **Seeders run on every boot (idempotent):**
+  - `RolesAndPermissionsSeeder` — creates the roles `super-admin, admin, manager, staff,
+    employee, viewer` and their permissions. **Required for access** — the app's `super-admin`
+    gate (`hasRole('super-admin')`) fails if this never ran, which locks everyone out.
+  - `UserSeeder` — `updateOrCreate`s the bootstrap admin `kouchlyhour@gmail.com` and assigns it
+    `super-admin`. ⚠️ It **re-asserts the password every deploy** (see the seeder). Once you have
+    stable real accounts, change the credential in `database/seeders/UserSeeder.php` or remove
+    this line from the boot command so deploys stop resetting it.
 
 ### Optional: `.railway/release.sh`
 [`.railway/release.sh`](../.railway/release.sh) is a richer, idempotent release script
