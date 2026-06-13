@@ -11,6 +11,8 @@ import type { BreadcrumbItem } from '@/types';
 import type {
     EmployeeMetrics,
     AttendanceTrendPoint,
+    PlanStatusPoint,
+    UpcomingPlan,
     GrowthTrendPoint as EmployeeGrowthTrendPoint,
     RecentEmployee,
 } from '@employee/Components/Widgets';
@@ -27,7 +29,9 @@ const {__ } = useTranslation();
 
 interface EmployeeWidgetData {
     metrics: EmployeeMetrics;
-    attendanceTrend: AttendanceTrendPoint[];
+    attendanceTrend?: AttendanceTrendPoint[];
+    planStatusBreakdown?: PlanStatusPoint[];
+    upcomingPlanList?: UpcomingPlan[];
     growthTrend: EmployeeGrowthTrendPoint[];
     recentEmployees?: RecentEmployee[];
 }
@@ -111,7 +115,8 @@ const handleRefresh = () => {
                 <TabsContent v-if="props.employee" value="employee" class="space-y-6">
                     <EmployeeWidget
                         :metrics="props.employee.metrics"
-                        :attendance-trend="props.employee.attendanceTrend"
+                        :plan-status-breakdown="props.employee.planStatusBreakdown"
+                        :upcoming-plan-list="props.employee.upcomingPlanList"
                         :growth-trend="props.employee.growthTrend"
                         :recent-employees="props.employee.recentEmployees"
                         :widgets="employeeWidgets"

@@ -223,7 +223,7 @@ index.form = indexForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:76
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-export const show = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -238,7 +238,7 @@ show.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:76
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-show.url = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+show.url = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { permission_request: args }
     }
@@ -271,7 +271,7 @@ show.url = (args: { permission_request: string | number | { uuid: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:76
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-show.get = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -281,7 +281,7 @@ show.get = (args: { permission_request: string | number | { uuid: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:76
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-show.head = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -291,7 +291,7 @@ show.head = (args: { permission_request: string | number | { uuid: string | numb
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:76
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-const showForm = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -301,7 +301,7 @@ const showForm = (args: { permission_request: string | number | { uuid: string |
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:76
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-showForm.get = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -311,7 +311,7 @@ showForm.get = (args: { permission_request: string | number | { uuid: string | n
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:76
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-showForm.head = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -328,7 +328,7 @@ show.form = showForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:90
 * @route '/dashboard/permission-requests/{permission_request}/edit'
 */
-export const edit = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -343,7 +343,7 @@ edit.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:90
 * @route '/dashboard/permission-requests/{permission_request}/edit'
 */
-edit.url = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+edit.url = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { permission_request: args }
     }
@@ -376,7 +376,7 @@ edit.url = (args: { permission_request: string | number | { uuid: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:90
 * @route '/dashboard/permission-requests/{permission_request}/edit'
 */
-edit.get = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -386,7 +386,7 @@ edit.get = (args: { permission_request: string | number | { uuid: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:90
 * @route '/dashboard/permission-requests/{permission_request}/edit'
 */
-edit.head = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
@@ -396,7 +396,7 @@ edit.head = (args: { permission_request: string | number | { uuid: string | numb
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:90
 * @route '/dashboard/permission-requests/{permission_request}/edit'
 */
-const editForm = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const editForm = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
     method: 'get',
 })
@@ -406,7 +406,7 @@ const editForm = (args: { permission_request: string | number | { uuid: string |
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:90
 * @route '/dashboard/permission-requests/{permission_request}/edit'
 */
-editForm.get = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+editForm.get = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
     method: 'get',
 })
@@ -416,7 +416,7 @@ editForm.get = (args: { permission_request: string | number | { uuid: string | n
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:90
 * @route '/dashboard/permission-requests/{permission_request}/edit'
 */
-editForm.head = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+editForm.head = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -433,7 +433,7 @@ edit.form = editForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:108
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-export const update = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -448,7 +448,7 @@ update.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:108
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-update.url = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+update.url = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { permission_request: args }
     }
@@ -481,7 +481,7 @@ update.url = (args: { permission_request: string | number | { uuid: string | num
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:108
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-update.put = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -491,7 +491,7 @@ update.put = (args: { permission_request: string | number | { uuid: string | num
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:108
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-const updateForm = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -506,7 +506,7 @@ const updateForm = (args: { permission_request: string | number | { uuid: string
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:108
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-updateForm.put = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -523,7 +523,7 @@ update.form = updateForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:127
 * @route '/dashboard/permission-requests/{permission_request}/delete'
 */
-export const confirmDelete = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const confirmDelete = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -538,7 +538,7 @@ confirmDelete.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:127
 * @route '/dashboard/permission-requests/{permission_request}/delete'
 */
-confirmDelete.url = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+confirmDelete.url = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { permission_request: args }
     }
@@ -571,7 +571,7 @@ confirmDelete.url = (args: { permission_request: string | number | { uuid: strin
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:127
 * @route '/dashboard/permission-requests/{permission_request}/delete'
 */
-confirmDelete.get = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+confirmDelete.get = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -581,7 +581,7 @@ confirmDelete.get = (args: { permission_request: string | number | { uuid: strin
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:127
 * @route '/dashboard/permission-requests/{permission_request}/delete'
 */
-confirmDelete.head = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+confirmDelete.head = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: confirmDelete.url(args, options),
     method: 'head',
 })
@@ -591,7 +591,7 @@ confirmDelete.head = (args: { permission_request: string | number | { uuid: stri
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:127
 * @route '/dashboard/permission-requests/{permission_request}/delete'
 */
-const confirmDeleteForm = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const confirmDeleteForm = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -601,7 +601,7 @@ const confirmDeleteForm = (args: { permission_request: string | number | { uuid:
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:127
 * @route '/dashboard/permission-requests/{permission_request}/delete'
 */
-confirmDeleteForm.get = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+confirmDeleteForm.get = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -611,7 +611,7 @@ confirmDeleteForm.get = (args: { permission_request: string | number | { uuid: s
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:127
 * @route '/dashboard/permission-requests/{permission_request}/delete'
 */
-confirmDeleteForm.head = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+confirmDeleteForm.head = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -628,7 +628,7 @@ confirmDelete.form = confirmDeleteForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:139
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-export const destroy = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -643,7 +643,7 @@ destroy.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:139
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-destroy.url = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { permission_request: args }
     }
@@ -676,7 +676,7 @@ destroy.url = (args: { permission_request: string | number | { uuid: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:139
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-destroy.delete = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -686,7 +686,7 @@ destroy.delete = (args: { permission_request: string | number | { uuid: string |
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:139
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-const destroyForm = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -701,7 +701,7 @@ const destroyForm = (args: { permission_request: string | number | { uuid: strin
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:139
 * @route '/dashboard/permission-requests/{permission_request}'
 */
-destroyForm.delete = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -718,7 +718,7 @@ destroy.form = destroyForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:151
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-export const review = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const review = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: review.url(args, options),
     method: 'get',
 })
@@ -733,7 +733,7 @@ review.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:151
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-review.url = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+review.url = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { permission_request: args }
     }
@@ -766,7 +766,7 @@ review.url = (args: { permission_request: string | number | { uuid: string | num
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:151
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-review.get = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+review.get = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: review.url(args, options),
     method: 'get',
 })
@@ -776,7 +776,7 @@ review.get = (args: { permission_request: string | number | { uuid: string | num
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:151
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-review.head = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+review.head = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: review.url(args, options),
     method: 'head',
 })
@@ -786,7 +786,7 @@ review.head = (args: { permission_request: string | number | { uuid: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:151
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-const reviewForm = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const reviewForm = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: review.url(args, options),
     method: 'get',
 })
@@ -796,7 +796,7 @@ const reviewForm = (args: { permission_request: string | number | { uuid: string
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:151
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-reviewForm.get = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+reviewForm.get = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: review.url(args, options),
     method: 'get',
 })
@@ -806,7 +806,7 @@ reviewForm.get = (args: { permission_request: string | number | { uuid: string |
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/PermissionRequestController.php:151
 * @route '/dashboard/permission-requests/{permission_request}/review'
 */
-reviewForm.head = (args: { permission_request: string | number | { uuid: string | number } } | [permission_request: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+reviewForm.head = (args: { permission_request: string | { uuid: string } } | [permission_request: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: review.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',

@@ -10,6 +10,8 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Modules\Employee\Models\Attendance;
 use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\EmployeePlan;
+use Modules\Employee\Models\EmployeePlanAssignment;
 use Modules\Employee\Models\EmployeeType;
 use Modules\School\Models\Classroom;
 use Modules\School\Models\Department;
@@ -40,9 +42,17 @@ class DashboardController extends Controller
         $total = Employee::count();
         $active = Employee::where('status', true)->count();
         $today = today();
-        $todayPresent = Attendance::whereDate('attendance_date', $today)->where('status', 'present')->count();
-        $todayAbsent = Attendance::whereDate('attendance_date', $today)->where('status', 'absent')->count();
-        $todayTotal = $todayPresent + $todayAbsent;
+
+        // Plan-centric metrics
+        $totalPlans = EmployeePlan::count();
+        $employeesWithPlan = EmployeePlanAssignment::distinct()->count('employee_id');
+        $plansWithEmployees = EmployeePlanAssignment::distinct()->count('employee_plan_id');
+        $upcomingPlans = EmployeePlan::whereDate('start_date', '>=', $today)
+            ->whereIn('status', ['scheduled', 'in_progress'])
+            ->count();
+        $probationApproaching = Employee::whereNotNull('probation_end_date')
+            ->whereBetween('probation_end_date', [$today, $today->copy()->addDays(30)])
+            ->count();
 
         return [
             'metrics' => [
@@ -50,12 +60,15 @@ class DashboardController extends Controller
                 'active' => $active,
                 'inactive' => max($total - $active, 0),
                 'totalTypes' => EmployeeType::count(),
-                'todayPresent' => $todayPresent,
-                'todayAbsent' => $todayAbsent,
-                'attendanceRate' => $todayTotal > 0 ? round(($todayPresent / $todayTotal) * 100, 1) : 0,
+                'totalPlans' => $totalPlans,
+                'employeesWithPlan' => $employeesWithPlan,
+                'plansWithEmployees' => $plansWithEmployees,
+                'upcomingPlans' => $upcomingPlans,
+                'probationApproaching' => $probationApproaching,
                 'growthPercent' => $this->growthPercent(Employee::class),
             ],
-            'attendanceTrend' => $this->attendanceTrend(),
+            'planStatusBreakdown' => $this->planStatusBreakdown(),
+            'upcomingPlanList' => $this->upcomingPlanList($today),
             'growthTrend' => $this->growthTrend(Employee::class),
             'recentEmployees' => Employee::latest()->limit(5)->get()->map(fn ($e) => [
                 'id' => $e->id,
@@ -66,6 +79,53 @@ class DashboardController extends Controller
                 'created_at' => optional($e->created_at)->toIso8601String(),
             ])->all(),
         ];
+    }
+
+    /**
+     * Count of plans grouped by status, in a fixed display order.
+     *
+     * @return array<int, array{label: string, status: string, value: int}>
+     */
+    private function planStatusBreakdown(): array
+    {
+        $counts = EmployeePlan::query()
+            ->selectRaw('status, COUNT(*) as aggregate')
+            ->groupBy('status')
+            ->pluck('aggregate', 'status');
+
+        $statuses = [
+            'scheduled' => 'Scheduled',
+            'in_progress' => 'In Progress',
+            'completed' => 'Completed',
+            'cancelled' => 'Cancelled',
+        ];
+
+        return collect($statuses)->map(fn ($label, $status) => [
+            'label' => $label,
+            'status' => $status,
+            'value' => (int) ($counts[$status] ?? 0),
+        ])->values()->all();
+    }
+
+    /**
+     * The next plans starting today or later, with how many employees are assigned.
+     *
+     * @return array<int, array{id: int, title: string, start_date: ?string, status: string, employees: int}>
+     */
+    private function upcomingPlanList($today): array
+    {
+        return EmployeePlan::withCount('assignments')
+            ->whereDate('start_date', '>=', $today)
+            ->orderBy('start_date')
+            ->limit(5)
+            ->get()
+            ->map(fn ($plan) => [
+                'id' => $plan->id,
+                'title' => $plan->title,
+                'start_date' => optional($plan->start_date)->toDateString(),
+                'status' => $plan->status,
+                'employees' => $plan->assignments_count,
+            ])->all();
     }
 
     private function schoolWidgetData(): array

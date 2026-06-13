@@ -695,7 +695,7 @@ index.form = indexForm
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:70
 * @route '/dashboard/inventories/{inventory}'
 */
-export const show = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -710,7 +710,7 @@ show.definition = {
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:70
 * @route '/dashboard/inventories/{inventory}'
 */
-show.url = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+show.url = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { inventory: args }
     }
@@ -743,7 +743,7 @@ show.url = (args: { inventory: string | number | { uuid: string | number } } | [
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:70
 * @route '/dashboard/inventories/{inventory}'
 */
-show.get = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -753,7 +753,7 @@ show.get = (args: { inventory: string | number | { uuid: string | number } } | [
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:70
 * @route '/dashboard/inventories/{inventory}'
 */
-show.head = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -763,7 +763,7 @@ show.head = (args: { inventory: string | number | { uuid: string | number } } | 
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:70
 * @route '/dashboard/inventories/{inventory}'
 */
-const showForm = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -773,7 +773,7 @@ const showForm = (args: { inventory: string | number | { uuid: string | number }
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:70
 * @route '/dashboard/inventories/{inventory}'
 */
-showForm.get = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -783,7 +783,7 @@ showForm.get = (args: { inventory: string | number | { uuid: string | number } }
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:70
 * @route '/dashboard/inventories/{inventory}'
 */
-showForm.head = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -800,7 +800,7 @@ show.form = showForm
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:77
 * @route '/dashboard/inventories/{inventory}/edit'
 */
-export const edit = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -815,7 +815,7 @@ edit.definition = {
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:77
 * @route '/dashboard/inventories/{inventory}/edit'
 */
-edit.url = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+edit.url = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { inventory: args }
     }
@@ -848,7 +848,7 @@ edit.url = (args: { inventory: string | number | { uuid: string | number } } | [
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:77
 * @route '/dashboard/inventories/{inventory}/edit'
 */
-edit.get = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -858,7 +858,7 @@ edit.get = (args: { inventory: string | number | { uuid: string | number } } | [
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:77
 * @route '/dashboard/inventories/{inventory}/edit'
 */
-edit.head = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
@@ -868,7 +868,7 @@ edit.head = (args: { inventory: string | number | { uuid: string | number } } | 
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:77
 * @route '/dashboard/inventories/{inventory}/edit'
 */
-const editForm = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const editForm = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
     method: 'get',
 })
@@ -878,7 +878,7 @@ const editForm = (args: { inventory: string | number | { uuid: string | number }
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:77
 * @route '/dashboard/inventories/{inventory}/edit'
 */
-editForm.get = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+editForm.get = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
     method: 'get',
 })
@@ -888,7 +888,7 @@ editForm.get = (args: { inventory: string | number | { uuid: string | number } }
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:77
 * @route '/dashboard/inventories/{inventory}/edit'
 */
-editForm.head = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+editForm.head = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -905,7 +905,7 @@ edit.form = editForm
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:85
 * @route '/dashboard/inventories/{inventory}'
 */
-export const update = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -920,7 +920,7 @@ update.definition = {
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:85
 * @route '/dashboard/inventories/{inventory}'
 */
-update.url = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+update.url = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { inventory: args }
     }
@@ -953,7 +953,7 @@ update.url = (args: { inventory: string | number | { uuid: string | number } } |
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:85
 * @route '/dashboard/inventories/{inventory}'
 */
-update.put = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -963,7 +963,7 @@ update.put = (args: { inventory: string | number | { uuid: string | number } } |
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:85
 * @route '/dashboard/inventories/{inventory}'
 */
-const updateForm = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -978,7 +978,7 @@ const updateForm = (args: { inventory: string | number | { uuid: string | number
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:85
 * @route '/dashboard/inventories/{inventory}'
 */
-updateForm.put = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -995,7 +995,7 @@ update.form = updateForm
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:94
 * @route '/dashboard/inventories/{inventory}/delete'
 */
-export const deleteMethod = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const deleteMethod = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: deleteMethod.url(args, options),
     method: 'get',
 })
@@ -1010,7 +1010,7 @@ deleteMethod.definition = {
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:94
 * @route '/dashboard/inventories/{inventory}/delete'
 */
-deleteMethod.url = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+deleteMethod.url = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { inventory: args }
     }
@@ -1043,7 +1043,7 @@ deleteMethod.url = (args: { inventory: string | number | { uuid: string | number
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:94
 * @route '/dashboard/inventories/{inventory}/delete'
 */
-deleteMethod.get = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+deleteMethod.get = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: deleteMethod.url(args, options),
     method: 'get',
 })
@@ -1053,7 +1053,7 @@ deleteMethod.get = (args: { inventory: string | number | { uuid: string | number
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:94
 * @route '/dashboard/inventories/{inventory}/delete'
 */
-deleteMethod.head = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+deleteMethod.head = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: deleteMethod.url(args, options),
     method: 'head',
 })
@@ -1063,7 +1063,7 @@ deleteMethod.head = (args: { inventory: string | number | { uuid: string | numbe
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:94
 * @route '/dashboard/inventories/{inventory}/delete'
 */
-const deleteMethodForm = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const deleteMethodForm = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: deleteMethod.url(args, options),
     method: 'get',
 })
@@ -1073,7 +1073,7 @@ const deleteMethodForm = (args: { inventory: string | number | { uuid: string | 
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:94
 * @route '/dashboard/inventories/{inventory}/delete'
 */
-deleteMethodForm.get = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+deleteMethodForm.get = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: deleteMethod.url(args, options),
     method: 'get',
 })
@@ -1083,7 +1083,7 @@ deleteMethodForm.get = (args: { inventory: string | number | { uuid: string | nu
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:94
 * @route '/dashboard/inventories/{inventory}/delete'
 */
-deleteMethodForm.head = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+deleteMethodForm.head = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: deleteMethod.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -1100,7 +1100,7 @@ deleteMethod.form = deleteMethodForm
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:103
 * @route '/dashboard/inventories/{inventory}'
 */
-export const destroy = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -1115,7 +1115,7 @@ destroy.definition = {
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:103
 * @route '/dashboard/inventories/{inventory}'
 */
-destroy.url = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { inventory: args }
     }
@@ -1148,7 +1148,7 @@ destroy.url = (args: { inventory: string | number | { uuid: string | number } } 
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:103
 * @route '/dashboard/inventories/{inventory}'
 */
-destroy.delete = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -1158,7 +1158,7 @@ destroy.delete = (args: { inventory: string | number | { uuid: string | number }
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:103
 * @route '/dashboard/inventories/{inventory}'
 */
-const destroyForm = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -1173,7 +1173,7 @@ const destroyForm = (args: { inventory: string | number | { uuid: string | numbe
 * @see Modules/School/app/Http/Controllers/Dashboard/V1/InventoryController.php:103
 * @route '/dashboard/inventories/{inventory}'
 */
-destroyForm.delete = (args: { inventory: string | number | { uuid: string | number } } | [inventory: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { inventory: string | { uuid: string } } | [inventory: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',

@@ -222,7 +222,7 @@ index.form = indexForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
 * @route '/dashboard/documents/{document}/edit'
 */
-export const edit = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -237,7 +237,7 @@ edit.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
 * @route '/dashboard/documents/{document}/edit'
 */
-edit.url = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+edit.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { document: args }
     }
@@ -270,7 +270,7 @@ edit.url = (args: { document: string | number | { uuid: string | number } } | [d
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
 * @route '/dashboard/documents/{document}/edit'
 */
-edit.get = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -280,7 +280,7 @@ edit.get = (args: { document: string | number | { uuid: string | number } } | [d
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
 * @route '/dashboard/documents/{document}/edit'
 */
-edit.head = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
@@ -290,7 +290,7 @@ edit.head = (args: { document: string | number | { uuid: string | number } } | [
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
 * @route '/dashboard/documents/{document}/edit'
 */
-const editForm = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const editForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
     method: 'get',
 })
@@ -300,7 +300,7 @@ const editForm = (args: { document: string | number | { uuid: string | number } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
 * @route '/dashboard/documents/{document}/edit'
 */
-editForm.get = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+editForm.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
     method: 'get',
 })
@@ -310,7 +310,7 @@ editForm.get = (args: { document: string | number | { uuid: string | number } } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
 * @route '/dashboard/documents/{document}/edit'
 */
-editForm.head = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+editForm.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -327,7 +327,7 @@ edit.form = editForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
 * @route '/dashboard/documents/{document}'
 */
-export const update = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -342,7 +342,7 @@ update.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
 * @route '/dashboard/documents/{document}'
 */
-update.url = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+update.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { document: args }
     }
@@ -375,7 +375,7 @@ update.url = (args: { document: string | number | { uuid: string | number } } | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
 * @route '/dashboard/documents/{document}'
 */
-update.put = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -385,7 +385,7 @@ update.put = (args: { document: string | number | { uuid: string | number } } | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
 * @route '/dashboard/documents/{document}'
 */
-const updateForm = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -400,7 +400,7 @@ const updateForm = (args: { document: string | number | { uuid: string | number 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
 * @route '/dashboard/documents/{document}'
 */
-updateForm.put = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -417,7 +417,7 @@ update.form = updateForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
 * @route '/dashboard/documents/{document}/download'
 */
-export const download = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const download = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: download.url(args, options),
     method: 'get',
 })
@@ -432,7 +432,7 @@ download.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
 * @route '/dashboard/documents/{document}/download'
 */
-download.url = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+download.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { document: args }
     }
@@ -465,7 +465,7 @@ download.url = (args: { document: string | number | { uuid: string | number } } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
 * @route '/dashboard/documents/{document}/download'
 */
-download.get = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+download.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: download.url(args, options),
     method: 'get',
 })
@@ -475,7 +475,7 @@ download.get = (args: { document: string | number | { uuid: string | number } } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
 * @route '/dashboard/documents/{document}/download'
 */
-download.head = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+download.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: download.url(args, options),
     method: 'head',
 })
@@ -485,7 +485,7 @@ download.head = (args: { document: string | number | { uuid: string | number } }
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
 * @route '/dashboard/documents/{document}/download'
 */
-const downloadForm = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const downloadForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: download.url(args, options),
     method: 'get',
 })
@@ -495,7 +495,7 @@ const downloadForm = (args: { document: string | number | { uuid: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
 * @route '/dashboard/documents/{document}/download'
 */
-downloadForm.get = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+downloadForm.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: download.url(args, options),
     method: 'get',
 })
@@ -505,7 +505,7 @@ downloadForm.get = (args: { document: string | number | { uuid: string | number 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
 * @route '/dashboard/documents/{document}/download'
 */
-downloadForm.head = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+downloadForm.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: download.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -522,7 +522,7 @@ download.form = downloadForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
 * @route '/dashboard/documents/{document}/delete'
 */
-export const confirmDelete = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const confirmDelete = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -537,7 +537,7 @@ confirmDelete.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
 * @route '/dashboard/documents/{document}/delete'
 */
-confirmDelete.url = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+confirmDelete.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { document: args }
     }
@@ -570,7 +570,7 @@ confirmDelete.url = (args: { document: string | number | { uuid: string | number
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
 * @route '/dashboard/documents/{document}/delete'
 */
-confirmDelete.get = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+confirmDelete.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -580,7 +580,7 @@ confirmDelete.get = (args: { document: string | number | { uuid: string | number
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
 * @route '/dashboard/documents/{document}/delete'
 */
-confirmDelete.head = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+confirmDelete.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: confirmDelete.url(args, options),
     method: 'head',
 })
@@ -590,7 +590,7 @@ confirmDelete.head = (args: { document: string | number | { uuid: string | numbe
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
 * @route '/dashboard/documents/{document}/delete'
 */
-const confirmDeleteForm = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const confirmDeleteForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -600,7 +600,7 @@ const confirmDeleteForm = (args: { document: string | number | { uuid: string | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
 * @route '/dashboard/documents/{document}/delete'
 */
-confirmDeleteForm.get = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+confirmDeleteForm.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -610,7 +610,7 @@ confirmDeleteForm.get = (args: { document: string | number | { uuid: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
 * @route '/dashboard/documents/{document}/delete'
 */
-confirmDeleteForm.head = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+confirmDeleteForm.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -627,7 +627,7 @@ confirmDelete.form = confirmDeleteForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
 * @route '/dashboard/documents/{document}'
 */
-export const destroy = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -642,7 +642,7 @@ destroy.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
 * @route '/dashboard/documents/{document}'
 */
-destroy.url = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { document: args }
     }
@@ -675,7 +675,7 @@ destroy.url = (args: { document: string | number | { uuid: string | number } } |
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
 * @route '/dashboard/documents/{document}'
 */
-destroy.delete = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -685,7 +685,7 @@ destroy.delete = (args: { document: string | number | { uuid: string | number } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
 * @route '/dashboard/documents/{document}'
 */
-const destroyForm = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -700,7 +700,7 @@ const destroyForm = (args: { document: string | number | { uuid: string | number
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
 * @route '/dashboard/documents/{document}'
 */
-destroyForm.delete = (args: { document: string | number | { uuid: string | number } } | [document: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
