@@ -424,7 +424,7 @@ const formatStatus = (status: string | boolean): string => {
             </Card>
 
         <!-- Upcoming Plans -->
-        <Card v-if="showPlans && upcomingPlanList && upcomingPlanList.length > 0" class="lg:col-span-2" :style="{ order: 900 }">
+        <Card v-if="showPlans && upcomingPlanList && upcomingPlanList.length > 0" :style="{ order: 900 }">
             <CardHeader>
                 <div class="flex items-center justify-between">
                     <div>
@@ -473,7 +473,7 @@ const formatStatus = (status: string | boolean): string => {
         </Card>
 
         <!-- Recent Employees -->
-        <Card v-if="showRecent && recentEmployees && recentEmployees.length > 0" class="lg:col-span-2" :style="{ order: 999 }">
+        <Card v-if="showRecent && recentEmployees && recentEmployees.length > 0" :style="{ order: 999 }">
             <CardHeader>
                 <div class="flex items-center justify-between">
                     <div>
