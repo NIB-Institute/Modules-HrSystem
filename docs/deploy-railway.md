@@ -1,5 +1,10 @@
 # Deploying hrSystem to Railway
 
+> ⚠️ **PARTLY OUTDATED as of 2026-06-13.** This guide assumes **submodules + nixpacks**. The repo
+> now uses **vendored modules + a Dockerfile** and needs **no `GITHUB_TOKEN`**. For the current
+> build/boot/deploy flow read [deployment-flow.md](deployment-flow.md) first; use the steps below
+> only for one-time Railway project / DB / env-var setup.
+
 Step-by-step guide for the first deploy of `hrSystem` (Laravel 12 + Inertia + Vue) to Railway. Designed for the **brand-new Railway project** scenario with **two private GitHub submodules** (`Modules-HrSystem-Employee` and `Modules-HrSystem-School`).
 
 If you're redeploying an already-set-up project, skip to **Step 8 — Trigger the first deploy**.

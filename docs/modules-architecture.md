@@ -1,5 +1,10 @@
 # Modules Architecture — Employee + School submodules
 
+> ⚠️ **OUTDATED as of 2026-06-13.** The modules were **re-vendored** (committed directly into the
+> main repo) and are **no longer git submodules** — no `.gitmodules`, no `GITHUB_TOKEN`. This page
+> documents the historical submodule setup. For the current layout and deploy flow see
+> [deployment-flow.md](deployment-flow.md) (esp. §7 History).
+
 How the two domain modules under `Modules/` are sourced, versioned, and integrated.
 
 > **History:** these were originally submodules → vendored into the main repo on 2026-06-02 to escape Railway's submodule-auth pain → reverted back to submodules on 2026-06-08 (commit `60d1f53`) because separate Source Control visibility was wanted. Railway deploys may require deploy-side fixes again.
