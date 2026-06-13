@@ -16,6 +16,7 @@ return [
             'attendance_scans', 'employee_experiences', 'permission_requests',
             'employee_family_members', 'employee_academic_levels',
             'employee_foreign_languages', 'employee_job_experiences',
+            'employee_documents',
         ],
         'School'    => ['schools', 'departments', 'classrooms', 'courses', 'programs', 'equipment'],
         'Blog'      => ['posts'],
