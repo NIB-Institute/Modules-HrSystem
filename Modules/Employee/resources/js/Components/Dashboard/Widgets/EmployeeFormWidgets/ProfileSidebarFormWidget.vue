@@ -66,14 +66,8 @@ const createAccount = computed({
                     <Camera class="h-4 w-4" />
                     <span>{{ __('Profile Photo') }}</span>
                 </div>
-                <ImageUpload
-                    v-model="avatarImages"
-                    label=""
-                    :multiple="false"
-                    :max-files="1"
-                    :max-size="5"
-                    :error="form.errors.avatar_url"
-                />
+                <ImageUpload v-model="avatarImages" label="" :multiple="false" :max-files="1" :max-size="5"
+                    :error="form.errors.avatar_url" />
             </div>
 
             <!-- Status Section -->
@@ -94,7 +88,7 @@ const createAccount = computed({
             </div>
 
             <!-- Account Settings Section (Create mode only) -->
-            <div v-if="mode === 'create'" class="space-y-3 border-t pt-6">
+            <!-- <div v-if="mode === 'create'" class="space-y-3 border-t pt-6">
                 <div class="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                     <UserCog class="h-4 w-4" />
                     <span>{{ __('Account Settings') }}</span>
@@ -134,7 +128,7 @@ const createAccount = computed({
                     </div>
                     <p class="text-xs text-muted-foreground">{{ __('Employee will use their email to log in.') }}</p>
                 </div>
-            </div>
+            </div> -->
 
         </CardContent>
     </Card>

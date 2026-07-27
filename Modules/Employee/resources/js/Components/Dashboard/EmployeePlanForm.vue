@@ -182,8 +182,8 @@ const { __ } = useTranslation();
             </div>
         </div>
 
-        <!-- Telegram Group (for plan reminders) -->
-        <div class="rounded-lg border bg-muted/30 p-4 space-y-3">
+        <!-- Telegram Group (for plan reminders) — set after creation, on Edit -->
+        <div v-if="props.mode === 'edit'" class="rounded-lg border bg-muted/30 p-4 space-y-3">
             <div class="space-y-1">
                 <Label class="text-sm font-medium">{{ __('Telegram Group (Reminders)') }}</Label>
                 <p class="text-xs text-muted-foreground">
