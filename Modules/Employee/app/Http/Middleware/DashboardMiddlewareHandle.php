@@ -72,16 +72,16 @@ class DashboardMiddlewareHandle
             'UsersRound',
         );
 
-        MenuService::addSubmenuItem(
-            'primary',
-            'employees',
-            __('Availability'),
-            route('employee.employee-availabilities.index'),
-            50,
-            PermissionEnum::EMPLOYEE_AVAILABILITIES_VIEW_ANY->value,
-            'employee.employee-availabilities.*',
-            'CalendarRange',
-        );
+        // MenuService::addSubmenuItem(
+        //     'primary',
+        //     'employees',
+        //     __('Availability'),
+        //     route('employee.employee-availabilities.index'),
+        //     50,
+        //     PermissionEnum::EMPLOYEE_AVAILABILITIES_VIEW_ANY->value,
+        //     'employee.employee-availabilities.*',
+        //     'CalendarRange',
+        // );
 
         MenuService::addSubmenuItem(
             'primary',
