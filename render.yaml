@@ -1,0 +1,113 @@
+# Render Blueprint for hrSystem.
+# Deploy: Render dashboard -> New + -> Blueprint -> point at this repo.
+# Reuses the existing Dockerfile (same image for web/worker/cron; only the
+# start command differs per service).
+#
+# Note: env vars are duplicated across the three services below rather than
+# pulled from a shared envVarGroups block, because Render doesn't allow
+# `sync: false` secrets inside an env group -- keeping everything inline on
+# each service avoids that split (some vars as literals/fromDatabase, others
+# as sync:false) and keeps this file unambiguous to read.
+
+databases:
+  - name: hrsystem-db
+    plan: free
+    databaseName: hrsystem
+    user: hrsystem
+
+services:
+  # --- Web ---
+  - type: web
+    name: hrsystem-web
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    healthCheckPath: /up
+    envVars: &sharedEnvVars
+      - key: APP_NAME
+        value: hrSystem
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false # paste output of `php artisan key:generate --show`
+      - key: APP_URL
+        sync: false # e.g. https://hrsystem-web.onrender.com or your custom domain
+      - key: APP_LOCALE
+        value: km
+      - key: APP_FALLBACK_LOCALE
+        value: en
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: hrsystem-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: hrsystem-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: hrsystem-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: hrsystem-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: hrsystem-db
+          property: password
+      - key: CACHE_STORE
+        value: database
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_LIFETIME
+        value: "120"
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: FILESYSTEM_DISK
+        value: r2 # Cloudflare R2 -- required, Render's disk is ephemeral per-deploy
+      - key: CLOUDFLARE_R2_ACCESS_KEY_ID
+        sync: false
+      - key: CLOUDFLARE_R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: CLOUDFLARE_R2_BUCKET
+        sync: false
+      - key: CLOUDFLARE_R2_ENDPOINT
+        sync: false
+      - key: CLOUDFLARE_R2_URL
+        sync: false
+      - key: MAIL_MAILER
+        value: log
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_LEVEL
+        value: info
+      - key: BROADCAST_CONNECTION
+        value: log
+
+  # --- Queue worker (same image, no web server / migrate / seed) ---
+  - type: worker
+    name: hrsystem-worker
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerCommand: php artisan queue:work --tries=3 --max-time=3600 --sleep=3
+    plan: starter
+    envVars: *sharedEnvVars
+
+  # --- Scheduler (Render cron job: runs on schedule, exits, no long-lived loop) ---
+  - type: cron
+    name: hrsystem-scheduler
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerCommand: php artisan schedule:run --verbose --no-interaction
+    schedule: "* * * * *"
+    plan: starter
+    envVars: *sharedEnvVars
