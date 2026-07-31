@@ -40,26 +40,18 @@ services:
         value: en
       - key: DB_CONNECTION
         value: pgsql
+      - key: DB_SSLMODE
+        value: require
       - key: DB_HOST
-        fromDatabase:
-          name: hrsystem-db
-          property: host
+        sync: false # Neon host, e.g. ep-xxxx-xxxx.region.aws.neon.tech
       - key: DB_PORT
-        fromDatabase:
-          name: hrsystem-db
-          property: port
+        value: "5432"
       - key: DB_DATABASE
-        fromDatabase:
-          name: hrsystem-db
-          property: database
+        sync: false # Neon database name
       - key: DB_USERNAME
-        fromDatabase:
-          name: hrsystem-db
-          property: user
+        sync: false # Neon username
       - key: DB_PASSWORD
-        fromDatabase:
-          name: hrsystem-db
-          property: password
+        sync: false # Neon password
       - key: CACHE_STORE
         value: database
       - key: SESSION_DRIVER
