@@ -59,4 +59,8 @@ EXPOSE 8080
 #    unready DB) doesn't prevent the web server from starting — we want the
 #    container to come up, healthcheck to pass on /up, and errors to be debuggable
 #    in `railway logs` instead of a silent restart loop.
-CMD ["bash", "-c", "php artisan migrate --force; php artisan db:seed --class=RolesAndPermissionsSeeder --force; php artisan db:seed --class=UserSeeder --force; php artisan storage:link; php artisan config:cache; php artisan route:cache; php artisan view:cache; exec php -S 0.0.0.0:${PORT:-8080} -t public server.php"]
+#    UserSeeder is NOT run automatically here — it hardcodes a password and
+#    would silently reset any real user matching its seeded email on every
+#    deploy. Run it manually via the platform's Shell only when truly needed
+#    (e.g. bootstrapping a brand new, empty database).
+CMD ["bash", "-c", "php artisan migrate --force; php artisan db:seed --class=RolesAndPermissionsSeeder --force; php artisan storage:link; php artisan config:cache; php artisan route:cache; php artisan view:cache; exec php -S 0.0.0.0:${PORT:-8080} -t public server.php"]
