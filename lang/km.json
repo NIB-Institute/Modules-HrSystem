@@ -172,6 +172,7 @@
     "Field of Study": "ជំនាញសិក្សា",
     "Degree": "សញ្ញាបត្រ",
     "Start Date": "ថ្ងៃចាប់ផ្ដើម",
+    "Expiry Date": "ថ្ងៃផុតកំណត់",
     "End Date": "ថ្ងៃបញ្ចប់",
     "Languages": "ភាសា",
     "Proficiency": "កម្រិតជំនាញ",
@@ -300,7 +301,7 @@
     "All Departments": "គ្រប់នាយកដ្ឋាន",
     "All Employees": "បុគ្គលិកទាំងអស់",
     "Employee Types": "ប្រភេទបុគ្គលិក",
-    "Plan Assignments": "ការចាត់តាំងផែនការ",
+    "Plan Assignments": "ការចាត់តាំងនាក់ចូលរួមសិក្ឋាសាលា",
     "Documents": "ឯកសារ",
     "Leave blank to use equipment name": "ទុកចន្លោះទទេ ដើម្បីប្រើឈ្មោះឧបករណ៍",
     "Asset Identification": "ការកំណត់អត្តសញ្ញាណទ្រព្យសម្បត្តិ",
@@ -600,7 +601,7 @@
     "Equipment Trash": "ធុងសំរាមសម្ភារ",
     "Manage deleted equipment - restore or permanently delete": "គ្រប់គ្រងសម្ភារដែលបានលុប - យកមកវិញ ឬលុបជាស្ថាពរ",
     "No deleted equipment found.": "រកមិនឃើញសម្ភារដែលបានលុបទេ។",
-    "Total Departments" : "នាយកដ្ឋានសរុប",
+    "Total Departments": "នាយកដ្ឋានសរុប",
     "Departments": "នាយកដ្ឋាន",
     "Headcount": "ប្រាក់ខែ",
     "Active Employees": "បុគ្គលិកសរុប",
@@ -747,5 +748,4 @@
     "Employee plan created successfully.": "ផែនការបុគ្គលិកត្រូវបានបង្កើតដោយជោគជ័យ។",
     "Availability": "លទ្ធភាព",
     "plans": "ផែនការ"
-
 }

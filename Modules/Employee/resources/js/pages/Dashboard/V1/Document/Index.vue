@@ -51,9 +51,12 @@ const columns: TableColumn<DocumentModel>[] = [
     { key: 'name', label: __('Name'), render: (d) => d.name },
     { key: 'extension', label: __('Type'), render: (d) => (d.extension || '').toUpperCase() },
     { key: 'human_size', label: __('Size'), render: (d) => d.human_size },
+    { key: 'expiry_date', label: __('Expiry Date'), render: (d) => d.expiry_date || '-' },
     { key: 'uploader_name', label: __('Uploaded by'), render: (d) => d.uploader_name || '-' },
     { key: 'created_at', label: __('Uploaded at'), render: (d) => new Date(d.created_at).toLocaleString() },
 ];
+
+const isExpired = (dateStr: string | null): boolean => !!dateStr && new Date(dateStr) < new Date();
 
 const actions: TableAction<DocumentModel>[] = [
     {
@@ -159,6 +162,12 @@ const humanTotalSize = computed(() => {
                     </template>
                     <template #cell-extension="{ item }">
                         <Badge variant="secondary">{{ (item.extension || '').toUpperCase() || '—' }}</Badge>
+                    </template>
+                    <template #cell-expiry_date="{ item }">
+                        <span v-if="!item.expiry_date">—</span>
+                        <Badge v-else :variant="isExpired(item.expiry_date) ? 'destructive' : 'secondary'">
+                            {{ item.expiry_date }}
+                        </Badge>
                     </template>
                 </TableReusable>
             </div>
