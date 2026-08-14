@@ -31,6 +31,7 @@ const form = useForm<InventoryFormData>({
     classroom_id: props.inventory.classroom_id,
     department_id: props.inventory.department_id,
     assigned_to_user_id: props.inventory.assigned_to_user_id,
+    assigned_to_employee_id: props.inventory.assigned_to_employee_id,
     status: props.inventory.status,
     condition: props.inventory.condition,
     purchased_at: props.inventory.purchased_at ?? '',
@@ -85,6 +86,7 @@ const handleCancel = () => {
             :equipment="props.equipment"
             :classrooms="props.classrooms"
             :departments="props.departments"
+            :employees="props.employees"
         />
     </ModalForm>
 </template>

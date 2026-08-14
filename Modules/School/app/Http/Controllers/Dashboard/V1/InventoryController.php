@@ -93,7 +93,7 @@ class InventoryController extends Controller
 
     public function confirmDelete(Inventory $inventory): Modal
     {
-        $inventory->load(['equipment', 'classroom', 'department', 'assignedTo']);
+        $inventory->load(['equipment', 'classroom', 'department', 'assignedTo', 'assignedEmployee']);
 
         return Inertia::modal('school::Dashboard/V1/Inventory/Delete', [
             'inventory' => (new InventoryResource($inventory))->resolve(),

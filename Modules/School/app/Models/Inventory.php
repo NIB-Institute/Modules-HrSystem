@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Modules\Employee\Models\Employee;
 
 /**
  * A physical inventory item — a specific instance of an Equipment type.
@@ -45,6 +46,7 @@ class Inventory extends Model
         'classroom_id',
         'department_id',
         'assigned_to_user_id',
+        'assigned_to_employee_id',
         'status',
         'condition',
         'purchased_at',
@@ -124,6 +126,11 @@ class Inventory extends Model
     public function assignedTo(): BelongsTo
     {
         return $this->belongsTo(User::class, 'assigned_to_user_id');
+    }
+
+    public function assignedEmployee(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class, 'assigned_to_employee_id');
     }
 
     public function scopeActive(Builder $query): Builder

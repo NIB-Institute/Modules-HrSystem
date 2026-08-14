@@ -65,7 +65,9 @@ const columns: TableColumn<Inventory>[] = [
     {
         key: 'location',
         label: __('Location'),
-        render: (i) => i.classroom?.name || i.department?.name || (i.assigned_to ? `${ __('Assigned')}: ${i.assigned_to.name}` : '—'),
+        render: (i) => i.classroom?.name || i.department?.name
+            || (i.assigned_employee ? `${ __('Assigned')}: ${i.assigned_employee.name}` : '')
+            || (i.assigned_to ? `${ __('Assigned')}: ${i.assigned_to.name}` : '—'),
     },
     { key: 'status', label: __('Status'), render: (i) => __(i.status_label) },
     { key: 'condition', label: __('Condition'), render: (i) => __(i.condition_label) },

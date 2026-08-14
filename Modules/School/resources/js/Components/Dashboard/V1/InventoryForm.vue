@@ -45,9 +45,10 @@ interface Props {
     equipment: { id: number; name: string }[];
     classrooms: { id: number; name: string; department_id: number | null }[];
     departments: { id: number; name: string }[];
+    employees?: { id: number; name: string; employee_code: string }[];
 }
 
-const props = withDefaults(defineProps<Props>(), { mode: 'create' });
+const props = withDefaults(defineProps<Props>(), { mode: 'create', employees: () => [] });
 
 const model = defineModel<InertiaForm<InventoryFormData>>({ required: true });
 
@@ -100,6 +101,7 @@ const statusModel = createSelectModel('status');
 const conditionModel = createSelectModel('condition');
 const classroomModel = createSelectModel('classroom_id');
 const departmentModel = createSelectModel('department_id');
+const assignedEmployeeModel = createSelectModel('assigned_to_employee_id');
 
 const regenerateAssetTag = async () => {
     const source = (model.value.name ?? '').trim();
@@ -270,6 +272,22 @@ if (props.mode === 'create') {
                             </div>
                         </SelectContent>
                     </Select>
+                </div>
+
+                <div class="space-y-2">
+                    <Label class="text-[11px] font-bold uppercase text-muted-foreground/70">{{ __('Assigned Employee') }}</Label>
+                    <Select v-model="assignedEmployeeModel">
+                        <SelectTrigger class="focus:ring-primary/40 border-muted-foreground/20 bg-background">
+                            <SelectValue :placeholder="__('Select employee')" />
+                        </SelectTrigger>
+                        <SelectContent class="z-[9999]">
+                            <SelectItem :value="NONE">{{ __('None') }}</SelectItem>
+                            <SelectItem v-for="e in employees" :key="e.id" :value="String(e.id)">
+                                {{ e.name }} ({{ e.employee_code }})
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <p class="text-[10px] text-muted-foreground/60">{{ __('The staff member currently holding this item, if any.') }}</p>
                 </div>
             </div>
         </div>

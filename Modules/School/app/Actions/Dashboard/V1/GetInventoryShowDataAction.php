@@ -9,7 +9,7 @@ class GetInventoryShowDataAction
 {
     public function execute(Inventory $inventory): array
     {
-        $inventory->load(['equipment', 'classroom', 'department.school', 'assignedTo']);
+        $inventory->load(['equipment', 'classroom', 'department.school', 'assignedTo', 'assignedEmployee']);
 
         return [
             'inventory' => (new InventoryResource($inventory))->resolve(),

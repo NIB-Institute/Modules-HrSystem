@@ -34,6 +34,7 @@ class InventoryResource extends JsonResource
             'classroom_id' => $this->classroom_id,
             'department_id' => $this->department_id,
             'assigned_to_user_id' => $this->assigned_to_user_id,
+            'assigned_to_employee_id' => $this->assigned_to_employee_id,
 
             'equipment' => $this->whenLoaded('equipment', fn () => [
                 'id' => $this->equipment->id,
@@ -56,6 +57,11 @@ class InventoryResource extends JsonResource
                 'id' => $this->assignedTo->id,
                 'name' => $this->assignedTo->name,
                 'email' => $this->assignedTo->email,
+            ] : null),
+            'assigned_employee' => $this->whenLoaded('assignedEmployee', fn () => $this->assignedEmployee ? [
+                'id' => $this->assignedEmployee->id,
+                'name' => $this->assignedEmployee->full_name,
+                'employee_code' => $this->assignedEmployee->employee_code,
             ] : null),
 
             'created_at' => $this->created_at?->toIso8601String(),

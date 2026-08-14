@@ -2,6 +2,7 @@
 
 namespace Modules\School\Actions\Dashboard\V1;
 
+use Modules\Employee\Models\Employee;
 use Modules\School\Models\Classroom;
 use Modules\School\Models\Department;
 use Modules\School\Models\Equipment;
@@ -22,6 +23,10 @@ class GetInventoryCreateDataAction
                 ->orderBy('name')
                 ->get(),
             'departments' => Department::select('id', 'name')->orderBy('name')->get(),
+            'employees' => Employee::select('id', 'first_name', 'last_name', 'employee_code')
+                ->orderBy('first_name')
+                ->get()
+                ->map(fn (Employee $e) => ['id' => $e->id, 'name' => $e->full_name, 'employee_code' => $e->employee_code]),
             'suggested_asset_tag' => $this->tagGenerator->generate(),
         ];
     }

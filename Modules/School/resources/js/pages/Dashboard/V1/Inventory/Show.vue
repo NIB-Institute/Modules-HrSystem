@@ -160,7 +160,12 @@ const formatDate = (date: string | null) => {
                             </div>
                             <div class="space-y-1">
                                 <p class="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest">{{ __('Assigned Personnel') }}</p>
-                                <p class="font-medium text-lg">{{ inventory.assigned_to?.name || '—' }}</p>
+                                <p class="font-medium text-lg">
+                                    {{ inventory.assigned_employee?.name || inventory.assigned_to?.name || '—' }}
+                                </p>
+                                <p v-if="inventory.assigned_employee?.employee_code" class="text-xs text-muted-foreground">
+                                    {{ inventory.assigned_employee.employee_code }}
+                                </p>
                             </div>
                         </div>
                     </div>

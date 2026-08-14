@@ -732,6 +732,7 @@ export interface Inventory {
     classroom_id: number | null;
     department_id: number | null;
     assigned_to_user_id: number | null;
+    assigned_to_employee_id: number | null;
     equipment?: {
         id: number;
         name: string;
@@ -747,6 +748,7 @@ export interface Inventory {
         school_name: string | null;
     } | null;
     assigned_to?: { id: number; name: string; email: string } | null;
+    assigned_employee?: { id: number; name: string; employee_code: string } | null;
     created_at: string;
     updated_at: string;
 }
@@ -788,6 +790,7 @@ export interface InventoryFormData {
     classroom_id: number | null;
     department_id: number | null;
     assigned_to_user_id: number | null;
+    assigned_to_employee_id: number | null;
     status: InventoryStatus;
     condition: InventoryCondition;
     purchased_at: string;
@@ -805,6 +808,7 @@ export interface InventoryFormReferenceData {
     equipment: { id: number; name: string }[];
     classrooms: { id: number; name: string; department_id: number | null }[];
     departments: { id: number; name: string }[];
+    employees: { id: number; name: string; employee_code: string }[];
 }
 
 export interface InventoryCreateProps extends InventoryFormReferenceData {

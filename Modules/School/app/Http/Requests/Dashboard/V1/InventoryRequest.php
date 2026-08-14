@@ -30,6 +30,7 @@ class InventoryRequest extends FormRequest
             'classroom_id' => ['nullable', 'integer', 'exists:school_classrooms,id'],
             'department_id' => ['nullable', 'integer', 'exists:school_departments,id'],
             'assigned_to_user_id' => ['nullable', 'integer', 'exists:users,id'],
+            'assigned_to_employee_id' => ['nullable', 'integer', 'exists:employees,id'],
             'status' => ['required', Rule::in(array_keys(Inventory::statuses()))],
             'condition' => ['required', Rule::in(array_keys(Inventory::conditions()))],
             'purchased_at' => ['nullable', 'date'],

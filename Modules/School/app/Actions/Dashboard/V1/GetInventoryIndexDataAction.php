@@ -2,6 +2,7 @@
 
 namespace Modules\School\Actions\Dashboard\V1;
 
+use Modules\Employee\Models\Employee;
 use Modules\School\Http\Resources\Dashboard\V1\InventoryResource;
 use Modules\School\Models\Classroom;
 use Modules\School\Models\Department;
@@ -12,7 +13,7 @@ class GetInventoryIndexDataAction
 {
     public function execute(int $perPage = 10, array $filters = []): array
     {
-        $query = Inventory::with(['equipment', 'classroom', 'department', 'assignedTo']);
+        $query = Inventory::with(['equipment', 'classroom', 'department', 'assignedTo', 'assignedEmployee']);
 
         if (! empty($filters['search'])) {
             $search = $filters['search'];
