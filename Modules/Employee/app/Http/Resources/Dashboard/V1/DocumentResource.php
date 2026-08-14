@@ -19,6 +19,8 @@ class DocumentResource extends JsonResource
             'size_bytes'    => (int) $this->size_bytes,
             'human_size'    => $this->human_size,
             'description'   => $this->description,
+            'start_date'    => $this->start_date?->format('Y-m-d'),
+            'expiry_date'   => $this->expiry_date?->format('Y-m-d'),
             'url' => $this->url,
             'uploaded_by'   => $this->uploaded_by,
             'uploader_name' => $this->whenLoaded('uploader', fn () => $this->uploader?->name),

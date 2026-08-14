@@ -51,6 +51,8 @@ class DocumentController extends Controller
             $request->validated()['name'],
             $request->file('file'),
             $request->validated()['description'] ?? null,
+            $request->validated()['start_date'] ?? null,
+            $request->validated()['expiry_date'] ?? null,
         );
 
         return redirect()
@@ -72,6 +74,8 @@ class DocumentController extends Controller
             $request->validated()['name'],
             $request->validated()['description'] ?? null,
             $request->file('file'),
+            $request->validated()['start_date'] ?? null,
+            $request->validated()['expiry_date'] ?? null,
         );
 
         return redirect()

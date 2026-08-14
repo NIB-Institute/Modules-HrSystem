@@ -15,9 +15,11 @@ const isOpen = computed({
     set: (val: boolean) => { if (!val) { close(); redirect(); } },
 });
 
-const form = useForm<{ name: string; description: string; file: File | null }>({
+const form = useForm<{ name: string; description: string; start_date: string; expiry_date: string; file: File | null }>({
     name: '',
     description: '',
+    start_date: '',
+    expiry_date: '',
     file: null,
 });
 

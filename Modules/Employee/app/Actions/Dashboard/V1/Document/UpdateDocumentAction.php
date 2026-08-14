@@ -10,10 +10,18 @@ class UpdateDocumentAction
 {
     private const STORAGE_PATH = 'employee/documents';
 
-    public function execute(Documents $document, string $name, ?string $description = null, ?UploadedFile $newFile = null): Documents
-    {
+    public function execute(
+        Documents $document,
+        string $name,
+        ?string $description = null,
+        ?UploadedFile $newFile = null,
+        ?string $startDate = null,
+        ?string $expiryDate = null,
+    ): Documents {
         $document->name = $name;
         $document->description = $description;
+        $document->start_date = $startDate;
+        $document->expiry_date = $expiryDate;
 
         if ($newFile) {
             // Delete the old file from disk before storing the new one.

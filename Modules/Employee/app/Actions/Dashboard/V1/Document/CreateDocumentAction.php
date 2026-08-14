@@ -11,13 +11,20 @@ class CreateDocumentAction
 {
     private const STORAGE_PATH = 'employee/documents';
 
-    public function execute(string $name, UploadedFile $file, ?string $description = null): Documents
-    {
+    public function execute(
+        string $name,
+        UploadedFile $file,
+        ?string $description = null,
+        ?string $startDate = null,
+        ?string $expiryDate = null,
+    ): Documents {
         $storedPath = $file->store(self::STORAGE_PATH, 'public');
 
         return Documents::create([
             'name'        => $name,
             'description' => $description,
+            'start_date'  => $startDate,
+            'expiry_date' => $expiryDate,
             'original_filename' => $file->getClientOriginalName(),
             'file_path'     => $storedPath,
             'mime_type'     => $file->getClientMimeType() ?: 'application/octet-stream',

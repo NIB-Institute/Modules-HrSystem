@@ -14,6 +14,8 @@ interface DocumentModel {
     human_size: string;
     extension: string | null;
     description: string | null;
+    start_date: string | null;
+    expiry_date: string | null;
 }
 
 interface Props {
@@ -31,9 +33,11 @@ const isOpen = computed({
 
 // _method=put because multipart PUT isn't natively supported by HTML forms.
 // Laravel reads _method and routes the request to the PUT handler.
-const form = useForm<{ name: string; description: string; file: File | null; _method: 'put' }>({
+const form = useForm<{ name: string; description: string; start_date: string; expiry_date: string; file: File | null; _method: 'put' }>({
     name: props.document.name,
     description: props.document.description ?? '',
+    start_date: props.document.start_date ?? '',
+    expiry_date: props.document.expiry_date ?? '',
     file: null,
     _method: 'put',
 });

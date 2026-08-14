@@ -10,6 +10,8 @@ import { useTranslation } from '@/composables/useTranslation';
 export interface DocumentFormShape {
     name: string;
     description: string;
+    start_date: string;
+    expiry_date: string;
     file: File | null;
     errors: Record<string, string>;
     processing: boolean;
@@ -131,6 +133,20 @@ const humanSize = (b: number): string => {
             <TiptapEditor id="document-description" v-model="form.description" rows="3"
                 :placeholder="__('Optional notes about this document')" />
             <p v-if="form.errors.description" class="text-xs text-destructive">{{ form.errors.description }}</p>
+        </div>
+
+        <!-- Validity period -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+                <Label for="document-start-date" class="text-sm font-medium">{{ __('Start Date') }}</Label>
+                <Input id="document-start-date" v-model="form.start_date" type="date" />
+                <p v-if="form.errors.start_date" class="text-xs text-destructive">{{ form.errors.start_date }}</p>
+            </div>
+            <div class="space-y-2">
+                <Label for="document-expiry-date" class="text-sm font-medium">{{ __('Expiry Date') }}</Label>
+                <Input id="document-expiry-date" v-model="form.expiry_date" type="date" />
+                <p v-if="form.errors.expiry_date" class="text-xs text-destructive">{{ form.errors.expiry_date }}</p>
+            </div>
         </div>
 
         <!-- Upload progress -->

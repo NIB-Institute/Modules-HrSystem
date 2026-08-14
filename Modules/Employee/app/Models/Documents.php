@@ -26,11 +26,15 @@ class Documents extends Model
         'size_bytes',
         'extension',
         'description',
+        'start_date',
+        'expiry_date',
         'uploaded_by',
     ];
 
     protected $casts = [
         'size_bytes' => 'integer',
+        'start_date' => 'date',
+        'expiry_date' => 'date',
     ];
 
     protected $appends = ['url', 'human_size'];

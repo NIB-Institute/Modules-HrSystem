@@ -16,6 +16,8 @@ class StoreDocumentRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
+            'start_date' => ['nullable', 'date'],
+            'expiry_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'file' => [
                 'required',
                 'file',
