@@ -42,10 +42,12 @@ import type {
     ForeignLanguageFormData,
     JobExperienceFormData,
     IdCardFormData,
+    IdCardTypeOption,
     CertificateFormData,
     AcademicLevel,
     LanguageProficiency,
     EmploymentType,
+    IdCardType,
 } from '../../types';
 
 interface Props {
@@ -60,6 +62,7 @@ interface Props {
     academicLevels?: AcademicLevelOption[];
     languageProficiencies?: LanguageProficiencyOption[];
     employmentTypes?: EmploymentTypeOption[];
+    idCardTypes?: IdCardTypeOption[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -76,6 +79,7 @@ const props = withDefaults(defineProps<Props>(), {
     academicLevels: () => [],
     languageProficiencies: () => [],
     employmentTypes: () => [],
+    idCardTypes: () => [],
 });
 
 const emit = defineEmits<{
@@ -226,6 +230,11 @@ const addIdCard = () => {
 
 const removeIdCard = (index: number) => props.form.id_cards.splice(index, 1);
 
+const getIdCardType = (item: IdCardFormData) => computed({
+    get: () => item.type || undefined,
+    set: (v: string | undefined) => { item.type = (v as IdCardType) || ''; },
+});
+
 // ========== CERTIFICATES ==========
 let certificateKeyCounter = ref(
     props.form.certificates?.length > 0
@@ -312,7 +321,7 @@ const removeCertificate = (index: number) => props.form.certificates.splice(inde
                 <CardContent class="space-y-3">
                     <FormItemCard v-for="(item, idx) in form.id_cards" :key="item._key" :title="__('Card')" :index="idx" @remove="removeIdCard(idx)">
                         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                            <div class="space-y-2"><Label class="text-xs font-medium">{{ __('Card Type') }}</Label><Input v-model="item.type" :placeholder="__('National ID, Passport...')" class="bg-background" /></div>
+                            <div class="space-y-2"><Label class="text-xs font-medium">{{ __('Card Type') }}</Label><Select v-model="getIdCardType(item).value"><SelectTrigger class="bg-background"><SelectValue :placeholder="__('Select card type')" /></SelectTrigger><SelectContent><SelectItem v-for="o in idCardTypes" :key="o.value" :value="o.value">{{ __(o.label) }}</SelectItem></SelectContent></Select></div>
                             <div class="space-y-2"><Label class="text-xs font-medium">{{ __('ID Card Number') }} <span class="text-destructive">*</span></Label><Input v-model="item.number" :placeholder="__('e.g. 010101010')" class="bg-background" /></div>
                             <div class="space-y-2"><Label class="text-xs font-medium">{{ __('Issued Date') }}</Label><Input v-model="item.issued_date" type="date" class="bg-background" /></div>
                             <div class="space-y-2"><Label class="text-xs font-medium">{{ __('Expiry Date') }}</Label><Input v-model="item.expiry_date" type="date" class="bg-background" /></div>

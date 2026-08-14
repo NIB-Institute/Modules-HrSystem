@@ -7,6 +7,7 @@ export type FamilyRelationship = 'spouse' | 'child' | 'father' | 'mother' | 'sib
 export type AcademicLevel = 'high_school' | 'vocational' | 'associate' | 'bachelor' | 'master' | 'doctorate' | 'other';
 export type LanguageProficiency = 'beginner' | 'elementary' | 'intermediate' | 'upper_intermediate' | 'advanced' | 'native';
 export type EmploymentType = 'full_time' | 'part_time' | 'contract' | 'freelance' | 'internship';
+export type IdCardType = 'national_id' | 'passport' | 'driver_license' | 'family_book';
 
 // Family Member Types
 export interface FamilyMember {
@@ -397,6 +398,11 @@ export interface EmploymentTypeOption {
     label: string;
 }
 
+export interface IdCardTypeOption {
+    value: IdCardType;
+    label: string;
+}
+
 export interface SchoolOption {
     id: number;
     name: string;
@@ -442,6 +448,7 @@ export interface EmployeeCreateProps {
     academicLevels: AcademicLevelOption[];
     languageProficiencies: LanguageProficiencyOption[];
     employmentTypes: EmploymentTypeOption[];
+    idCardTypes: IdCardTypeOption[];
     generatedCode: string;
 }
 
@@ -456,6 +463,7 @@ export interface EmployeeEditProps {
     academicLevels: AcademicLevelOption[];
     languageProficiencies: LanguageProficiencyOption[];
     employmentTypes: EmploymentTypeOption[];
+    idCardTypes: IdCardTypeOption[];
 }
 
 export interface EmployeeDeleteProps {

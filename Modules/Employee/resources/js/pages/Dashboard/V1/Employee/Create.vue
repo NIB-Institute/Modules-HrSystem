@@ -202,6 +202,7 @@ const handleSubmit = () => {
                     :departments="departments"
                     :type-employees="typeEmployees"
                     :employee-types="props.employeeTypes"
+                    :id-card-types="props.idCardTypes"
                     :marital-statuses="props.maritalStatuses"
                     :relationship-types="props.relationshipTypes"
                     :academic-levels="props.academicLevels"

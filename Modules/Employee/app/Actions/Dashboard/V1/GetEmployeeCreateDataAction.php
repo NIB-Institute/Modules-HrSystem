@@ -7,6 +7,7 @@ use Modules\Employee\Enums\MaritalStatusEnum;
 use Modules\Employee\Enums\AcademicLevelEnum;
 use Modules\Employee\Enums\LanguageProficiencyEnum;
 use Modules\Employee\Enums\EmploymentTypeEnum;
+use Modules\Employee\Enums\IdCardTypeEnum;
 use Modules\Employee\Models\Employee;
 use Modules\Employee\Models\EmployeeType;
 use Modules\School\Models\Department;
@@ -65,6 +66,7 @@ class GetEmployeeCreateDataAction
             'academicLevels' => AcademicLevelEnum::options(),
             'languageProficiencies' => LanguageProficiencyEnum::options(),
             'employmentTypes' => EmploymentTypeEnum::options(),
+            'idCardTypes' => IdCardTypeEnum::options(),
         ];
     }
 }

@@ -10,6 +10,7 @@ use Modules\Employee\Enums\FamilyRelationshipEnum;
 use Modules\Employee\Enums\AcademicLevelEnum;
 use Modules\Employee\Enums\LanguageProficiencyEnum;
 use Modules\Employee\Enums\EmploymentTypeEnum;
+use Modules\Employee\Enums\IdCardTypeEnum;
 
 class StoreEmployeeRequest extends FormRequest
 {
@@ -59,7 +60,7 @@ class StoreEmployeeRequest extends FormRequest
 
             // ID cards (multiple)
             'id_cards' => ['nullable', 'array'],
-            'id_cards.*.type' => ['nullable', 'string', 'max:100'],
+            'id_cards.*.type' => ['nullable', 'string', Rule::in(IdCardTypeEnum::values())],
             'id_cards.*.number' => ['nullable', 'string', 'max:50'],
             'id_cards.*.front_url' => ['nullable', 'string'],
             'id_cards.*.back_url' => ['nullable', 'string'],
