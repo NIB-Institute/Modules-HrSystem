@@ -11,6 +11,9 @@ import { useFormValidation } from '@/composables/useFormValidation';
 import { ChevronLeft } from 'lucide-vue-next';
 import type { BreadcrumbItem } from '@/types';
 import type { EmployeeFormData, EmployeeEditProps, DepartmentOption, TypeEmployeeOption } from '@employee/types';
+import { useTranslation } from '@/composables/useTranslation';
+
+const { __ } = useTranslation();
 
 const props = defineProps<EmployeeEditProps>();
 
@@ -253,7 +256,7 @@ const handleSubmit = () => {
                     <ChevronLeft class="h-5 w-5" />
                 </Link>
                 <div>
-                    <h1 class="text-xl font-semibold">Edit Employee</h1>
+                    <h1 class="text-xl font-semibold">{{ __('Edit Employee') }}</h1>
                     <p class="text-sm text-muted-foreground">{{ employee.full_name }} - {{ employee.employee_code }}</p>
                 </div>
             </div>
@@ -279,10 +282,10 @@ const handleSubmit = () => {
                 <!-- Actions at Bottom -->
                 <div class="flex justify-end gap-3 pt-4">
                     <Button type="button" variant="outline" as-child>
-                        <Link :href="`/dashboard/employees/${employee.uuid}`">Cancel</Link>
+                        <Link :href="`/dashboard/employees/${employee.uuid}`">{{ __('Cancel') }}</Link>
                     </Button>
                     <Button type="submit" :disabled="isFormInvalid || form.processing">
-                        {{ form.processing ? 'Saving...' : 'Save Changes' }}
+                        {{ form.processing ? __('Saving...') : __('Save Changes') }}
                     </Button>
                 </div>
             </form>

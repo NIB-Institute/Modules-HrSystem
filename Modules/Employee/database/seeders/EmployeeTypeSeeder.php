@@ -5,6 +5,7 @@ namespace Modules\Employee\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Modules\Employee\Models\EmployeeType;
+use Modules\School\Models\School;
 
 class EmployeeTypeSeeder extends Seeder
 {
@@ -13,6 +14,13 @@ class EmployeeTypeSeeder extends Seeder
      */
     public function run(): void
     {
+        $schools = School::all();
+
+        if ($schools->isEmpty()) {
+            $this->command->warn('No schools found. Please run SchoolSeeder first.');
+            return;
+        }
+
         $types = [
             [
                 'name' => 'Full Time',
@@ -52,19 +60,23 @@ class EmployeeTypeSeeder extends Seeder
             ],
         ];
 
-        foreach ($types as $type) {
-            EmployeeType::firstOrCreate(
-                ['name' => $type['name']],
-                [
-                    'uuid' => (string) Str::uuid(),
-                    'description' => $type['description'],
-                    'time_start' => $type['time_start'] ?? null,
-                    'time_end' => $type['time_end'] ?? null,
-                    'status' => true,
-                ]
-            );
+        $count = 0;
+        foreach ($schools as $school) {
+            foreach ($types as $type) {
+                EmployeeType::firstOrCreate(
+                    ['name' => $type['name'], 'school_id' => $school->id],
+                    [
+                        'uuid' => (string) Str::uuid(),
+                        'description' => $type['description'],
+                        'time_start' => $type['time_start'] ?? null,
+                        'time_end' => $type['time_end'] ?? null,
+                        'status' => true,
+                    ]
+                );
+                $count++;
+            }
         }
 
-        $this->command->info('Created ' . count($types) . ' employee types.');
+        $this->command->info("Created {$count} employee types across {$schools->count()} school(s).");
     }
 }

@@ -11,6 +11,9 @@ import { useFormValidation } from '@/composables/useFormValidation';
 import type { BreadcrumbItem } from '@/types';
 import type { EmployeeFormData, EmployeeCreateProps, DepartmentOption, TypeEmployeeOption } from '@employee/types';
 import { ChevronLeft } from 'lucide-vue-next';
+import { useTranslation } from '@/composables/useTranslation';
+
+const { __ } = useTranslation();
 
 const props = defineProps<EmployeeCreateProps>();
 
@@ -179,7 +182,7 @@ const handleSubmit = () => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Head title="Create Employee" />
+        <Head :title="__('Create Employee')" />
 
         <div class="flex h-full flex-1 flex-col gap-6 p-6">
             <!-- Header -->
@@ -188,8 +191,8 @@ const handleSubmit = () => {
                     <ChevronLeft class="h-5 w-5" />
                 </Link>
                 <div>
-                    <h1 class="text-xl font-semibold">Create Employee</h1>
-                    <p class="text-sm text-muted-foreground">Add a new employee to your organization</p>
+                    <h1 class="text-xl font-semibold">{{ __('Create Employee') }}</h1>
+                    <p class="text-sm text-muted-foreground">{{ __('Add a new employee to your organization') }}</p>
                 </div>
             </div>
 
@@ -214,10 +217,10 @@ const handleSubmit = () => {
                 <!-- Actions at Bottom -->
                 <div class="flex justify-end gap-3 pt-4">
                     <Button type="button" variant="outline" as-child>
-                        <Link href="/dashboard/employees">Cancel</Link>
+                        <Link href="/dashboard/employees">{{ __('Cancel') }}</Link>
                     </Button>
                     <Button type="submit" :disabled="isFormInvalid || form.processing">
-                        {{ form.processing ? 'Creating...' : 'Create Employee' }}
+                        {{ form.processing ? __('Creating...') : __('Create Employee') }}
                     </Button>
                 </div>
             </form>
