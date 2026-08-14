@@ -258,7 +258,7 @@ const removeCertificate = (index: number) => props.form.certificates.splice(inde
 <template>
     <div class="grid gap-6 lg:grid-cols-3">
         <!-- Left Column -->
-        <div class="space-y-6 lg:col-span-2 lg:max-h-[calc(100vh-10rem)] lg:overflow-y-auto lg:pr-2">
+        <div class="space-y-6 lg:col-span-2">
             <BasicInformationCard :form="form" :mode="mode" :marital-statuses="maritalStatuses" />
 
             <!-- Family Information -->
@@ -477,7 +477,7 @@ const removeCertificate = (index: number) => props.form.certificates.splice(inde
         </div>
 
         <!-- Right Column -->
-        <div class="lg:col-span-1 lg:sticky lg:top-6 lg:max-h-[calc(100vh-10rem)] lg:overflow-y-auto lg:self-start">
+        <div class="lg:col-span-1 lg:sticky lg:top-6 lg:self-start lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto">
             <ProfileSidebar :form="form" :mode="mode" />
         </div>
     </div>
