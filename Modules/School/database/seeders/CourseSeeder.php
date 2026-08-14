@@ -56,6 +56,23 @@ class CourseSeeder extends Seeder
                 ['name' => 'Probability & Statistics', 'code' => 'MATH202', 'credits' => 3, 'type' => 'required', 'semester' => 2, 'year' => 2],
                 ['name' => 'Differential Equations', 'code' => 'MATH301', 'credits' => 3, 'type' => 'core', 'semester' => 1, 'year' => 3],
             ],
+            'IT Department' => [
+                ['name' => 'Introduction to Programming', 'code' => 'IT101', 'credits' => 3, 'type' => 'required', 'semester' => 1, 'year' => 1],
+                ['name' => 'Networking Fundamentals', 'code' => 'IT102', 'credits' => 3, 'type' => 'required', 'semester' => 2, 'year' => 1],
+                ['name' => 'Data Structures', 'code' => 'IT201', 'credits' => 3, 'type' => 'required', 'semester' => 1, 'year' => 2],
+                ['name' => 'Database Systems', 'code' => 'IT202', 'credits' => 3, 'type' => 'required', 'semester' => 2, 'year' => 2],
+                ['name' => 'Systems Administration', 'code' => 'IT301', 'credits' => 3, 'type' => 'core', 'semester' => 1, 'year' => 3],
+                ['name' => 'Web Development', 'code' => 'IT302', 'credits' => 3, 'type' => 'elective', 'semester' => 2, 'year' => 3],
+                ['name' => 'Cybersecurity Basics', 'code' => 'IT401', 'credits' => 3, 'type' => 'elective', 'semester' => 1, 'year' => 4],
+            ],
+            'Accounting' => [
+                ['name' => 'Principles of Accounting', 'code' => 'ACC101', 'credits' => 3, 'type' => 'required', 'semester' => 1, 'year' => 1],
+                ['name' => 'Financial Accounting', 'code' => 'ACC102', 'credits' => 3, 'type' => 'required', 'semester' => 2, 'year' => 1],
+                ['name' => 'Managerial Accounting', 'code' => 'ACC201', 'credits' => 3, 'type' => 'required', 'semester' => 1, 'year' => 2],
+                ['name' => 'Business Statistics', 'code' => 'ACC202', 'credits' => 3, 'type' => 'core', 'semester' => 2, 'year' => 2],
+                ['name' => 'Auditing Principles', 'code' => 'ACC301', 'credits' => 3, 'type' => 'required', 'semester' => 1, 'year' => 3],
+                ['name' => 'Taxation', 'code' => 'ACC401', 'credits' => 3, 'type' => 'elective', 'semester' => 2, 'year' => 4],
+            ],
             'English Language' => [
                 ['name' => 'English Grammar', 'code' => 'ENG-L101', 'credits' => 3, 'type' => 'required', 'semester' => 1, 'year' => 1],
                 ['name' => 'Academic Writing', 'code' => 'ENG-L102', 'credits' => 3, 'type' => 'required', 'semester' => 2, 'year' => 1],
