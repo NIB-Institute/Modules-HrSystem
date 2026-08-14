@@ -119,6 +119,10 @@ const getCategoryIcon = (category: string) => {
                     </CardHeader>
                     <CardContent class="space-y-4">
                         <div class="flex justify-between">
+                            <span class="text-muted-foreground">{{ __('Total Inventory') }}</span>
+                            <span class="font-medium">{{ equipment.inventory_count ?? 0 }}</span>
+                        </div>
+                        <div class="flex justify-between">
                             <span class="text-muted-foreground">{{ __('Used in Classrooms') }}</span>
                             <span class="font-medium">{{ equipment.classrooms_count || 0 }}</span>
                         </div>

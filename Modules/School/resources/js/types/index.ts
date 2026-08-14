@@ -639,6 +639,8 @@ export interface Equipment {
     price_total: number | null;
     status: boolean;
     classrooms_count: number | null;
+    /** Only present on the Show page response, not the Index list. */
+    inventory_count?: number;
     created_at: string;
     updated_at: string;
 }

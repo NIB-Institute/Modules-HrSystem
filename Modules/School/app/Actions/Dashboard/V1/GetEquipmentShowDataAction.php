@@ -18,6 +18,11 @@ class GetEquipmentShowDataAction
             ->distinct('classroom_id')
             ->count('classroom_id');
 
+        // Total physical inventory instances of this equipment type (deployed or not).
+        $equipment->inventory_count = Inventory::query()
+            ->where('equipment_id', $equipment->id)
+            ->count();
+
         return [
             'equipment' => (new EquipmentResource($equipment))->resolve(),
         ];

@@ -21,6 +21,11 @@ class EquipmentResource extends JsonResource
             'category_label' => $this->getCategoryLabel(),
             'status' => $this->status,
             'classrooms_count' => (int) ($this->classrooms_count ?? 0),
+            // Only computed on the Show page -- omitted (not falsely 0) on Index.
+            'inventory_count' => $this->when(
+                array_key_exists('inventory_count', $this->resource->getAttributes()),
+                fn () => (int) $this->inventory_count,
+            ),
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
         ];
