@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Button } from '@/components/ui/button';
 import EmployeeForm from '@employee/Components/Dashboard/EmployeeForm.vue';
@@ -171,7 +171,6 @@ const handleSubmit = () => {
         form.post('/dashboard/employees', {
             onSuccess: () => {
                 toast.success('Employee created successfully.');
-                router.visit('/dashboard/employees');
             },
         });
     });
