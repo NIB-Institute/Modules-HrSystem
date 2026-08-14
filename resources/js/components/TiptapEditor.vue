@@ -121,6 +121,11 @@ const editor = useEditor({
             heading: {
                 levels: [1, 2, 3],
             },
+            // Link and Underline are added separately below with custom
+            // config, so disable StarterKit's bundled copies to avoid
+            // "Duplicate extension names" warnings.
+            link: false,
+            underline: false,
         }),
         Placeholder.configure({
             placeholder: props.placeholder,
