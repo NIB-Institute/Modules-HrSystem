@@ -94,7 +94,7 @@ class UpdateEmployeeRequest extends FormRequest
             // Academic levels
             'academic_levels' => ['nullable', 'array'],
             'academic_levels.*.id' => ['nullable', 'integer', 'exists:employee_academic_levels,id'],
-            'academic_levels.*.level' => ['nullable', 'string', Rule::in(AcademicLevelEnum::values())],
+            'academic_levels.*.level' => ['required_with:academic_levels.*.institution', 'nullable', 'string', Rule::in(AcademicLevelEnum::values())],
             'academic_levels.*.institution' => ['required', 'string', 'max:255'],
             'academic_levels.*.field_of_study' => ['nullable', 'string', 'max:255'],
             'academic_levels.*.degree' => ['nullable', 'string', 'max:255'],
@@ -108,7 +108,7 @@ class UpdateEmployeeRequest extends FormRequest
             'foreign_languages' => ['nullable', 'array'],
             'foreign_languages.*.id' => ['nullable', 'integer', 'exists:employee_foreign_languages,id'],
             'foreign_languages.*.language' => ['required', 'string', 'max:100'],
-            'foreign_languages.*.proficiency' => ['nullable', 'string', Rule::in(LanguageProficiencyEnum::values())],
+            'foreign_languages.*.proficiency' => ['required_with:foreign_languages.*.language', 'nullable', 'string', Rule::in(LanguageProficiencyEnum::values())],
             'foreign_languages.*.certificate' => ['nullable', 'string', 'max:255'],
             'foreign_languages.*.certificate_score' => ['nullable', 'string', 'max:50'],
             'foreign_languages.*.notes' => ['nullable', 'string', 'max:500'],
@@ -159,6 +159,7 @@ class UpdateEmployeeRequest extends FormRequest
             'family_members.*.email.email' => 'Please enter a valid email address for family member.',
             // Academic level validation messages
             'academic_levels.*.level.required' => 'Academic level is required.',
+            'academic_levels.*.level.required_with' => 'Academic level is required.',
             'academic_levels.*.level.in' => 'Invalid academic level selected.',
             'academic_levels.*.institution.required' => 'Institution name is required.',
             'academic_levels.*.institution.max' => 'Institution name must be less than 255 characters.',
@@ -167,6 +168,7 @@ class UpdateEmployeeRequest extends FormRequest
             'foreign_languages.*.language.required' => 'Language name is required.',
             'foreign_languages.*.language.max' => 'Language name must be less than 100 characters.',
             'foreign_languages.*.proficiency.required' => 'Proficiency level is required.',
+            'foreign_languages.*.proficiency.required_with' => 'Proficiency level is required.',
             'foreign_languages.*.proficiency.in' => 'Invalid proficiency level selected.',
             // Job experience validation messages
             'job_experiences.*.company.required' => 'Company name is required.',

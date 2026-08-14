@@ -122,7 +122,8 @@ class CreateEmployeeAction
         foreach ($academicLevels as $levelData) {
             unset($levelData['_key']);
 
-            if (empty($levelData['institution'])) {
+            // Both are NOT NULL columns -- a row missing either can't be inserted.
+            if (empty($levelData['institution']) || empty($levelData['level'])) {
                 continue;
             }
 
@@ -139,7 +140,8 @@ class CreateEmployeeAction
         foreach ($foreignLanguages as $langData) {
             unset($langData['_key']);
 
-            if (empty($langData['language'])) {
+            // Both are NOT NULL columns -- a row missing either can't be inserted.
+            if (empty($langData['language']) || empty($langData['proficiency'])) {
                 continue;
             }
 

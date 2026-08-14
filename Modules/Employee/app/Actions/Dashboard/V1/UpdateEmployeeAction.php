@@ -43,12 +43,12 @@ class UpdateEmployeeAction
 
             // Sync academic levels if provided
             if ($academicLevels !== null) {
-                $this->syncRelatedData($employee, 'academicLevels', $academicLevels, 'institution');
+                $this->syncRelatedData($employee, 'academicLevels', $academicLevels, ['institution', 'level']);
             }
 
             // Sync foreign languages if provided
             if ($foreignLanguages !== null) {
-                $this->syncRelatedData($employee, 'foreignLanguages', $foreignLanguages, 'language');
+                $this->syncRelatedData($employee, 'foreignLanguages', $foreignLanguages, ['language', 'proficiency']);
             }
 
             // Sync job experiences if provided
@@ -64,8 +64,10 @@ class UpdateEmployeeAction
      * Generic method to sync related data.
      * Creates new, updates existing, and soft deletes removed items.
      */
-    protected function syncRelatedData(Employee $employee, string $relationship, array $items, string $requiredField): void
+    protected function syncRelatedData(Employee $employee, string $relationship, array $items, string|array $requiredField): void
     {
+        $requiredFields = (array) $requiredField;
+
         // Get IDs of items in the request
         $submittedIds = collect($items)
             ->filter(fn ($item) => isset($item['id']))
@@ -82,8 +84,15 @@ class UpdateEmployeeAction
             // Remove Vue-specific keys
             unset($itemData['_key']);
 
-            // Skip if required field is empty
-            if (empty($itemData[$requiredField])) {
+            // Skip if any required field is empty
+            $missingRequiredField = false;
+            foreach ($requiredFields as $field) {
+                if (empty($itemData[$field])) {
+                    $missingRequiredField = true;
+                    break;
+                }
+            }
+            if ($missingRequiredField) {
                 continue;
             }
 
