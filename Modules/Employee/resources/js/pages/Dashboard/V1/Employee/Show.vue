@@ -255,8 +255,14 @@ const getStatusVariant = (status: string): 'default' | 'secondary' | 'destructiv
                                     <p class="text-sm">{{ formatDate(employee.hire_date) }}</p>
                                 </div>
                             </div>
-                            <div v-if="employee.employee_type_label">
-                                <Badge variant="outline">{{ employee.employee_type_label }}</Badge>
+                            <div v-if="employee.employee_type_name" class="flex items-center gap-3">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-full bg-muted">
+                                    <Briefcase class="h-4 w-4 text-muted-foreground" />
+                                </div>
+                                <div>
+                                    <p class="text-xs text-muted-foreground">{{ __('Employee Type') }}</p>
+                                    <Badge variant="outline">{{ employee.employee_type_name }}</Badge>
+                                </div>
                             </div>
                         </div>
                     </div>
