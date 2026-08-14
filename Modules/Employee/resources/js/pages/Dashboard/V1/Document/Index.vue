@@ -7,7 +7,7 @@ import type { TableColumn, TableAction, PaginationData } from '@/components/shar
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Plus, FileText, Database, Search, Download, Pencil, Trash2 } from 'lucide-vue-next';
+import { Plus, FileText, Database, Search, Eye, Download, Pencil, Trash2 } from 'lucide-vue-next';
 import type { BreadcrumbItem } from '@/types';
 import { useTranslation } from '@/composables/useTranslation';
 
@@ -59,6 +59,11 @@ const columns: TableColumn<DocumentModel>[] = [
 const isExpired = (dateStr: string | null): boolean => !!dateStr && new Date(dateStr) < new Date();
 
 const actions: TableAction<DocumentModel>[] = [
+    {
+        label: __('View'),
+        icon: Eye,
+        onClick: (d) => { if (d.url) window.open(d.url, '_blank', 'noopener'); },
+    },
     {
         label: __('Download'),
         icon: Download,
