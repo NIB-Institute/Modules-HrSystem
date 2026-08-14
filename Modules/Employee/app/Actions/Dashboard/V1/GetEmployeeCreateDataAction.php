@@ -8,6 +8,7 @@ use Modules\Employee\Enums\AcademicLevelEnum;
 use Modules\Employee\Enums\LanguageProficiencyEnum;
 use Modules\Employee\Enums\EmploymentTypeEnum;
 use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\EmployeeType;
 use Modules\School\Models\Department;
 use Modules\School\Models\School;
 
@@ -25,6 +26,7 @@ class GetEmployeeCreateDataAction
         }
 
         $departments = collect();
+        $typeEmployees = collect();
         if ($schoolId) {
             try {
                 $departments = Department::where('school_id', $schoolId)
@@ -34,6 +36,16 @@ class GetEmployeeCreateDataAction
                     ->get();
             } catch (\Exception $e) {
                 $departments = collect();
+            }
+
+            try {
+                $typeEmployees = EmployeeType::where('school_id', $schoolId)
+                    ->where('status', true)
+                    ->select('id', 'name')
+                    ->orderBy('name')
+                    ->get();
+            } catch (\Exception $e) {
+                $typeEmployees = collect();
             }
         }
 
@@ -46,6 +58,7 @@ class GetEmployeeCreateDataAction
         return [
             'schools' => $schools,
             'departments' => $departments,
+            'typeEmployees' => $typeEmployees,
             'employeeTypes' => $employeeTypes,
             'maritalStatuses' => MaritalStatusEnum::options(),
             'relationshipTypes' => FamilyRelationshipEnum::options(),

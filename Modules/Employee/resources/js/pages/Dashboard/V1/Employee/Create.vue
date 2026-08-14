@@ -9,7 +9,7 @@ import { toast } from 'vue-sonner';
 import { employeeSchema } from '@employee/validation/employeeSchema';
 import { useFormValidation } from '@/composables/useFormValidation';
 import type { BreadcrumbItem } from '@/types';
-import type { EmployeeFormData, EmployeeCreateProps, DepartmentOption } from '@employee/types';
+import type { EmployeeFormData, EmployeeCreateProps, DepartmentOption, TypeEmployeeOption } from '@employee/types';
 import { ChevronLeft } from 'lucide-vue-next';
 
 const props = defineProps<EmployeeCreateProps>();
@@ -21,6 +21,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const departments = ref<DepartmentOption[]>(props.departments || []);
+const typeEmployees = ref<TypeEmployeeOption[]>(props.typeEmployees || []);
 
 const form = useForm<EmployeeFormData>({
     employee_code: props.generatedCode || '',
@@ -140,6 +141,7 @@ const isFormInvalid = createIsFormInvalid(getFormData);
 const handleSchoolChange = async (schoolId: number | null) => {
     if (!schoolId) {
         departments.value = [];
+        typeEmployees.value = [];
         return;
     }
 
@@ -151,6 +153,16 @@ const handleSchoolChange = async (schoolId: number | null) => {
     } catch (error) {
         console.error('Failed to fetch departments:', error);
         departments.value = [];
+    }
+
+    try {
+        const response = await fetch(`/dashboard/employees/type-employees?school_id=${schoolId}`);
+        if (response.ok) {
+            typeEmployees.value = await response.json();
+        }
+    } catch (error) {
+        console.error('Failed to fetch employee types:', error);
+        typeEmployees.value = [];
     }
 };
 
@@ -189,6 +201,7 @@ const handleSubmit = () => {
                     mode="create"
                     :schools="props.schools"
                     :departments="departments"
+                    :type-employees="typeEmployees"
                     :employee-types="props.employeeTypes"
                     :marital-statuses="props.maritalStatuses"
                     :relationship-types="props.relationshipTypes"

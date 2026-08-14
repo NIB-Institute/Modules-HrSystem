@@ -40,7 +40,7 @@ class StoreEmployeeRequest extends FormRequest
             'school_id' => ['nullable', 'integer', 'exists:schools,id'],
             'department_id' => ['nullable', 'integer', 'exists:school_departments,id'],
             'position_id' => ['nullable', 'integer'],
-            'type_employee_id' => ['nullable', 'integer', 'exists:employee_types,id'],
+            'type_employee_id' => ['nullable', 'integer', 'exists:employees_types,id'],
             'job_title' => ['nullable', 'string', 'max:100'],
             'position' => ['nullable', 'string', 'max:100'],
             'rank' => ['nullable', 'string', 'max:100'],
@@ -92,7 +92,7 @@ class StoreEmployeeRequest extends FormRequest
 
             // Academic levels
             'academic_levels' => ['nullable', 'array'],
-            'academic_levels.*.level' => ['required', 'string', Rule::in(AcademicLevelEnum::values())],
+            'academic_levels.*.level' => ['nullable', 'string', Rule::in(AcademicLevelEnum::values())],
             'academic_levels.*.institution' => ['required', 'string', 'max:255'],
             'academic_levels.*.field_of_study' => ['nullable', 'string', 'max:255'],
             'academic_levels.*.degree' => ['nullable', 'string', 'max:255'],
@@ -105,7 +105,7 @@ class StoreEmployeeRequest extends FormRequest
             // Foreign languages
             'foreign_languages' => ['nullable', 'array'],
             'foreign_languages.*.language' => ['required', 'string', 'max:100'],
-            'foreign_languages.*.proficiency' => ['required', 'string', Rule::in(LanguageProficiencyEnum::values())],
+            'foreign_languages.*.proficiency' => ['nullable', 'string', Rule::in(LanguageProficiencyEnum::values())],
             'foreign_languages.*.certificate' => ['nullable', 'string', 'max:255'],
             'foreign_languages.*.certificate_score' => ['nullable', 'string', 'max:50'],
             'foreign_languages.*.notes' => ['nullable', 'string', 'max:500'],

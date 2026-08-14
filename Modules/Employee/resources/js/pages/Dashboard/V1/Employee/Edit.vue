@@ -10,7 +10,7 @@ import { employeeSchema } from '@employee/validation/employeeSchema';
 import { useFormValidation } from '@/composables/useFormValidation';
 import { ChevronLeft } from 'lucide-vue-next';
 import type { BreadcrumbItem } from '@/types';
-import type { EmployeeFormData, EmployeeEditProps, DepartmentOption } from '@employee/types';
+import type { EmployeeFormData, EmployeeEditProps, DepartmentOption, TypeEmployeeOption } from '@employee/types';
 
 const props = defineProps<EmployeeEditProps>();
 
@@ -22,6 +22,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const departments = ref<DepartmentOption[]>(props.departments || []);
+const typeEmployees = ref<TypeEmployeeOption[]>(props.typeEmployees || []);
 
 // Initialize family members with _key for Vue tracking
 const initializeFamilyMembers = () => {
@@ -207,6 +208,7 @@ const isFormInvalid = createIsFormInvalid(getFormData);
 const handleSchoolChange = async (schoolId: number | null) => {
     if (!schoolId) {
         departments.value = [];
+        typeEmployees.value = [];
         return;
     }
 
@@ -217,6 +219,15 @@ const handleSchoolChange = async (schoolId: number | null) => {
         }
     } catch (error) {
         departments.value = [];
+    }
+
+    try {
+        const response = await fetch(`/dashboard/employees/type-employees?school_id=${schoolId}`);
+        if (response.ok) {
+            typeEmployees.value = await response.json();
+        }
+    } catch (error) {
+        typeEmployees.value = [];
     }
 };
 
@@ -255,6 +266,7 @@ const handleSubmit = () => {
                     mode="edit"
                     :schools="props.schools"
                     :departments="departments"
+                    :type-employees="typeEmployees"
                     :employee-types="props.employeeTypes"
                     :marital-statuses="props.maritalStatuses"
                     :relationship-types="props.relationshipTypes"

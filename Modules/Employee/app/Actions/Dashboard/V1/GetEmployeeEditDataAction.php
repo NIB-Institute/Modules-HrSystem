@@ -9,6 +9,7 @@ use Modules\Employee\Enums\LanguageProficiencyEnum;
 use Modules\Employee\Enums\EmploymentTypeEnum;
 use Modules\Employee\Http\Resources\Dashboard\V1\EmployeeResource;
 use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\EmployeeType;
 use Modules\School\Models\Department;
 use Modules\School\Models\School;
 
@@ -39,6 +40,18 @@ class GetEmployeeEditDataAction
             $departments = collect();
         }
 
+        try {
+            $typeEmployees = EmployeeType::where('status', true)
+                ->when($employee->school_id, function ($query) use ($employee) {
+                    $query->where('school_id', $employee->school_id);
+                })
+                ->select('id', 'name')
+                ->orderBy('name')
+                ->get();
+        } catch (\Exception $e) {
+            $typeEmployees = collect();
+        }
+
         // Transform employee types to array of {value, label} objects
         $employeeTypes = collect(Employee::getEmployeeTypes())
             ->map(fn($label, $value) => ['value' => $value, 'label' => $label])
@@ -49,6 +62,7 @@ class GetEmployeeEditDataAction
             'employee' => (new EmployeeResource($employee))->resolve(),
             'schools' => $schools,
             'departments' => $departments,
+            'typeEmployees' => $typeEmployees,
             'employeeTypes' => $employeeTypes,
             'maritalStatuses' => MaritalStatusEnum::options(),
             'relationshipTypes' => FamilyRelationshipEnum::options(),

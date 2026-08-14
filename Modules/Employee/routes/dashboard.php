@@ -70,6 +70,9 @@ Route::middleware(['auth', 'verified', 'auto.permission'])->prefix('dashboard')-
     // Departments AJAX endpoint
     Route::get('employees/departments', [EmployeeController::class, 'getDepartments'])->name('employees.departments');
 
+    // Employee types (shift/schedule categories) AJAX endpoint
+    Route::get('employees/type-employees', [EmployeeController::class, 'getTypeEmployees'])->name('employees.type-employees');
+
     // Export/Import routes (before parameterized routes)
     Route::get('employees/export-options', [EmployeeImportExportController::class, 'exportOptions'])->name('employees.export-options');
     Route::get('employees/export', [EmployeeImportExportController::class, 'export'])->name('employees.export');

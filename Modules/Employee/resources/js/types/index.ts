@@ -407,6 +407,11 @@ export interface DepartmentOption {
     name: string;
 }
 
+export interface TypeEmployeeOption {
+    id: number;
+    name: string;
+}
+
 export interface EmployeeTypeOption {
     value: EmployeeType;
     label: string;
@@ -430,6 +435,7 @@ export interface EmployeeShowProps {
 export interface EmployeeCreateProps {
     schools: SchoolOption[];
     departments: DepartmentOption[];
+    typeEmployees: TypeEmployeeOption[];
     employeeTypes: EmployeeTypeOption[];
     maritalStatuses: MaritalStatusOption[];
     relationshipTypes: FamilyRelationshipOption[];
@@ -443,6 +449,7 @@ export interface EmployeeEditProps {
     employee: Employee;
     schools: SchoolOption[];
     departments: DepartmentOption[];
+    typeEmployees: TypeEmployeeOption[];
     employeeTypes: EmployeeTypeOption[];
     maritalStatuses: MaritalStatusOption[];
     relationshipTypes: FamilyRelationshipOption[];

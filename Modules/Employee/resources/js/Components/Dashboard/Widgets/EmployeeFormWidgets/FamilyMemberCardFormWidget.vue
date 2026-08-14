@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { useTranslation } from '@/composables/useTranslation';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -13,7 +14,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { Trash2, User, Calendar, Briefcase, Phone, Mail, AlertCircle, Heart } from 'lucide-vue-next';
+import { Trash2, User, Calendar, Briefcase, Phone, Mail, AlertCircle, Heart, Hash, MapPin } from 'lucide-vue-next';
 import type { FamilyMemberFormData, Gender } from '../../../../types';
 
 const { __ } = useTranslation();
@@ -97,6 +98,13 @@ const memberGender = computed({
                 </div>
             </div>
             <div class="space-y-2">
+                <Label class="text-xs font-medium">{{ __('Age') }}</Label>
+                <div class="relative">
+                    <Hash class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input v-model.number="member.age" type="number" min="0" :placeholder="__('Age')" class="pl-10 bg-background" />
+                </div>
+            </div>
+            <div class="space-y-2">
                 <Label class="text-xs font-medium">{{ __('Occupation') }}</Label>
                 <div class="relative">
                     <Briefcase class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -116,6 +124,17 @@ const memberGender = computed({
                     <Mail class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input v-model="member.email" type="email" placeholder="email@example.com" class="pl-10 bg-background" />
                 </div>
+            </div>
+            <div class="space-y-2 sm:col-span-2 lg:col-span-3">
+                <Label class="text-xs font-medium">{{ __('Address') }}</Label>
+                <div class="relative">
+                    <MapPin class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input v-model="member.address" :placeholder="__('Address')" class="pl-10 bg-background" />
+                </div>
+            </div>
+            <div class="space-y-2 sm:col-span-2 lg:col-span-3">
+                <Label class="text-xs font-medium">{{ __('Notes') }}</Label>
+                <Textarea v-model="member.notes" :placeholder="__('Additional notes')" class="bg-background" rows="2" />
             </div>
         </div>
         <div class="mt-4 flex flex-wrap gap-4 rounded-lg border bg-background/50 p-3">

@@ -173,6 +173,26 @@ class EmployeeController extends Controller
     }
 
     /**
+     * Get employee types (shift/schedule categories) for a specific school (AJAX).
+     */
+    public function getTypeEmployees(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $schoolId = $request->input('school_id');
+
+        try {
+            $typeEmployees = \Modules\Employee\Models\EmployeeType::where('school_id', $schoolId)
+                ->where('status', true)
+                ->select('id', 'name')
+                ->orderBy('name')
+                ->get();
+        } catch (\Exception $e) {
+            $typeEmployees = collect([]);
+        }
+
+        return response()->json($typeEmployees);
+    }
+
+    /**
      * Show QR code page for employee badge.
      */
     public function qrCode(Employee $employee, GenerateQrCodeAction $generateQrAction): Response

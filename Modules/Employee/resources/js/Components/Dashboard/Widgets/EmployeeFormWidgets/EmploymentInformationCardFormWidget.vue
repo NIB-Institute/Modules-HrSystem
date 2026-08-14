@@ -13,18 +13,20 @@ import {
 } from '@/components/ui/select';
 import { Building2, Briefcase, DollarSign, Calendar } from 'lucide-vue-next';
 import type { InertiaForm } from '@inertiajs/vue3';
-import type { EmployeeFormData, SchoolOption, DepartmentOption, EmployeeTypeOption } from '../../../../types';
+import type { EmployeeFormData, SchoolOption, DepartmentOption, TypeEmployeeOption, EmployeeTypeOption } from '../../../../types';
 
 interface Props {
     form: InertiaForm<EmployeeFormData>;
     schools?: SchoolOption[];
     departments?: DepartmentOption[];
+    typeEmployees?: TypeEmployeeOption[];
     employeeTypes?: EmployeeTypeOption[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
     schools: () => [],
     departments: () => [],
+    typeEmployees: () => [],
     employeeTypes: () => [],
 });
 
@@ -48,6 +50,13 @@ const selectedDepartment = computed({
     get: () => props.form.department_id?.toString(),
     set: (value: string | undefined) => {
         props.form.department_id = value ? parseInt(value) : null;
+    },
+});
+
+const selectedTypeEmployee = computed({
+    get: () => props.form.type_employee_id?.toString(),
+    set: (value: string | undefined) => {
+        props.form.type_employee_id = value ? parseInt(value) : null;
     },
 });
 
@@ -113,6 +122,23 @@ const salaryValue = computed({
                             </SelectContent>
                         </Select>
                         <p v-if="form.errors.department_id" class="text-xs text-destructive">{{ form.errors.department_id }}</p>
+                        <p v-if="!form.school_id" class="text-xs text-muted-foreground">{{ __('Select a school first') }}</p>
+                    </div>
+
+                    <!-- Employee Type (shift/schedule category) -->
+                    <div class="space-y-2">
+                        <Label for="type_employee_id" class="text-xs font-medium">{{ __('Employee Type Category') }}</Label>
+                        <Select v-model="selectedTypeEmployee" :disabled="!form.school_id">
+                            <SelectTrigger id="type_employee_id" class="bg-background">
+                                <SelectValue :placeholder="__('Select type')" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem v-for="type in typeEmployees" :key="type.id" :value="type.id.toString()">
+                                    {{ type.name }}
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <p v-if="form.errors.type_employee_id" class="text-xs text-destructive">{{ form.errors.type_employee_id }}</p>
                         <p v-if="!form.school_id" class="text-xs text-muted-foreground">{{ __('Select a school first') }}</p>
                     </div>
 

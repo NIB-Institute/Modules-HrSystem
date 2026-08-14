@@ -29,6 +29,7 @@ import type {
     EmployeeFormData,
     SchoolOption,
     DepartmentOption,
+    TypeEmployeeOption,
     EmployeeTypeOption,
     MaritalStatusOption,
     FamilyRelationshipOption,
@@ -52,6 +53,7 @@ interface Props {
     mode?: 'create' | 'edit';
     schools?: SchoolOption[];
     departments?: DepartmentOption[];
+    typeEmployees?: TypeEmployeeOption[];
     employeeTypes?: EmployeeTypeOption[];
     maritalStatuses?: MaritalStatusOption[];
     relationshipTypes?: FamilyRelationshipOption[];
@@ -64,6 +66,7 @@ const props = withDefaults(defineProps<Props>(), {
     mode: 'create',
     schools: () => [],
     departments: () => [],
+    typeEmployees: () => [],
     employeeTypes: () => [],
     maritalStatuses: () => [
         { value: 'single', label: 'Single' },
@@ -289,7 +292,7 @@ const removeCertificate = (index: number) => props.form.certificates.splice(inde
                 </Card>
             </Collapsible>
 
-            <EmploymentInformationCard :form="form" :schools="schools" :departments="departments" :employee-types="employeeTypes" @school-change="emit('schoolChange', $event)" />
+            <EmploymentInformationCard :form="form" :schools="schools" :departments="departments" :type-employees="typeEmployees" :employee-types="employeeTypes" @school-change="emit('schoolChange', $event)" />
 
             <!-- ID Cards (multiple) -->
             <Card>
