@@ -264,6 +264,33 @@ const getStatusVariant = (status: string): 'default' | 'secondary' | 'destructiv
                                     <Badge variant="outline">{{ employee.employee_type_name }}</Badge>
                                 </div>
                             </div>
+                            <div v-if="employee.job_title" class="flex items-center gap-3">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-full bg-muted">
+                                    <Briefcase class="h-4 w-4 text-muted-foreground" />
+                                </div>
+                                <div>
+                                    <p class="text-xs text-muted-foreground">{{ __('Job Title') }}</p>
+                                    <p class="text-sm">{{ employee.job_title }}</p>
+                                </div>
+                            </div>
+                            <div v-if="employee.position" class="flex items-center gap-3">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-full bg-muted">
+                                    <Briefcase class="h-4 w-4 text-muted-foreground" />
+                                </div>
+                                <div>
+                                    <p class="text-xs text-muted-foreground">{{ __('Position') }}</p>
+                                    <p class="text-sm">{{ employee.position }}</p>
+                                </div>
+                            </div>
+                            <div v-if="employee.rank" class="flex items-center gap-3">
+                                <div class="flex items-center justify-center w-8 h-8 rounded-full bg-muted">
+                                    <Briefcase class="h-4 w-4 text-muted-foreground" />
+                                </div>
+                                <div>
+                                    <p class="text-xs text-muted-foreground">{{ __('Rank') }}</p>
+                                    <p class="text-sm">{{ employee.rank }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
