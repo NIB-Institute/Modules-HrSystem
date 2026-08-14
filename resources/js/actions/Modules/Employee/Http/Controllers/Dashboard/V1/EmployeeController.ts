@@ -81,8 +81,89 @@ getDepartmentsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'ge
 getDepartments.form = getDepartmentsForm
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::getTypeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+export const getTypeEmployees = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: getTypeEmployees.url(options),
+    method: 'get',
+})
+
+getTypeEmployees.definition = {
+    methods: ["get","head"],
+    url: '/dashboard/employees/type-employees',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::getTypeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+getTypeEmployees.url = (options?: RouteQueryOptions) => {
+    return getTypeEmployees.definition.url + queryParams(options)
+}
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::getTypeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+getTypeEmployees.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: getTypeEmployees.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::getTypeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+getTypeEmployees.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: getTypeEmployees.url(options),
+    method: 'head',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::getTypeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+const getTypeEmployeesForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: getTypeEmployees.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::getTypeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+getTypeEmployeesForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: getTypeEmployees.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::getTypeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+getTypeEmployeesForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: getTypeEmployees.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+getTypeEmployees.form = getTypeEmployeesForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmBulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:219
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:239
 * @route '/dashboard/employees/bulk-delete'
 */
 export const confirmBulkDelete = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -97,7 +178,7 @@ confirmBulkDelete.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmBulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:219
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:239
 * @route '/dashboard/employees/bulk-delete'
 */
 confirmBulkDelete.url = (options?: RouteQueryOptions) => {
@@ -106,7 +187,7 @@ confirmBulkDelete.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmBulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:219
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:239
 * @route '/dashboard/employees/bulk-delete'
 */
 confirmBulkDelete.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -116,7 +197,7 @@ confirmBulkDelete.get = (options?: RouteQueryOptions): RouteDefinition<'get'> =>
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmBulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:219
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:239
 * @route '/dashboard/employees/bulk-delete'
 */
 confirmBulkDelete.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -126,7 +207,7 @@ confirmBulkDelete.head = (options?: RouteQueryOptions): RouteDefinition<'head'> 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmBulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:219
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:239
 * @route '/dashboard/employees/bulk-delete'
 */
 const confirmBulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -136,7 +217,7 @@ const confirmBulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmBulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:219
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:239
 * @route '/dashboard/employees/bulk-delete'
 */
 confirmBulkDeleteForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -146,7 +227,7 @@ confirmBulkDeleteForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::confirmBulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:219
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:239
 * @route '/dashboard/employees/bulk-delete'
 */
 confirmBulkDeleteForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -163,7 +244,7 @@ confirmBulkDelete.form = confirmBulkDeleteForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 export const bulkDelete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -178,7 +259,7 @@ bulkDelete.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 bulkDelete.url = (options?: RouteQueryOptions) => {
@@ -187,7 +268,7 @@ bulkDelete.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 bulkDelete.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -197,7 +278,7 @@ bulkDelete.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 const bulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -212,7 +293,7 @@ const bulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 bulkDeleteForm.delete = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -552,7 +633,7 @@ show.form = showForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 export const qrCode = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -567,7 +648,7 @@ qrCode.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrCode.url = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -600,7 +681,7 @@ qrCode.url = (args: { employee: string | { uuid: string } } | [employee: string 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrCode.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -610,7 +691,7 @@ qrCode.get = (args: { employee: string | { uuid: string } } | [employee: string 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrCode.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -620,7 +701,7 @@ qrCode.head = (args: { employee: string | { uuid: string } } | [employee: string
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 const qrCodeForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -630,7 +711,7 @@ const qrCodeForm = (args: { employee: string | { uuid: string } } | [employee: s
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrCodeForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -640,7 +721,7 @@ qrCodeForm.get = (args: { employee: string | { uuid: string } } | [employee: str
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrCodeForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1041,7 +1122,7 @@ toggleStatus.form = toggleStatusForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 export const regenerateQrCode = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1056,7 +1137,7 @@ regenerateQrCode.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 regenerateQrCode.url = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -1089,7 +1170,7 @@ regenerateQrCode.url = (args: { employee: string | { uuid: string } } | [employe
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 regenerateQrCode.post = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1099,7 +1180,7 @@ regenerateQrCode.post = (args: { employee: string | { uuid: string } } | [employ
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 const regenerateQrCodeForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1109,7 +1190,7 @@ const regenerateQrCodeForm = (args: { employee: string | { uuid: string } } | [e
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQrCode
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 regenerateQrCodeForm.post = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1314,6 +1395,6 @@ destroyForm.delete = (args: { employee: string | { uuid: string } } | [employee:
 
 destroy.form = destroyForm
 
-const EmployeeController = { getDepartments, confirmBulkDelete, bulkDelete, create, store, index, show, qrCode, edit, update, toggleStatus, regenerateQrCode, confirmDelete, destroy }
+const EmployeeController = { getDepartments, getTypeEmployees, confirmBulkDelete, bulkDelete, create, store, index, show, qrCode, edit, update, toggleStatus, regenerateQrCode, confirmDelete, destroy }
 
 export default EmployeeController

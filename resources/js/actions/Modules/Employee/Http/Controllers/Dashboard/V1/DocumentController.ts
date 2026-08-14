@@ -219,7 +219,7 @@ index.form = indexForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:63
 * @route '/dashboard/documents/{document}/edit'
 */
 export const edit = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -234,7 +234,7 @@ edit.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:63
 * @route '/dashboard/documents/{document}/edit'
 */
 edit.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -267,7 +267,7 @@ edit.url = (args: { document: string | { uuid: string } } | [document: string | 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:63
 * @route '/dashboard/documents/{document}/edit'
 */
 edit.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -277,7 +277,7 @@ edit.get = (args: { document: string | { uuid: string } } | [document: string | 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:63
 * @route '/dashboard/documents/{document}/edit'
 */
 edit.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -287,7 +287,7 @@ edit.head = (args: { document: string | { uuid: string } } | [document: string |
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:63
 * @route '/dashboard/documents/{document}/edit'
 */
 const editForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -297,7 +297,7 @@ const editForm = (args: { document: string | { uuid: string } } | [document: str
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:63
 * @route '/dashboard/documents/{document}/edit'
 */
 editForm.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -307,7 +307,7 @@ editForm.get = (args: { document: string | { uuid: string } } | [document: strin
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::edit
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:61
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:63
 * @route '/dashboard/documents/{document}/edit'
 */
 editForm.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -324,7 +324,7 @@ edit.form = editForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 const update029a589f4896ca1ceb5db39344d51307 = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -339,7 +339,7 @@ update029a589f4896ca1ceb5db39344d51307.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 update029a589f4896ca1ceb5db39344d51307.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -372,7 +372,7 @@ update029a589f4896ca1ceb5db39344d51307.url = (args: { document: string | { uuid:
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 update029a589f4896ca1ceb5db39344d51307.put = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -382,7 +382,7 @@ update029a589f4896ca1ceb5db39344d51307.put = (args: { document: string | { uuid:
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 const update029a589f4896ca1ceb5db39344d51307Form = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -397,7 +397,7 @@ const update029a589f4896ca1ceb5db39344d51307Form = (args: { document: string | {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 update029a589f4896ca1ceb5db39344d51307Form.put = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -413,7 +413,7 @@ update029a589f4896ca1ceb5db39344d51307Form.put = (args: { document: string | { u
 update029a589f4896ca1ceb5db39344d51307.form = update029a589f4896ca1ceb5db39344d51307Form
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 const update029a589f4896ca1ceb5db39344d51307 = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -428,7 +428,7 @@ update029a589f4896ca1ceb5db39344d51307.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 update029a589f4896ca1ceb5db39344d51307.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -461,7 +461,7 @@ update029a589f4896ca1ceb5db39344d51307.url = (args: { document: string | { uuid:
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 update029a589f4896ca1ceb5db39344d51307.post = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -471,7 +471,7 @@ update029a589f4896ca1ceb5db39344d51307.post = (args: { document: string | { uuid
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 const update029a589f4896ca1ceb5db39344d51307Form = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -481,7 +481,7 @@ const update029a589f4896ca1ceb5db39344d51307Form = (args: { document: string | {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::update
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:68
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:70
 * @route '/dashboard/documents/{document}'
 */
 update029a589f4896ca1ceb5db39344d51307Form.post = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -503,7 +503,7 @@ export const update = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::download
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:107
 * @route '/dashboard/documents/{document}/download'
 */
 export const download = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -518,7 +518,7 @@ download.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::download
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:107
 * @route '/dashboard/documents/{document}/download'
 */
 download.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -551,7 +551,7 @@ download.url = (args: { document: string | { uuid: string } } | [document: strin
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::download
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:107
 * @route '/dashboard/documents/{document}/download'
 */
 download.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -561,7 +561,7 @@ download.get = (args: { document: string | { uuid: string } } | [document: strin
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::download
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:107
 * @route '/dashboard/documents/{document}/download'
 */
 download.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -571,7 +571,7 @@ download.head = (args: { document: string | { uuid: string } } | [document: stri
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::download
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:107
 * @route '/dashboard/documents/{document}/download'
 */
 const downloadForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -581,7 +581,7 @@ const downloadForm = (args: { document: string | { uuid: string } } | [document:
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::download
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:107
 * @route '/dashboard/documents/{document}/download'
 */
 downloadForm.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -591,7 +591,7 @@ downloadForm.get = (args: { document: string | { uuid: string } } | [document: s
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::download
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:102
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:107
 * @route '/dashboard/documents/{document}/download'
 */
 downloadForm.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -608,7 +608,7 @@ download.form = downloadForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:86
 * @route '/dashboard/documents/{document}/delete'
 */
 export const confirmDelete = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -623,7 +623,7 @@ confirmDelete.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:86
 * @route '/dashboard/documents/{document}/delete'
 */
 confirmDelete.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -656,7 +656,7 @@ confirmDelete.url = (args: { document: string | { uuid: string } } | [document: 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:86
 * @route '/dashboard/documents/{document}/delete'
 */
 confirmDelete.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -666,7 +666,7 @@ confirmDelete.get = (args: { document: string | { uuid: string } } | [document: 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:86
 * @route '/dashboard/documents/{document}/delete'
 */
 confirmDelete.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -676,7 +676,7 @@ confirmDelete.head = (args: { document: string | { uuid: string } } | [document:
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:86
 * @route '/dashboard/documents/{document}/delete'
 */
 const confirmDeleteForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -686,7 +686,7 @@ const confirmDeleteForm = (args: { document: string | { uuid: string } } | [docu
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:86
 * @route '/dashboard/documents/{document}/delete'
 */
 confirmDeleteForm.get = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -696,7 +696,7 @@ confirmDeleteForm.get = (args: { document: string | { uuid: string } } | [docume
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::confirmDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:82
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:86
 * @route '/dashboard/documents/{document}/delete'
 */
 confirmDeleteForm.head = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -713,7 +713,7 @@ confirmDelete.form = confirmDeleteForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:93
 * @route '/dashboard/documents/{document}'
 */
 export const destroy = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -728,7 +728,7 @@ destroy.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:93
 * @route '/dashboard/documents/{document}'
 */
 destroy.url = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -761,7 +761,7 @@ destroy.url = (args: { document: string | { uuid: string } } | [document: string
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:93
 * @route '/dashboard/documents/{document}'
 */
 destroy.delete = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -771,7 +771,7 @@ destroy.delete = (args: { document: string | { uuid: string } } | [document: str
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:93
 * @route '/dashboard/documents/{document}'
 */
 const destroyForm = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -786,7 +786,7 @@ const destroyForm = (args: { document: string | { uuid: string } } | [document: 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\DocumentController::destroy
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:89
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/DocumentController.php:93
 * @route '/dashboard/documents/{document}'
 */
 destroyForm.delete = (args: { document: string | { uuid: string } } | [document: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

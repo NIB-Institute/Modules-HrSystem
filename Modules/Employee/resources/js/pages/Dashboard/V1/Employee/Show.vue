@@ -409,7 +409,7 @@ const getStatusVariant = (status: string): 'default' | 'secondary' | 'destructiv
                 </div>
             </div>
 
-            <!-- Account Status Component -->
+            <!-- Account Status Component (hidden for now, keep code for later)
             <Account
                 :employee-uuid="employee.uuid"
                 :employee-name="employee.full_name"
@@ -418,6 +418,7 @@ const getStatusVariant = (status: string): 'default' | 'secondary' | 'destructiv
                 :has-account="employee.has_account"
                 :user="employee.user"
             />
+            -->
 
             <!-- Family Members Section -->
             <Card v-if="displayableFamilyMembers.length > 0">

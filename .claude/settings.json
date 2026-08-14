@@ -17,7 +17,21 @@
       "Bash(awk '{print \" files:\", $1}')",
       "Bash(awk '{print \"  disk:\", $1}')",
       "Bash(awk '{print \" disk:\", $1}')",
-      "Bash(awk '{print \"  parent \\(no deps\\):\", $1}')"
+      "Bash(awk '{print \"  parent \\(no deps\\):\", $1}')",
+      "Bash(xargs -I{} sh -c 'echo ==={}===; cat {}')",
+      "Bash(grep -iv \"\\\\.vue$\")",
+      "Bash(python3 -c ' *)",
+      "Bash(grep -n 'protected $table\\\\|table =' /Users/kouchlyhour/Documents/Dev/personal_project/portfolio_projects/backends_portfolios/hr-system/Modules-HrSystem/Modules/Employee/app/Models/EmployeeType.php)",
+      "Bash(php -l Modules/School/database/seeders/ProgramSeeder.php)",
+      "Bash(sed -i '' -e 's/'\\\\''department'\\\\'' => '\\\\''Business Administration'\\\\''/'\\\\''department'\\\\'' => '\\\\''Accounting'\\\\''/g' -e 's/'\\\\''department'\\\\'' => '\\\\''Computer Science'\\\\''/'\\\\''department'\\\\'' => '\\\\''IT Department'\\\\''/g' -e 's/'\\\\''department'\\\\'' => '\\\\''English Language'\\\\''/'\\\\''department'\\\\'' => '\\\\''Accounting'\\\\''/g' -e 's/'\\\\''department'\\\\'' => '\\\\''Mathematics'\\\\''/'\\\\''department'\\\\'' => '\\\\''IT Department'\\\\''/g' -e 's/'\\\\''department'\\\\'' => '\\\\''Engineering'\\\\''/'\\\\''department'\\\\'' => '\\\\''IT Department'\\\\''/g' Modules/School/database/seeders/ClassroomSeeder.php)",
+      "Bash(php -l Modules/School/database/seeders/ClassroomSeeder.php)",
+      "Bash(sort -t\"'\" -k4)",
+      "Bash(uniq -c -f3)",
+      "Bash(awk '{print $NF, $\\(NF-1\\), $\\(NF-2\\)}')",
+      "Bash(php -l Modules/School/database/seeders/CourseSeeder.php)",
+      "Bash(grep -n \"empty\\(\\\\$\" /Users/kouchlyhour/Documents/Dev/personal_project/portfolio_projects/backends_portfolios/hr-system/Modules-HrSystem/Modules/Employee/app/Actions/Dashboard/V1/UpdateEmployeeAction.php)",
+      "Bash(php -l Modules/Employee/app/Http/Requests/Dashboard/V1/StoreEmployeeRequest.php)",
+      "Bash(php -l Modules/Employee/app/Http/Requests/Dashboard/V1/UpdateEmployeeRequest.php)"
     ],
     "additionalDirectories": [
       "/Users/kouchlyhour/Documents/Dev/portfolio_projects/backends_portfolios/hrSystem/public/build"

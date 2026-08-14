@@ -83,6 +83,87 @@ departmentsForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'>
 departments.form = departmentsForm
 
 /**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::typeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+export const typeEmployees = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: typeEmployees.url(options),
+    method: 'get',
+})
+
+typeEmployees.definition = {
+    methods: ["get","head"],
+    url: '/dashboard/employees/type-employees',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::typeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+typeEmployees.url = (options?: RouteQueryOptions) => {
+    return typeEmployees.definition.url + queryParams(options)
+}
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::typeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+typeEmployees.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: typeEmployees.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::typeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+typeEmployees.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: typeEmployees.url(options),
+    method: 'head',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::typeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+const typeEmployeesForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: typeEmployees.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::typeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+typeEmployeesForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: typeEmployees.url(options),
+    method: 'get',
+})
+
+/**
+* @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::typeEmployees
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @route '/dashboard/employees/type-employees'
+*/
+typeEmployeesForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: typeEmployees.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+typeEmployees.form = typeEmployeesForm
+
+/**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeImportExportController::exportOptions
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeImportExportController.php:38
 * @route '/dashboard/employees/export-options'
@@ -408,7 +489,7 @@ template.form = templateForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 export const bulkDelete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -423,7 +504,7 @@ bulkDelete.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 bulkDelete.url = (options?: RouteQueryOptions) => {
@@ -432,7 +513,7 @@ bulkDelete.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 bulkDelete.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -442,7 +523,7 @@ bulkDelete.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 const bulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -457,7 +538,7 @@ const bulkDeleteForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::bulkDelete
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:233
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:253
 * @route '/dashboard/employees/bulk-delete'
 */
 bulkDeleteForm.delete = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -797,7 +878,7 @@ show.form = showForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 export const qrBadge = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -812,7 +893,7 @@ qrBadge.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrBadge.url = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -845,7 +926,7 @@ qrBadge.url = (args: { employee: string | { uuid: string } } | [employee: string
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrBadge.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -855,7 +936,7 @@ qrBadge.get = (args: { employee: string | { uuid: string } } | [employee: string
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrBadge.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -865,7 +946,7 @@ qrBadge.head = (args: { employee: string | { uuid: string } } | [employee: strin
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 const qrBadgeForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -875,7 +956,7 @@ const qrBadgeForm = (args: { employee: string | { uuid: string } } | [employee: 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrBadgeForm.get = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -885,7 +966,7 @@ qrBadgeForm.get = (args: { employee: string | { uuid: string } } | [employee: st
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::qrBadge
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:178
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:198
 * @route '/dashboard/employees/{employee}/qr-badge'
 */
 qrBadgeForm.head = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1187,7 +1268,7 @@ toggleStatus.form = toggleStatusForm
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQr
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 export const regenerateQr = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1202,7 +1283,7 @@ regenerateQr.definition = {
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQr
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 regenerateQr.url = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -1235,7 +1316,7 @@ regenerateQr.url = (args: { employee: string | { uuid: string } } | [employee: s
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQr
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 regenerateQr.post = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -1245,7 +1326,7 @@ regenerateQr.post = (args: { employee: string | { uuid: string } } | [employee: 
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQr
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 const regenerateQrForm = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1255,7 +1336,7 @@ const regenerateQrForm = (args: { employee: string | { uuid: string } } | [emplo
 
 /**
 * @see \Modules\Employee\Http\Controllers\Dashboard\V1\EmployeeController::regenerateQr
-* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:207
+* @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeController.php:227
 * @route '/dashboard/employees/{employee}/regenerate-qr'
 */
 regenerateQrForm.post = (args: { employee: string | { uuid: string } } | [employee: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1948,6 +2029,7 @@ qrCode.form = qrCodeForm
 const employees = {
     trash: Object.assign(trash, trash),
     departments: Object.assign(departments, departments),
+    typeEmployees: Object.assign(typeEmployees, typeEmployees),
     exportOptions: Object.assign(exportOptions, exportOptions),
     export: Object.assign(exportMethod, exportMethod),
     import: Object.assign(importMethod, importMethod7367d2),
