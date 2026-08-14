@@ -3,6 +3,7 @@
 namespace App\Services\Notification\Channels;
 
 use App\Contracts\NotificationResult;
+use App\Services\LoginAlertsService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
@@ -28,6 +29,20 @@ class TelegramChannel extends AbstractChannel
 {
     protected string $baseUrl = 'https://api.telegram.org/bot';
 
+    public function __construct(protected LoginAlertsService $loginAlerts)
+    {
+    }
+
+    /**
+     * The bot token, sourced from the same saved/encrypted setting the
+     * Login Alerts page manages -- one bot token for the whole app,
+     * editable from Settings without touching .env.
+     */
+    protected function botToken(): string
+    {
+        return $this->loginAlerts->get()['bot_token'] ?? '';
+    }
+
     public function getChannelId(): string
     {
         return 'telegram';
@@ -40,7 +55,7 @@ class TelegramChannel extends AbstractChannel
 
     public function isAvailable(array $config = []): bool
     {
-        return !empty(config('services.telegram.bot_token'));
+        return !empty($this->botToken());
     }
 
     public function canSendTo(Model $notifiable): bool
@@ -71,7 +86,7 @@ class TelegramChannel extends AbstractChannel
         }
 
         $extracted = $this->extractPayload($payload);
-        $botToken = config('services.telegram.bot_token');
+        $botToken = $this->botToken();
 
         // Format message with Markdown
         $text = $this->formatMessage($extracted);
@@ -144,7 +159,7 @@ class TelegramChannel extends AbstractChannel
         }
 
         $extracted = $this->extractPayload($payload);
-        $botToken = config('services.telegram.bot_token');
+        $botToken = $this->botToken();
 
         try {
             $response = Http::post("{$this->baseUrl}{$botToken}/sendPhoto", [
@@ -182,7 +197,7 @@ class TelegramChannel extends AbstractChannel
     public function sendToChannel(string $channelUsername, array $payload, array $config = []): NotificationResult
     {
         $extracted = $this->extractPayload($payload);
-        $botToken = config('services.telegram.bot_token');
+        $botToken = $this->botToken();
         $text = $this->formatMessage($extracted);
 
         try {

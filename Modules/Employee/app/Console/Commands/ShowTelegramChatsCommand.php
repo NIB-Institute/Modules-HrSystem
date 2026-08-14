@@ -2,6 +2,7 @@
 
 namespace Modules\Employee\Console\Commands;
 
+use App\Services\LoginAlertsService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -20,12 +21,12 @@ class ShowTelegramChatsCommand extends Command
 
     protected $description = 'List Telegram chats/groups the bot is in (with chat IDs). Run after adding the bot to a group.';
 
-    public function handle(): int
+    public function handle(LoginAlertsService $loginAlerts): int
     {
-        $token = config('services.telegram.bot_token');
+        $token = $loginAlerts->get()['bot_token'] ?? '';
 
         if (! $token) {
-            $this->error('TELEGRAM_BOT_TOKEN is not set in .env. Set it, then run: php artisan config:clear');
+            $this->error('No Telegram bot token is saved. Set one in Dashboard Settings -> General -> Login Alerts.');
             return self::FAILURE;
         }
 
