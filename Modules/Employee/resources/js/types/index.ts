@@ -316,7 +316,7 @@ export interface PaginatedResponse<T> {
 export interface EmployeeFilters {
     status?: string;
     search?: string;
-    employee_type?: string;
+    type_employee_id?: string;
     school_id?: string;
     department_id?: string;
     date_from?: string;
@@ -429,6 +429,7 @@ export interface EmployeeIndexProps {
     stats: EmployeeStats;
     attendanceStats: EmployeeAttendanceStats;
     schools: SchoolOption[];
+    typeEmployees: TypeEmployeeOption[];
     /** Column catalogue for the reusable <ExportDialog />. */
     exportColumns: { key: string; label: string; default?: boolean }[];
 }

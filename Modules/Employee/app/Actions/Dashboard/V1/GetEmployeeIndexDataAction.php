@@ -7,13 +7,14 @@ use Modules\Employee\Exports\EmployeesExport;
 use Modules\Employee\Http\Resources\Dashboard\V1\EmployeeResource;
 use Modules\Employee\Models\Attendance;
 use Modules\Employee\Models\Employee;
+use Modules\Employee\Models\EmployeeType;
 use Modules\School\Models\School;
 
 class GetEmployeeIndexDataAction
 {
     public function execute(int $perPage = 10, array $filters = []): array
     {
-        $query = Employee::query()->with('employeeType');
+        $query = Employee::query()->with(['employeeType', 'department', 'school']);
 
         // Date range for attendance (default to current month)
         $dateFrom = $filters['date_from'] ?? now()->startOfMonth()->format('Y-m-d');
@@ -60,8 +61,8 @@ class GetEmployeeIndexDataAction
             $query->where('department_id', $filters['department_id']);
         }
 
-        if (!empty($filters['employee_type']) && $filters['employee_type'] !== 'all') {
-            $query->where('employee_type', $filters['employee_type']);
+        if (!empty($filters['type_employee_id']) && $filters['type_employee_id'] !== 'all') {
+            $query->where('type_employee_id', $filters['type_employee_id']);
         }
 
         if (isset($filters['status']) && $filters['status'] !== '' && $filters['status'] !== 'all') {
@@ -100,6 +101,16 @@ class GetEmployeeIndexDataAction
             $schools = [];
         }
 
+        // Employee type categories for the Type filter dropdown.
+        try {
+            $typeEmployees = EmployeeType::where('status', true)
+                ->select('id', 'name')
+                ->orderBy('name')
+                ->get();
+        } catch (\Exception $e) {
+            $typeEmployees = collect();
+        }
+
         return [
             'employees' => [
                 'data' => EmployeeResource::collection($employees)->resolve(),
@@ -117,6 +128,7 @@ class GetEmployeeIndexDataAction
             'stats' => $stats,
             'attendanceStats' => $attendanceStats,
             'employeeTypes' => $employeeTypes,
+            'typeEmployees' => $typeEmployees,
             'schools' => $schools,
             // Column catalogue for the reusable <ExportDialog />
             'exportColumns' => (new EmployeesExport())->exportableColumnList(),

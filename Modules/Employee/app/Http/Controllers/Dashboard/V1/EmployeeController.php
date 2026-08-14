@@ -48,7 +48,7 @@ class EmployeeController extends Controller
     public function index(Request $request): Response
     {
         $perPage = $request->input('per_page', 10);
-        $filters = $request->only(['search', 'status', 'employee_type', 'school_id', 'department_id', 'date_from', 'date_to']);
+        $filters = $request->only(['search', 'status', 'type_employee_id', 'school_id', 'department_id', 'date_from', 'date_to']);
 
         $data = $this->getIndexDataAction->execute($perPage, $filters);
 

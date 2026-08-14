@@ -32,7 +32,7 @@ const breadcrumbs = computed<BreadcrumbItem[]>(() => [
 
 const search = ref(props.filters.search || '');
 const statusFilter = ref(props.filters.status || 'all');
-const employeeTypeFilter = ref(props.filters.employee_type || 'all');
+const typeEmployeeFilter = ref(props.filters.type_employee_id || 'all');
 const schoolFilter = ref(props.filters.school_id || 'all');
 const dateFrom = ref(props.filters.date_from || '');
 const dateTo = ref(props.filters.date_to || '');
@@ -80,9 +80,9 @@ const columns = computed<TableColumn<Employee>[]>(() => [
         render: (employee) => employee.phone_number || '-',
     },
     {
-        key: 'employee_type_label',
+        key: 'employee_type_name',
         label: __('Type'),
-        render: (employee) => employee.employee_type_label || '-',
+        render: (employee) => employee.employee_type_name || '-',
     },
     {
         key: 'department_name',
@@ -139,7 +139,7 @@ const pagination = computed<PaginationData>(() => ({
 const getFilterParams = () => ({
     search: search.value || undefined,
     status: statusFilter.value !== 'all' ? statusFilter.value : undefined,
-    employee_type: employeeTypeFilter.value !== 'all' ? employeeTypeFilter.value : undefined,
+    type_employee_id: typeEmployeeFilter.value !== 'all' ? typeEmployeeFilter.value : undefined,
     school_id: schoolFilter.value !== 'all' ? schoolFilter.value : undefined,
     date_from: dateFrom.value || undefined,
     date_to: dateTo.value || undefined,
@@ -164,7 +164,7 @@ const handleSearch = () => {
     router.get('/dashboard/employees', getFilterParams(), { preserveState: true });
 };
 
-watch([statusFilter, employeeTypeFilter, schoolFilter, dateFrom, dateTo], () => {
+watch([statusFilter, typeEmployeeFilter, schoolFilter, dateFrom, dateTo], () => {
     router.get('/dashboard/employees', getFilterParams(), { preserveState: true });
 });
 
@@ -313,16 +313,19 @@ const handleStatusToggle = (employee: Employee, newStatus: boolean) => {
                             <SelectItem value="0">{{ __('Inactive') }}</SelectItem>
                         </SelectContent>
                     </Select>
-                    <Select v-model="employeeTypeFilter">
+                    <Select v-model="typeEmployeeFilter">
                         <SelectTrigger class="w-[150px]">
                             <SelectValue :placeholder="__('Type')" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="all">{{ __('All Types') }}</SelectItem>
-                            <SelectItem value="full_time">{{ __('Full Time') }}</SelectItem>
-                            <SelectItem value="part_time">{{ __('Part Time') }}</SelectItem>
-                            <SelectItem value="contract">{{ __('Contract') }}</SelectItem>
-                            <SelectItem value="intern">{{ __('Intern') }}</SelectItem>
+                            <SelectItem
+                                v-for="type in props.typeEmployees"
+                                :key="type.id"
+                                :value="type.id.toString()"
+                            >
+                                {{ type.name }}
+                            </SelectItem>
                         </SelectContent>
                     </Select>
                     <Select v-model="schoolFilter">
@@ -388,9 +391,9 @@ const handleStatusToggle = (employee: Employee, newStatus: boolean) => {
                             </div>
                         </div>
                     </template>
-                    <template #cell-employee_type_label="{ item }">
-                        <Badge v-if="item.employee_type_label" variant="outline">
-                            {{ item.employee_type_label }}
+                    <template #cell-employee_type_name="{ item }">
+                        <Badge v-if="item.employee_type_name" variant="outline">
+                            {{ item.employee_type_name }}
                         </Badge>
                         <span v-else class="text-muted-foreground">-</span>
                     </template>
