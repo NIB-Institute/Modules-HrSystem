@@ -349,6 +349,7 @@ export interface EmployeeFormData {
     type_employee_id: number | null;
     job_title: string;
     position: string;
+    rank: string;
     employee_type: EmployeeType | null;
     salary: number | null;
     hire_date: string;
