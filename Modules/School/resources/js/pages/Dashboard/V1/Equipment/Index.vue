@@ -55,6 +55,11 @@ const columns: TableColumn<Equipment>[] = [
         render: (equipment) => equipment.category_label,
     },
     {
+        key: 'inventory_count',
+        label: __('Inventory'),
+        render: (equipment) => `${equipment.inventory_count || 0}`,
+    },
+    {
         key: 'classrooms_count',
         label: __('Used In'),
         render: (equipment) => `${equipment.classrooms_count || 0} ${__('classrooms')}`,
@@ -186,7 +191,7 @@ const getCategoryVariant = (category: string) => {
 
         <div class="flex h-full flex-1 flex-col gap-6 p-6">
             <!-- Stats -->
-            <div class="grid gap-4 md:grid-cols-3">
+            <div class="grid gap-4 md:grid-cols-4">
                 <StatsCard
                     :title="__('Total Equipment')"
                     :value="props.stats.total"
@@ -197,6 +202,11 @@ const getCategoryVariant = (category: string) => {
                     :value="props.stats.active"
                     :icon="CheckCircle"
                     variant="success"
+                />
+                <StatsCard
+                    :title="__('Total Inventory')"
+                    :value="props.stats.total_inventory"
+                    :icon="Database"
                 />
                 <StatsCard
                     :title="__('Technology')"

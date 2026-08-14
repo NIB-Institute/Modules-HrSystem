@@ -639,8 +639,7 @@ export interface Equipment {
     price_total: number | null;
     status: boolean;
     classrooms_count: number | null;
-    /** Only present on the Show page response, not the Index list. */
-    inventory_count?: number;
+    inventory_count: number;
     created_at: string;
     updated_at: string;
 }
@@ -648,6 +647,7 @@ export interface Equipment {
 export interface EquipmentStats {
     total: number;
     active: number;
+    total_inventory: number;
     by_category: {
         technology: number;
         furniture: number;

@@ -18,6 +18,9 @@ class GetEquipmentIndexDataAction
                 ->selectRaw('count(distinct classroom_id)')
                 ->whereColumn('equipment_id', 'school_equipment.id')
                 ->whereNotNull('classroom_id'),
+            'inventory_count' => Inventory::query()
+                ->selectRaw('count(*)')
+                ->whereColumn('equipment_id', 'school_equipment.id'),
         ]);
 
         if (!empty($filters['search'])) {
@@ -42,6 +45,7 @@ class GetEquipmentIndexDataAction
         $stats = [
             'total' => Equipment::count(),
             'active' => Equipment::where('status', true)->count(),
+            'total_inventory' => Inventory::count(),
             'by_category' => [
                 'technology' => Equipment::where('category', 'technology')->count(),
                 'furniture' => Equipment::where('category', 'furniture')->count(),
