@@ -175,7 +175,7 @@ export const index = {
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/dashboard/settings/widgets/{widget}'
 */
-const updatebe0eed584efe07a5bb507a31908977b1 = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+const updatebe0eed584efe07a5bb507a31908977b1 = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: updatebe0eed584efe07a5bb507a31908977b1.url(args, options),
     method: 'patch',
 })
@@ -190,7 +190,7 @@ updatebe0eed584efe07a5bb507a31908977b1.definition = {
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/dashboard/settings/widgets/{widget}'
 */
-updatebe0eed584efe07a5bb507a31908977b1.url = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
+updatebe0eed584efe07a5bb507a31908977b1.url = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { widget: args }
     }
@@ -223,7 +223,7 @@ updatebe0eed584efe07a5bb507a31908977b1.url = (args: { widget: string | number | 
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/dashboard/settings/widgets/{widget}'
 */
-updatebe0eed584efe07a5bb507a31908977b1.patch = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+updatebe0eed584efe07a5bb507a31908977b1.patch = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: updatebe0eed584efe07a5bb507a31908977b1.url(args, options),
     method: 'patch',
 })
@@ -233,7 +233,7 @@ updatebe0eed584efe07a5bb507a31908977b1.patch = (args: { widget: string | number 
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/dashboard/settings/widgets/{widget}'
 */
-const updatebe0eed584efe07a5bb507a31908977b1Form = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updatebe0eed584efe07a5bb507a31908977b1Form = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: updatebe0eed584efe07a5bb507a31908977b1.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -248,7 +248,7 @@ const updatebe0eed584efe07a5bb507a31908977b1Form = (args: { widget: string | num
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/dashboard/settings/widgets/{widget}'
 */
-updatebe0eed584efe07a5bb507a31908977b1Form.patch = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updatebe0eed584efe07a5bb507a31908977b1Form.patch = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: updatebe0eed584efe07a5bb507a31908977b1.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -264,7 +264,7 @@ updatebe0eed584efe07a5bb507a31908977b1.form = updatebe0eed584efe07a5bb507a319089
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/settings/widgets/{widget}'
 */
-const update685d674c98896447044b43e90e172ed7 = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+const update685d674c98896447044b43e90e172ed7 = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update685d674c98896447044b43e90e172ed7.url(args, options),
     method: 'patch',
 })
@@ -279,7 +279,7 @@ update685d674c98896447044b43e90e172ed7.definition = {
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/settings/widgets/{widget}'
 */
-update685d674c98896447044b43e90e172ed7.url = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions) => {
+update685d674c98896447044b43e90e172ed7.url = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { widget: args }
     }
@@ -312,7 +312,7 @@ update685d674c98896447044b43e90e172ed7.url = (args: { widget: string | number | 
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/settings/widgets/{widget}'
 */
-update685d674c98896447044b43e90e172ed7.patch = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update685d674c98896447044b43e90e172ed7.patch = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update685d674c98896447044b43e90e172ed7.url(args, options),
     method: 'patch',
 })
@@ -322,7 +322,7 @@ update685d674c98896447044b43e90e172ed7.patch = (args: { widget: string | number 
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/settings/widgets/{widget}'
 */
-const update685d674c98896447044b43e90e172ed7Form = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const update685d674c98896447044b43e90e172ed7Form = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update685d674c98896447044b43e90e172ed7.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -337,7 +337,7 @@ const update685d674c98896447044b43e90e172ed7Form = (args: { widget: string | num
 * @see app/Http/Controllers/Settings/WidgetController.php:78
 * @route '/settings/widgets/{widget}'
 */
-update685d674c98896447044b43e90e172ed7Form.patch = (args: { widget: string | number | { id: string | number } } | [widget: string | number | { id: string | number } ] | string | number | { id: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+update685d674c98896447044b43e90e172ed7Form.patch = (args: { widget: number | { id: number } } | [widget: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update685d674c98896447044b43e90e172ed7.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',

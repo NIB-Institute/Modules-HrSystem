@@ -14,11 +14,11 @@ class EmployeeDatabaseSeeder extends Seeder
         $this->call([
             EmployeeTypeSeeder::class,
             EmployeeSeeder::class,
-            AttendanceSeeder::class,
-            PermissionRequestSeeder::class,
+            // AttendanceSeeder::class,
+            // PermissionRequestSeeder::class,
             EmployeePlanSeeder::class,
             EmployeeAvailabilitySeeder::class,
-            EmployeePlanAssignmentSeeder::class,
+            // EmployeePlanAssignmentSeeder::class,
         ]);
     }
 }

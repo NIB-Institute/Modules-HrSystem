@@ -369,7 +369,7 @@ index.form = indexForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:75
 * @route '/dashboard/employee-types/{employee_type}'
 */
-export const show = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -384,7 +384,7 @@ show.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:75
 * @route '/dashboard/employee-types/{employee_type}'
 */
-show.url = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+show.url = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employee_type: args }
     }
@@ -417,7 +417,7 @@ show.url = (args: { employee_type: string | number | { uuid: string | number } }
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:75
 * @route '/dashboard/employee-types/{employee_type}'
 */
-show.get = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -427,7 +427,7 @@ show.get = (args: { employee_type: string | number | { uuid: string | number } }
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:75
 * @route '/dashboard/employee-types/{employee_type}'
 */
-show.head = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -437,7 +437,7 @@ show.head = (args: { employee_type: string | number | { uuid: string | number } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:75
 * @route '/dashboard/employee-types/{employee_type}'
 */
-const showForm = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -447,7 +447,7 @@ const showForm = (args: { employee_type: string | number | { uuid: string | numb
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:75
 * @route '/dashboard/employee-types/{employee_type}'
 */
-showForm.get = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -457,7 +457,7 @@ showForm.get = (args: { employee_type: string | number | { uuid: string | number
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:75
 * @route '/dashboard/employee-types/{employee_type}'
 */
-showForm.head = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -474,7 +474,7 @@ show.form = showForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:85
 * @route '/dashboard/employee-types/{employee_type}/edit'
 */
-export const edit = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -489,7 +489,7 @@ edit.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:85
 * @route '/dashboard/employee-types/{employee_type}/edit'
 */
-edit.url = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+edit.url = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employee_type: args }
     }
@@ -522,7 +522,7 @@ edit.url = (args: { employee_type: string | number | { uuid: string | number } }
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:85
 * @route '/dashboard/employee-types/{employee_type}/edit'
 */
-edit.get = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -532,7 +532,7 @@ edit.get = (args: { employee_type: string | number | { uuid: string | number } }
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:85
 * @route '/dashboard/employee-types/{employee_type}/edit'
 */
-edit.head = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
@@ -542,7 +542,7 @@ edit.head = (args: { employee_type: string | number | { uuid: string | number } 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:85
 * @route '/dashboard/employee-types/{employee_type}/edit'
 */
-const editForm = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const editForm = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
     method: 'get',
 })
@@ -552,7 +552,7 @@ const editForm = (args: { employee_type: string | number | { uuid: string | numb
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:85
 * @route '/dashboard/employee-types/{employee_type}/edit'
 */
-editForm.get = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+editForm.get = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
     method: 'get',
 })
@@ -562,7 +562,7 @@ editForm.get = (args: { employee_type: string | number | { uuid: string | number
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:85
 * @route '/dashboard/employee-types/{employee_type}/edit'
 */
-editForm.head = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+editForm.head = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -579,7 +579,7 @@ edit.form = editForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-const update1ec8d453beb44da62346d3a284db4f47 = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+const update1ec8d453beb44da62346d3a284db4f47 = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update1ec8d453beb44da62346d3a284db4f47.url(args, options),
     method: 'put',
 })
@@ -594,7 +594,7 @@ update1ec8d453beb44da62346d3a284db4f47.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-update1ec8d453beb44da62346d3a284db4f47.url = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+update1ec8d453beb44da62346d3a284db4f47.url = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employee_type: args }
     }
@@ -627,7 +627,7 @@ update1ec8d453beb44da62346d3a284db4f47.url = (args: { employee_type: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-update1ec8d453beb44da62346d3a284db4f47.put = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update1ec8d453beb44da62346d3a284db4f47.put = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update1ec8d453beb44da62346d3a284db4f47.url(args, options),
     method: 'put',
 })
@@ -637,7 +637,7 @@ update1ec8d453beb44da62346d3a284db4f47.put = (args: { employee_type: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-const update1ec8d453beb44da62346d3a284db4f47Form = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const update1ec8d453beb44da62346d3a284db4f47Form = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update1ec8d453beb44da62346d3a284db4f47.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -652,7 +652,7 @@ const update1ec8d453beb44da62346d3a284db4f47Form = (args: { employee_type: strin
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-update1ec8d453beb44da62346d3a284db4f47Form.put = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+update1ec8d453beb44da62346d3a284db4f47Form.put = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update1ec8d453beb44da62346d3a284db4f47.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -668,7 +668,7 @@ update1ec8d453beb44da62346d3a284db4f47.form = update1ec8d453beb44da62346d3a284db
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-const update1ec8d453beb44da62346d3a284db4f47 = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+const update1ec8d453beb44da62346d3a284db4f47 = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update1ec8d453beb44da62346d3a284db4f47.url(args, options),
     method: 'patch',
 })
@@ -683,7 +683,7 @@ update1ec8d453beb44da62346d3a284db4f47.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-update1ec8d453beb44da62346d3a284db4f47.url = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+update1ec8d453beb44da62346d3a284db4f47.url = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employee_type: args }
     }
@@ -716,7 +716,7 @@ update1ec8d453beb44da62346d3a284db4f47.url = (args: { employee_type: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-update1ec8d453beb44da62346d3a284db4f47.patch = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update1ec8d453beb44da62346d3a284db4f47.patch = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update1ec8d453beb44da62346d3a284db4f47.url(args, options),
     method: 'patch',
 })
@@ -726,7 +726,7 @@ update1ec8d453beb44da62346d3a284db4f47.patch = (args: { employee_type: string | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-const update1ec8d453beb44da62346d3a284db4f47Form = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const update1ec8d453beb44da62346d3a284db4f47Form = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update1ec8d453beb44da62346d3a284db4f47.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -741,7 +741,7 @@ const update1ec8d453beb44da62346d3a284db4f47Form = (args: { employee_type: strin
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:96
 * @route '/dashboard/employee-types/{employee_type}'
 */
-update1ec8d453beb44da62346d3a284db4f47Form.patch = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+update1ec8d453beb44da62346d3a284db4f47Form.patch = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update1ec8d453beb44da62346d3a284db4f47.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -768,7 +768,7 @@ export const update = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:132
 * @route '/dashboard/employee-types/{employee_type}/toggle-status'
 */
-export const toggleStatus = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const toggleStatus = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: toggleStatus.url(args, options),
     method: 'put',
 })
@@ -783,7 +783,7 @@ toggleStatus.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:132
 * @route '/dashboard/employee-types/{employee_type}/toggle-status'
 */
-toggleStatus.url = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+toggleStatus.url = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employee_type: args }
     }
@@ -816,7 +816,7 @@ toggleStatus.url = (args: { employee_type: string | number | { uuid: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:132
 * @route '/dashboard/employee-types/{employee_type}/toggle-status'
 */
-toggleStatus.put = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+toggleStatus.put = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: toggleStatus.url(args, options),
     method: 'put',
 })
@@ -826,7 +826,7 @@ toggleStatus.put = (args: { employee_type: string | number | { uuid: string | nu
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:132
 * @route '/dashboard/employee-types/{employee_type}/toggle-status'
 */
-const toggleStatusForm = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const toggleStatusForm = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: toggleStatus.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -841,7 +841,7 @@ const toggleStatusForm = (args: { employee_type: string | number | { uuid: strin
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:132
 * @route '/dashboard/employee-types/{employee_type}/toggle-status'
 */
-toggleStatusForm.put = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+toggleStatusForm.put = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: toggleStatus.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -858,7 +858,7 @@ toggleStatus.form = toggleStatusForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:108
 * @route '/dashboard/employee-types/{employee_type}/delete'
 */
-export const confirmDelete = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const confirmDelete = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -873,7 +873,7 @@ confirmDelete.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:108
 * @route '/dashboard/employee-types/{employee_type}/delete'
 */
-confirmDelete.url = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+confirmDelete.url = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employee_type: args }
     }
@@ -906,7 +906,7 @@ confirmDelete.url = (args: { employee_type: string | number | { uuid: string | n
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:108
 * @route '/dashboard/employee-types/{employee_type}/delete'
 */
-confirmDelete.get = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+confirmDelete.get = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -916,7 +916,7 @@ confirmDelete.get = (args: { employee_type: string | number | { uuid: string | n
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:108
 * @route '/dashboard/employee-types/{employee_type}/delete'
 */
-confirmDelete.head = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+confirmDelete.head = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: confirmDelete.url(args, options),
     method: 'head',
 })
@@ -926,7 +926,7 @@ confirmDelete.head = (args: { employee_type: string | number | { uuid: string | 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:108
 * @route '/dashboard/employee-types/{employee_type}/delete'
 */
-const confirmDeleteForm = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const confirmDeleteForm = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -936,7 +936,7 @@ const confirmDeleteForm = (args: { employee_type: string | number | { uuid: stri
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:108
 * @route '/dashboard/employee-types/{employee_type}/delete'
 */
-confirmDeleteForm.get = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+confirmDeleteForm.get = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, options),
     method: 'get',
 })
@@ -946,7 +946,7 @@ confirmDeleteForm.get = (args: { employee_type: string | number | { uuid: string
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:108
 * @route '/dashboard/employee-types/{employee_type}/delete'
 */
-confirmDeleteForm.head = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+confirmDeleteForm.head = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: confirmDelete.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -963,7 +963,7 @@ confirmDelete.form = confirmDeleteForm
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:120
 * @route '/dashboard/employee-types/{employee_type}'
 */
-export const destroy = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -978,7 +978,7 @@ destroy.definition = {
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:120
 * @route '/dashboard/employee-types/{employee_type}'
 */
-destroy.url = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { employee_type: args }
     }
@@ -1011,7 +1011,7 @@ destroy.url = (args: { employee_type: string | number | { uuid: string | number 
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:120
 * @route '/dashboard/employee-types/{employee_type}'
 */
-destroy.delete = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -1021,7 +1021,7 @@ destroy.delete = (args: { employee_type: string | number | { uuid: string | numb
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:120
 * @route '/dashboard/employee-types/{employee_type}'
 */
-const destroyForm = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -1036,7 +1036,7 @@ const destroyForm = (args: { employee_type: string | number | { uuid: string | n
 * @see Modules/Employee/app/Http/Controllers/Dashboard/V1/EmployeeTypeController.php:120
 * @route '/dashboard/employee-types/{employee_type}'
 */
-destroyForm.delete = (args: { employee_type: string | number | { uuid: string | number } } | [employee_type: string | number | { uuid: string | number } ] | string | number | { uuid: string | number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { employee_type: string | { uuid: string } } | [employee_type: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
