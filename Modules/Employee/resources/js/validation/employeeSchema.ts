@@ -153,6 +153,11 @@ export const employeeSchema = z.object({
         .max(100, 'Job title must be less than 100 characters')
         .optional()
         .nullable(),
+    rank: z
+        .string()
+        .max(100, 'Rank must be less than 100 characters')
+        .optional()
+        .nullable(),
     employee_type: z.enum(['full_time', 'part_time', 'contract', 'intern']).optional().nullable(),
     salary: coerceOptionalNumber(z.number().min(0, 'Salary must be positive')),
     hire_date: z.string().optional().nullable(),

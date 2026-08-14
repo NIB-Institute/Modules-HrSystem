@@ -129,6 +129,13 @@ const salaryValue = computed({
                         <Input id="position" v-model="form.position" type="text" :placeholder="__('e.g. Head of Department')" class="bg-background" />
                         <p v-if="form.errors.position" class="text-xs text-destructive">{{ form.errors.position }}</p>
                     </div>
+
+                    <!-- Rank -->
+                    <div class="space-y-2">
+                        <Label for="rank" class="text-xs font-medium">{{ __('Rank') }}</Label>
+                        <Input id="rank" v-model="form.rank" type="text" :placeholder="__('e.g. ឋានន្តរស័ក្តិ')" class="bg-background" />
+                        <p v-if="form.errors.rank" class="text-xs text-destructive">{{ form.errors.rank }}</p>
+                    </div>
                 </div>
             </div>
 

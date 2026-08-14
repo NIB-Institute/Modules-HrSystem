@@ -70,6 +70,7 @@ class Employee extends Model
         'type_employee_id',
         'job_title',
         'position',
+        'rank',
         'employee_type',
         'anttendent_value',
         'salary',

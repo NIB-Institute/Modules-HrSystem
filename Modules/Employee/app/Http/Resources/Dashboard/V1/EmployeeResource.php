@@ -31,6 +31,7 @@ class EmployeeResource extends JsonResource
             'type_employee_id' => $this->type_employee_id,
             'job_title' => $this->job_title,
             'position' => $this->position,
+            'rank' => $this->rank,
             'employee_type' => $this->employee_type,
             'employee_type_label' => $this->getEmployeeTypeLabel(),
             'employee_type_name' => $this->whenLoaded('employeeType', fn() => $this->employeeType?->name),

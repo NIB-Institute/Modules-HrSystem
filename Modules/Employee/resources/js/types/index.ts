@@ -206,6 +206,7 @@ export interface Employee {
     type_employee_id: number | null;
     job_title: string | null;
     position: string | null;
+    rank: string | null;
     employee_type: EmployeeType | null;
     employee_type_label: string | null;
     employee_type_name: string | null;

@@ -42,6 +42,7 @@ class UpdateEmployeeRequest extends FormRequest
             'position_id' => ['nullable', 'integer'],
             'job_title' => ['nullable', 'string', 'max:100'],
             'position' => ['nullable', 'string', 'max:100'],
+            'rank' => ['nullable', 'string', 'max:100'],
             'employee_type' => ['nullable', 'string', 'in:' . implode(',', array_keys(Employee::getEmployeeTypes()))],
             'salary' => ['nullable', 'numeric', 'min:0'],
             'hire_date' => ['nullable', 'date'],

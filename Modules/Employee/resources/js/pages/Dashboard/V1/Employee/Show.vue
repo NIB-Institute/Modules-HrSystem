@@ -135,7 +135,7 @@ const getStatusVariant = (status: string): 'default' | 'secondary' | 'destructiv
                             <Badge :variant="employee.status ? 'default' : 'secondary'">{{ employee.status ? __('Active') : __('Inactive') }}</Badge>
                             <Badge v-if="employee.is_on_probation" variant="outline" class="border-orange-400 text-orange-500">{{ __('Probation') }}</Badge>
                         </div>
-                        <p class="text-muted-foreground">{{ employee.job_title || __('Employee') }}<span v-if="employee.position"> · {{ employee.position }}</span></p>
+                        <p class="text-muted-foreground">{{ employee.job_title || __('Employee') }}<span v-if="employee.position"> · {{ employee.position }}</span><span v-if="employee.rank"> · {{ employee.rank }}</span></p>
                         <p class="text-sm text-muted-foreground font-mono mt-1">{{ employee.employee_code }}</p>
                     </div>
                     <div class="flex items-center gap-2">
