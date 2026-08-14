@@ -20,7 +20,7 @@ class EquipmentResource extends JsonResource
             'category' => $this->category,
             'category_label' => $this->getCategoryLabel(),
             'status' => $this->status,
-            'classrooms_count' => $this->whenCounted('classrooms'),
+            'classrooms_count' => (int) ($this->classrooms_count ?? 0),
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
         ];

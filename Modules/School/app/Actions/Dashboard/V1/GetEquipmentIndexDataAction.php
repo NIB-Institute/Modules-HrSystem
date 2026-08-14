@@ -4,12 +4,21 @@ namespace Modules\School\Actions\Dashboard\V1;
 
 use Modules\School\Http\Resources\Dashboard\V1\EquipmentResource;
 use Modules\School\Models\Equipment;
+use Modules\School\Models\Inventory;
 
 class GetEquipmentIndexDataAction
 {
     public function execute(int $perPage = 10, array $filters = []): array
     {
-        $query = Equipment::withCount(['classrooms']);
+        // Real "used in how many classrooms" count, derived from actual deployed
+        // inventory instances (school_inventories.classroom_id) -- NOT the manual
+        // school_classroom_equipment pivot, which nothing ever writes to.
+        $query = Equipment::query()->addSelect([
+            'classrooms_count' => Inventory::query()
+                ->selectRaw('count(distinct classroom_id)')
+                ->whereColumn('equipment_id', 'school_equipment.id')
+                ->whereNotNull('classroom_id'),
+        ]);
 
         if (!empty($filters['search'])) {
             $search = $filters['search'];

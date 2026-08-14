@@ -5,6 +5,7 @@ namespace Modules\School\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -84,6 +85,15 @@ class Equipment extends Model
         return $this->belongsToMany(Classroom::class, 'school_classroom_equipment')
             ->withPivot(['value', 'quantity', 'notes'])
             ->withTimestamps();
+    }
+
+    /**
+     * The actual physical inventory instances of this equipment type
+     * (individually tracked assets, each optionally assigned to a classroom).
+     */
+    public function inventoryItems(): HasMany
+    {
+        return $this->hasMany(Inventory::class, 'equipment_id');
     }
 
     /**
