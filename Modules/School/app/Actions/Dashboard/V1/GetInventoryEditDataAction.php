@@ -24,7 +24,10 @@ class GetInventoryEditDataAction
                 ->orderBy('name')
                 ->get(),
             'departments' => Department::select('id', 'name')->orderBy('name')->get(),
-            'employees' => Employee::select('id', 'first_name', 'last_name', 'employee_code')
+            // Bypass tenant scoping: who's a valid assignee isn't limited by the
+            // viewing admin's own school scope.
+            'employees' => Employee::withoutGlobalScopes()
+                ->select('id', 'first_name', 'last_name', 'employee_code')
                 ->orderBy('first_name')
                 ->get()
                 ->map(fn (Employee $e) => ['id' => $e->id, 'name' => $e->full_name, 'employee_code' => $e->employee_code]),
