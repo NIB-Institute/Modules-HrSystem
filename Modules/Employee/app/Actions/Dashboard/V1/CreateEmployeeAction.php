@@ -59,7 +59,10 @@ class CreateEmployeeAction
             }
 
             // Sanitize JSON-array columns (multiple ID cards / certificates)
-            $data['id_cards'] = $this->sanitizeJsonRows($data['id_cards'] ?? [], 'number');
+            $data['id_cards'] = $this->sanitizeJsonRows(
+                $data['id_cards'] ?? [],
+                ['type', 'number', 'front_url', 'back_url', 'issued_date', 'expiry_date']
+            );
             $data['certificates'] = $this->sanitizeJsonRows($data['certificates'] ?? [], 'name');
 
             // Prepare employee data
@@ -172,10 +175,12 @@ class CreateEmployeeAction
      * drop rows whose required field is empty, and normalise empty strings to null.
      *
      * @param  array  $rows  Raw rows from the request.
-     * @param  string  $requiredField  Row is skipped when this field is empty.
+     * @param  string|array  $requiredField  Row is kept if this field (or, when an
+     *                                       array, ANY of these fields) is non-empty.
      */
-    protected function sanitizeJsonRows(array $rows, string $requiredField): array
+    protected function sanitizeJsonRows(array $rows, string|array $requiredField): array
     {
+        $requiredFields = (array) $requiredField;
         $clean = [];
 
         foreach ($rows as $row) {
@@ -185,7 +190,15 @@ class CreateEmployeeAction
 
             unset($row['_key']);
 
-            if (empty($row[$requiredField])) {
+            $hasAnyValue = false;
+            foreach ($requiredFields as $field) {
+                if (!empty($row[$field])) {
+                    $hasAnyValue = true;
+                    break;
+                }
+            }
+
+            if (!$hasAnyValue) {
                 continue;
             }
 

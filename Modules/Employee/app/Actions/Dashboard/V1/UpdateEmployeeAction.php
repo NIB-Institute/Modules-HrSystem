@@ -26,7 +26,10 @@ class UpdateEmployeeAction
 
             // Sanitize JSON-array columns when present (multiple ID cards / certificates)
             if (array_key_exists('id_cards', $data)) {
-                $data['id_cards'] = $this->sanitizeJsonRows($data['id_cards'] ?? [], 'number');
+                $data['id_cards'] = $this->sanitizeJsonRows(
+                    $data['id_cards'] ?? [],
+                    ['type', 'number', 'front_url', 'back_url', 'issued_date', 'expiry_date']
+                );
             }
             if (array_key_exists('certificates', $data)) {
                 $data['certificates'] = $this->sanitizeJsonRows($data['certificates'] ?? [], 'name');
@@ -117,9 +120,13 @@ class UpdateEmployeeAction
     /**
      * Sanitize rows destined for a JSON-array column: strip the Vue-only `_key`,
      * drop rows whose required field is empty, and normalise empty strings to null.
+     *
+     * @param  string|array  $requiredField  Row is kept if this field (or, when an
+     *                                       array, ANY of these fields) is non-empty.
      */
-    protected function sanitizeJsonRows(array $rows, string $requiredField): array
+    protected function sanitizeJsonRows(array $rows, string|array $requiredField): array
     {
+        $requiredFields = (array) $requiredField;
         $clean = [];
 
         foreach ($rows as $row) {
@@ -129,7 +136,15 @@ class UpdateEmployeeAction
 
             unset($row['_key']);
 
-            if (empty($row[$requiredField])) {
+            $hasAnyValue = false;
+            foreach ($requiredFields as $field) {
+                if (!empty($row[$field])) {
+                    $hasAnyValue = true;
+                    break;
+                }
+            }
+
+            if (!$hasAnyValue) {
                 continue;
             }
 
