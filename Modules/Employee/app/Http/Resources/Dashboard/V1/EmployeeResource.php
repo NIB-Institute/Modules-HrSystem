@@ -39,6 +39,8 @@ class EmployeeResource extends JsonResource
             'hire_date' => $this->hire_date?->format('Y-m-d'),
             'probation_date' => $this->probation_date?->format('Y-m-d'),
             'probation_end_date' => $this->probation_end_date?->format('Y-m-d'),
+            'confirmation_date' => $this->confirmation_date?->format('Y-m-d'),
+            'termination_date' => $this->termination_date?->format('Y-m-d'),
             'id_card_number' => $this->id_card_number,
             'id_card_front_url' => $this->id_card_front_url,
             'id_card_back_url' => $this->id_card_back_url,

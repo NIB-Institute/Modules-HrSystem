@@ -351,6 +351,22 @@ const getStatusVariant = (status: string): 'default' | 'secondary' | 'destructiv
                     </div>
                 </div>
 
+                <!-- Confirmation / Termination Dates -->
+                <div v-if="employee.confirmation_date || employee.termination_date" class="p-6 border-t bg-muted/30">
+                    <div class="flex flex-wrap items-center gap-6">
+                        <div v-if="employee.confirmation_date" class="flex items-center gap-2 text-sm">
+                            <CheckCircle class="h-4 w-4 text-muted-foreground" />
+                            <span class="font-medium">{{ __('Confirmation Date') }}:</span>
+                            <span class="text-muted-foreground">{{ formatDate(employee.confirmation_date) }}</span>
+                        </div>
+                        <div v-if="employee.termination_date" class="flex items-center gap-2 text-sm">
+                            <XCircle class="h-4 w-4 text-muted-foreground" />
+                            <span class="font-medium">{{ __('Termination / Retirement Date') }}:</span>
+                            <span class="text-muted-foreground">{{ formatDate(employee.termination_date) }}</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- ID Cards (multiple) -->
                 <div v-if="employee.id_cards && employee.id_cards.length > 0" class="p-6 border-t">
                     <div class="flex items-center gap-2 mb-3">

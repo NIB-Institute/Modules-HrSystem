@@ -215,6 +215,8 @@ export interface Employee {
     hire_date: string | null;
     probation_date: string | null;
     probation_end_date: string | null;
+    confirmation_date: string | null;
+    termination_date: string | null;
     certificate: string | null;
     certificate_image: string | null;
     certificate_images: string[] | null;
@@ -352,6 +354,8 @@ export interface EmployeeFormData {
     hire_date: string;
     probation_date: string;
     probation_end_date: string;
+    confirmation_date: string;
+    termination_date: string;
     certificate: string;
     certificate_image: string;
     certificate_images: string[];

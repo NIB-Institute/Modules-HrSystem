@@ -227,6 +227,20 @@ const salaryValue = computed({
                         <Input id="probation_end_date" v-model="form.probation_end_date" type="date" class="bg-background" />
                         <p v-if="form.errors.probation_end_date" class="text-xs text-destructive">{{ form.errors.probation_end_date }}</p>
                     </div>
+
+                    <!-- Confirmation Date -->
+                    <div class="space-y-2">
+                        <Label for="confirmation_date" class="text-xs font-medium">{{ __('Confirmation Date') }}</Label>
+                        <Input id="confirmation_date" v-model="form.confirmation_date" type="date" class="bg-background" />
+                        <p v-if="form.errors.confirmation_date" class="text-xs text-destructive">{{ form.errors.confirmation_date }}</p>
+                    </div>
+
+                    <!-- Termination / Retirement Date -->
+                    <div class="space-y-2">
+                        <Label for="termination_date" class="text-xs font-medium">{{ __('Termination / Retirement Date') }}</Label>
+                        <Input id="termination_date" v-model="form.termination_date" type="date" class="bg-background" />
+                        <p v-if="form.errors.termination_date" class="text-xs text-destructive">{{ form.errors.termination_date }}</p>
+                    </div>
                 </div>
             </div>
 
