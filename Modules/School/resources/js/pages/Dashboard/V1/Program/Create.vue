@@ -38,7 +38,7 @@ const form = useForm<ProgramFormData>({
     admission_requirements: '',
     program_coordinator: '',
     max_students: null,
-    current_enrollment: null,
+    current_enrollment: 0,
     accreditation_status: '',
     status: true,
 });
@@ -61,7 +61,7 @@ const getFormData = () => ({
     admission_requirements: form.admission_requirements || null,
     program_coordinator: form.program_coordinator || null,
     max_students: form.max_students,
-    current_enrollment: form.current_enrollment,
+    current_enrollment: form.current_enrollment ?? 0,
     accreditation_status: form.accreditation_status || null,
     status: form.status,
 });

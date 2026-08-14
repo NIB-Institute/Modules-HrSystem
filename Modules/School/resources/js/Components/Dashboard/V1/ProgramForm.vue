@@ -111,7 +111,9 @@ const maxStudentsValue = computed({
 const currentEnrollmentValue = computed({
     get: () => model.value.current_enrollment ?? undefined,
     set: (value: string | number | undefined | null) => {
-        model.value.current_enrollment = value !== undefined && value !== null && value !== '' ? Number(value) : null;
+        // current_enrollment is NOT NULL DEFAULT 0 in the database -- default to
+        // 0, not null, or Program::create() sends an explicit NULL that crashes.
+        model.value.current_enrollment = value !== undefined && value !== null && value !== '' ? Number(value) : 0;
     },
 });
 </script>
