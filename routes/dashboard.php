@@ -69,6 +69,7 @@ Route::middleware(['auth', 'verified', 'auto.permission'])->group(function () {
     // Media Library Routes
     Route::get('dashboard/media', [\App\Http\Controllers\MediaController::class, 'index'])->name('media.index');
     Route::post('dashboard/media/upload', [\App\Http\Controllers\MediaController::class, 'upload'])->name('media.upload');
+    Route::delete('dashboard/media/{media}', [\App\Http\Controllers\MediaController::class, 'destroy'])->name('media.destroy');
 });
 
 /*

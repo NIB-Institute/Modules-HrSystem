@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -99,6 +100,31 @@ class MediaController extends Controller
                 'message' => 'Failed to upload media: ' . $e->getMessage(),
             ], 500);
         }
+    }
+
+    /**
+     * Delete a media item.
+     * Only the uploader (or a super-admin) may delete it -- browsing/uploading
+     * is open to all authenticated users, so deletion mirrors that with an
+     * ownership check instead of a permission gate (same pattern as
+     * AvatarController::destroy()).
+     */
+    public function destroy(Media $media, Request $request): JsonResponse
+    {
+        $user = $request->user();
+        $isOwner = $media->model_type === User::class && (int) $media->model_id === (int) $user->id;
+
+        if (!$user->hasRole('super-admin') && !$isOwner) {
+            return response()->json([
+                'message' => 'You do not have permission to delete this media item.',
+            ], 403);
+        }
+
+        $media->delete();
+
+        return response()->json([
+            'message' => 'Media deleted successfully',
+        ]);
     }
 
     /**

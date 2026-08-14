@@ -61,6 +61,7 @@ class AutoPermission
         'dashboard.product.settings.update',
         'media.index', // Media browsing for avatar/image selection
         'media.upload', // Media upload for avatar/image
+        'media.destroy', // Media deletion; ownership is enforced in the controller instead
     ];
 
     /**

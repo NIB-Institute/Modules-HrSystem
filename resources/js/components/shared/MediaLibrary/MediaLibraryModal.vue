@@ -12,8 +12,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Upload, Image, X, Check, Search, RefreshCw } from 'lucide-vue-next';
+import { Upload, Image, X, Check, Search, RefreshCw, Eye, Trash2 } from 'lucide-vue-next';
 import { useTranslation } from '@/composables/useTranslation';
+import { ModalConfirm } from '@/components/shared';
 
 const { __ } = useTranslation();
 
@@ -68,6 +69,11 @@ const isDragging = ref(false);
 const fileInput = ref<HTMLInputElement | null>(null);
 const uploadingFiles = ref<File[]>([]);
 const uploadProgress = ref<number>(0);
+const previewItem = ref<MediaItem | null>(null);
+const deleteTarget = ref<MediaItem | null>(null);
+const showDeleteConfirm = ref(false);
+const isDeleting = ref(false);
+const deleteError = ref('');
 
 const filteredMedia = computed(() => {
     if (!searchQuery.value) return mediaItems.value;
@@ -245,6 +251,51 @@ const handleCancel = () => {
     emit('cancel');
     open.value = false;
     selectedItems.value = [];
+};
+
+const openPreview = (item: MediaItem, event: Event) => {
+    event.stopPropagation();
+    previewItem.value = item;
+};
+
+const confirmDelete = (item: MediaItem, event: Event) => {
+    event.stopPropagation();
+    deleteError.value = '';
+    deleteTarget.value = item;
+    showDeleteConfirm.value = true;
+};
+
+const handleDeleteConfirmed = async () => {
+    if (!deleteTarget.value) return;
+    isDeleting.value = true;
+    deleteError.value = '';
+
+    try {
+        const response = await fetch(`/dashboard/media/${deleteTarget.value.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
+            },
+            credentials: 'same-origin',
+        });
+
+        if (response.ok) {
+            const deletedId = deleteTarget.value.id;
+            mediaItems.value = mediaItems.value.filter(item => item.id !== deletedId);
+            selectedItems.value = selectedItems.value.filter(item => item.id !== deletedId);
+            showDeleteConfirm.value = false;
+            deleteTarget.value = null;
+        } else {
+            const errorData = await response.json().catch(() => ({}));
+            deleteError.value = errorData.message || __('Failed to delete media.');
+        }
+    } catch (error) {
+        deleteError.value = error instanceof Error ? error.message : __('Failed to delete media.');
+    } finally {
+        isDeleting.value = false;
+    }
 };
 
 const formatBytes = (bytes: number): string => {
@@ -428,6 +479,26 @@ watch(open, (isOpen) => {
                                     </div>
                                 </div>
 
+                                <!-- Per-item Actions (preview / delete) -->
+                                <div class="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button
+                                        type="button"
+                                        class="rounded-full bg-black/60 p-1.5 text-white hover:bg-black/80"
+                                        :title="__('Preview')"
+                                        @click="openPreview(item, $event)"
+                                    >
+                                        <Eye class="h-3.5 w-3.5" />
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="rounded-full bg-black/60 p-1.5 text-white hover:bg-destructive"
+                                        :title="__('Delete')"
+                                        @click="confirmDelete(item, $event)"
+                                    >
+                                        <Trash2 class="h-3.5 w-3.5" />
+                                    </button>
+                                </div>
+
                                 <!-- File Info on Hover -->
                                 <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <p class="text-xs text-white truncate">{{ item.name }}</p>
@@ -460,4 +531,34 @@ watch(open, (isOpen) => {
             </DialogFooter>
         </DialogContent>
     </Dialog>
+
+    <!-- Preview Lightbox -->
+    <Dialog :open="previewItem !== null" @update:open="(v) => { if (!v) previewItem = null; }">
+        <DialogContent class="sm:max-w-[700px]">
+            <DialogHeader>
+                <DialogTitle class="truncate pr-6">{{ previewItem?.name }}</DialogTitle>
+                <DialogDescription v-if="previewItem">
+                    {{ previewItem.size_formatted || formatBytes(previewItem.size) }}
+                </DialogDescription>
+            </DialogHeader>
+            <img
+                v-if="previewItem"
+                :src="previewItem.url"
+                :alt="previewItem.name"
+                class="max-h-[70vh] w-full rounded-md object-contain"
+            />
+        </DialogContent>
+    </Dialog>
+
+    <!-- Delete Confirmation -->
+    <ModalConfirm
+        v-model:open="showDeleteConfirm"
+        :title="__('Delete this image?')"
+        :description="deleteError || __('This will permanently remove the file. This action cannot be undone.')"
+        :confirm-text="__('Delete')"
+        :cancel-text="__('Cancel')"
+        variant="danger"
+        :loading="isDeleting"
+        @confirm="handleDeleteConfirmed"
+    />
 </template>
