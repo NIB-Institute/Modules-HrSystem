@@ -4,6 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { ImagePlus, X } from 'lucide-vue-next';
 import { MediaLibraryModal } from '../MediaLibrary';
+import { useTranslation } from '@/composables/useTranslation';
+
+const { __ } = useTranslation();
 
 interface Props {
     label?: string;
@@ -65,10 +68,10 @@ const removeImage = (index: number) => {
                 </div>
                 <div class="space-y-1">
                     <p class="text-sm font-medium">
-                        Click to select images from Media Library
+                        {{ __('Click to select images from Media Library') }}
                     </p>
                     <p class="text-xs text-muted-foreground">
-                        {{ multiple ? `Up to ${maxFiles} images` : 'Single image' }}, max {{ maxSize }}MB each
+                        {{ multiple ? __('Up to :count images', { count: maxFiles }) : __('Single image') }}, {{ __('max :size MB each', { size: maxSize }) }}
                     </p>
                 </div>
             </div>
@@ -104,7 +107,7 @@ const removeImage = (index: number) => {
                     v-if="index === 0"
                     class="absolute bottom-1 left-1 rounded bg-primary px-1.5 py-0.5 text-[10px] font-medium text-primary-foreground"
                 >
-                    Main
+                    {{ __('Main') }}
                 </div>
             </div>
 

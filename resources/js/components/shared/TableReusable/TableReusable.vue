@@ -19,6 +19,9 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Search, MoreHorizontal, ChevronLeft, ChevronRight } from 'lucide-vue-next';
+import { useTranslation } from '@/composables/useTranslation';
+
+const { __ } = useTranslation();
 
 export interface TableColumn<T> {
     key: string;
@@ -283,7 +286,7 @@ const totalColumns = computed(() => {
                             v-if="actions && actions.length > 0"
                             class="h-12 px-4 text-right align-middle font-medium text-muted-foreground"
                         >
-                            Actions
+                            {{ __('Actions') }}
                         </th>
                     </tr>
                 </thead>
@@ -312,7 +315,7 @@ const totalColumns = computed(() => {
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                                     />
                                 </svg>
-                                Loading...
+                                {{ __('Loading...') }}
                             </div>
                         </td>
                     </tr>
@@ -350,7 +353,7 @@ const totalColumns = computed(() => {
                                         </Button>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent align="end">
-                                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                        <DropdownMenuLabel>{{ __('Actions') }}</DropdownMenuLabel>
                                         <DropdownMenuSeparator />
                                         <template v-for="(action, actionIndex) in visibleActions(item)" :key="actionIndex">
                                             <DropdownMenuSeparator v-if="action.separator" />

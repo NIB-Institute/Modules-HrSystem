@@ -13,6 +13,9 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Upload, Image, X, Check, Search, RefreshCw } from 'lucide-vue-next';
+import { useTranslation } from '@/composables/useTranslation';
+
+const { __ } = useTranslation();
 
 export interface MediaItem {
     id: number;
@@ -264,9 +267,9 @@ watch(open, (isOpen) => {
     <Dialog v-model:open="open">
         <DialogContent class="sm:max-w-[900px] max-h-[85vh] flex flex-col p-0">
             <DialogHeader class="px-6 pt-6 pb-4 border-b">
-                <DialogTitle>Media Library</DialogTitle>
+                <DialogTitle>{{ __('Media Library') }}</DialogTitle>
                 <DialogDescription>
-                    Select images from your library or upload new ones
+                    {{ __('Select images from your library or upload new ones') }}
                 </DialogDescription>
             </DialogHeader>
 
@@ -281,7 +284,7 @@ watch(open, (isOpen) => {
                     @click="activeTab = 'upload'"
                 >
                     <Upload class="inline-block w-4 h-4 mr-2" />
-                    Upload files
+                    {{ __('Upload files') }}
                 </button>
                 <button
                     type="button"
@@ -292,7 +295,7 @@ watch(open, (isOpen) => {
                     @click="activeTab = 'library'"
                 >
                     <Image class="inline-block w-4 h-4 mr-2" />
-                    Media library
+                    {{ __('Media library') }}
                 </button>
             </div>
 
@@ -327,13 +330,13 @@ watch(open, (isOpen) => {
                             </div>
                             <div class="space-y-2">
                                 <p class="text-lg font-medium">
-                                    Drop files to upload
+                                    {{ __('Drop files to upload') }}
                                 </p>
                                 <p class="text-sm text-muted-foreground">
-                                    or click to select files
+                                    {{ __('or click to select files') }}
                                 </p>
                                 <p class="text-xs text-muted-foreground">
-                                    Maximum file size: {{ maxSize }}MB
+                                    {{ __('Maximum file size:') }} {{ maxSize }}MB
                                 </p>
                             </div>
                         </div>
@@ -341,7 +344,7 @@ watch(open, (isOpen) => {
 
                     <!-- Upload Progress -->
                     <div v-if="uploadingFiles.length > 0" class="mt-4 space-y-2">
-                        <p class="text-sm font-medium">Uploading {{ uploadingFiles.length }} file(s)...</p>
+                        <p class="text-sm font-medium">{{ __('Uploading') }} {{ uploadingFiles.length }} {{ __('file(s)...') }}</p>
                         <div class="h-2 bg-muted rounded-full overflow-hidden">
                             <div
                                 class="h-full bg-primary transition-all duration-300"
@@ -363,7 +366,7 @@ watch(open, (isOpen) => {
                             <Search class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                             <Input
                                 v-model="searchQuery"
-                                placeholder="Search media..."
+                                :placeholder="__('Search media...')"
                                 class="pl-9"
                             />
                         </div>
@@ -382,9 +385,9 @@ watch(open, (isOpen) => {
                         <!-- Empty State -->
                         <div v-else-if="filteredMedia.length === 0" class="flex flex-col items-center justify-center h-full text-center py-12">
                             <Image class="h-12 w-12 text-muted-foreground mb-4" />
-                            <p class="text-sm font-medium">No media found</p>
+                            <p class="text-sm font-medium">{{ __('No media found') }}</p>
                             <p class="text-sm text-muted-foreground">
-                                {{ searchQuery ? 'Try a different search term' : 'Upload some images to get started' }}
+                                {{ searchQuery ? __('Try a different search term') : __('Upload some images to get started') }}
                             </p>
                         </div>
 
@@ -440,17 +443,17 @@ watch(open, (isOpen) => {
             <DialogFooter class="px-6 py-4 border-t">
                 <div class="flex items-center justify-between w-full">
                     <p class="text-sm text-muted-foreground">
-                        {{ selectedItems.length }} {{ selectedItems.length === 1 ? 'item' : 'items' }} selected
+                        {{ selectedItems.length }} {{ selectedItems.length === 1 ? __('item') : __('items') }} {{ __('selected') }}
                     </p>
                     <div class="flex gap-2">
                         <Button variant="outline" @click="handleCancel">
-                            Cancel
+                            {{ __('Cancel') }}
                         </Button>
                         <Button
                             :disabled="selectedItems.length === 0"
                             @click="handleSelect"
                         >
-                            Select
+                            {{ __('Select') }}
                         </Button>
                     </div>
                 </div>
