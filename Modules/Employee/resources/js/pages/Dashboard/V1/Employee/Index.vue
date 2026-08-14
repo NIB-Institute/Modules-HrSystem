@@ -90,6 +90,21 @@ const columns = computed<TableColumn<Employee>[]>(() => [
         render: (employee) => employee.department_name || '-',
     },
     {
+        key: 'job_title',
+        label: __('Job Title'),
+        render: (employee) => employee.job_title || '-',
+    },
+    {
+        key: 'position',
+        label: __('Position'),
+        render: (employee) => employee.position || '-',
+    },
+    {
+        key: 'rank',
+        label: __('Rank'),
+        render: (employee) => employee.rank || '-',
+    },
+    {
         key: 'status',
         label: __('Status'),
         render: (employee) => employee.status ? __('Active') : __('Inactive'),
