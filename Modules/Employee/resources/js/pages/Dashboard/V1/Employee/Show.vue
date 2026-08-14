@@ -595,8 +595,9 @@ const getStatusVariant = (status: string): 'default' | 'secondary' | 'destructiv
                 </CardContent>
             </Card>
 
-            <!-- Attendance Statistics -->
-            <div class="space-y-4">
+            <!-- Attendance Statistics (hidden for now, keep code for later -- real attendance
+                 integration isn't wired up yet, so this always shows zeros/empty) -->
+            <div v-if="false" class="space-y-4">
                 <div class="flex items-center justify-between">
                     <h2 class="text-lg font-semibold">{{ __('Attendance Statistics') }}</h2>
                     <Button variant="outline" size="sm" as-child>
