@@ -2,6 +2,7 @@
 
 namespace Modules\Employee\Services;
 
+use App\Services\PlanNotificationService;
 use Carbon\CarbonImmutable;
 use Modules\Employee\Enums\EmployeePlanAssignmentEnum;
 use Modules\Employee\Enums\EmployeePlanReminderTierEnum;
@@ -18,6 +19,7 @@ class EmployeePlanReminderService
 {
     public function __construct(
         private readonly EmployeePlanOccurrenceCalculator $calculator,
+        private readonly PlanNotificationService $planNotifications,
     ) {
     }
 
@@ -26,17 +28,23 @@ class EmployeePlanReminderService
      */
     public function findDue(CarbonImmutable $now): array
     {
-        $tiers = [
-            EmployeePlanReminderTierEnum::GROUP_3D,
-            EmployeePlanReminderTierEnum::GROUP_1D,
-        ];
+        $tiers = array_filter([
+            $this->planNotifications->isTierEnabled('tier_3d') ? EmployeePlanReminderTierEnum::GROUP_3D : null,
+            $this->planNotifications->isTierEnabled('tier_1d') ? EmployeePlanReminderTierEnum::GROUP_1D : null,
+        ]);
+
+        if (empty($tiers)) {
+            return []; // Master switch off, Telegram channel off, or both tiers disabled.
+        }
 
         // Lookahead window: longest tier is 3 days, plus 1 day slack.
         $lookaheadEnd = $now->addDays(4);
 
-        // Only plans with a group chat ID configured AND at least one active assignee.
+        // A plan is eligible once it resolves to SOME chat ID (the settings-page
+        // default, or its own telegram_group_chat_id) and has an active assignee.
+        // We can't filter the chat ID in SQL since the default lives in Settings,
+        // so pull plans with active assignees and resolve/skip per-plan below.
         $plans = EmployeePlan::query()
-            ->whereNotNull('telegram_group_chat_id')
             ->whereHas('assignments', function ($q) {
                 $q->whereIn('status', [
                     EmployeePlanAssignmentEnum::STATUS_ASSIGNED,
@@ -48,6 +56,10 @@ class EmployeePlanReminderService
         $due = [];
 
         foreach ($plans as $plan) {
+            if (! $this->planNotifications->resolveChatId($plan->telegram_group_chat_id)) {
+                continue;
+            }
+
             $occurrences = $this->calculator->occurrencesBetween(
                 $plan,
                 $now->startOfDay(),

@@ -3,6 +3,7 @@
 namespace Modules\Employee\Listeners;
 
 use App\Services\Notification\Channels\TelegramChannel;
+use App\Services\PlanNotificationService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\App;
@@ -13,7 +14,8 @@ use Modules\Employee\Events\EmployeePlanAssignmentCreated;
  * Posts a Telegram alert in the plan's group when a new employee is assigned.
  * Fires per-assignment (no dedup needed — each assignment is a discrete event).
  *
- * Skipped silently when the plan has no telegram_group_chat_id.
+ * Skipped silently when notifications are disabled or no chat ID is resolved
+ * (Settings > Plan Notifications default, or the plan's own group chat ID).
  */
 class SendOnAssignmentReminderListener implements ShouldQueue
 {
@@ -22,12 +24,18 @@ class SendOnAssignmentReminderListener implements ShouldQueue
     public int $tries = 3;
     public array $backoff = [10, 60, 300];
 
-    public function __construct(private readonly TelegramChannel $telegram)
-    {
+    public function __construct(
+        private readonly TelegramChannel $telegram,
+        private readonly PlanNotificationService $planNotifications,
+    ) {
     }
 
     public function handle(EmployeePlanAssignmentCreated $event): void
     {
+        if (! $this->planNotifications->isTierEnabled('on_assignment')) {
+            return;
+        }
+
         $assignment = $event->assignment->loadMissing(['plan', 'employee']);
 
         $plan = $assignment->plan;
@@ -37,9 +45,9 @@ class SendOnAssignmentReminderListener implements ShouldQueue
             return;
         }
 
-        $chatId = $plan->telegram_group_chat_id;
+        $chatId = $this->planNotifications->resolveChatId($plan->telegram_group_chat_id);
         if (! $chatId) {
-            return; // Plan has no group configured — silently skip.
+            return; // No default chat configured and plan has no group — silently skip.
         }
 
         $employeeName = trim(($employee->first_name ?? '') . ' ' . ($employee->last_name ?? '')) ?: 'An employee';

@@ -215,7 +215,7 @@ const sendTest = async () => {
                 <Label for="default_chat_id">Default chat / group ID</Label>
                 <Input id="default_chat_id" v-model="form.default_chat_id" placeholder="-5244139148" class="font-mono" />
                 <p class="text-muted-foreground text-xs">
-                    All plan notifications (assignments + countdown reminders) post to this chat. Per-plan chat IDs are no longer used.
+                    All plan notifications (assignments + countdown reminders) post to this chat. A plan's own group chat ID is only used as a fallback when this is left empty.
                 </p>
                 <p v-if="form.errors.default_chat_id" class="text-destructive text-xs">{{ form.errors.default_chat_id }}</p>
 

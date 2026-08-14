@@ -3,6 +3,7 @@
 namespace Modules\Employee\Listeners;
 
 use App\Services\Notification\Channels\TelegramChannel;
+use App\Services\PlanNotificationService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\App;
@@ -18,7 +19,8 @@ use Modules\Employee\Models\EmployeePlanAssignment;
  * with a "🆕" badge, so HR sees the complete roster regardless of whether some
  * were already assigned.
  *
- * Skipped silently when the plan has no telegram_group_chat_id.
+ * Skipped silently when notifications are disabled or no chat ID is resolved
+ * (Settings > Plan Notifications default, or the plan's own group chat ID).
  */
 class SendBatchAssignmentNotificationListener implements ShouldQueue
 {
@@ -27,8 +29,10 @@ class SendBatchAssignmentNotificationListener implements ShouldQueue
     public int $tries = 3;
     public array $backoff = [10, 60, 300];
 
-    public function __construct(private readonly TelegramChannel $telegram)
-    {
+    public function __construct(
+        private readonly TelegramChannel $telegram,
+        private readonly PlanNotificationService $planNotifications,
+    ) {
     }
 
     public function handle(EmployeesAssignedToPlan $event): void
@@ -37,12 +41,16 @@ class SendBatchAssignmentNotificationListener implements ShouldQueue
             return;
         }
 
+        if (! $this->planNotifications->isTierEnabled('on_assignment')) {
+            return;
+        }
+
         $plan = EmployeePlan::find($event->planId);
         if (! $plan) {
             return;
         }
 
-        $chatId = $plan->telegram_group_chat_id;
+        $chatId = $this->planNotifications->resolveChatId($plan->telegram_group_chat_id);
         if (! $chatId) {
             return;
         }
