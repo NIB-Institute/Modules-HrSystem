@@ -17,7 +17,7 @@ use Modules\Employee\Http\Requests\Dashboard\V1\StoreDocumentRequest;
 use Modules\Employee\Http\Requests\Dashboard\V1\UpdateDocumentRequest;
 use Modules\Employee\Http\Resources\Dashboard\V1\DocumentResource;
 use Modules\Employee\Models\Documents;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DocumentController extends Controller
 {
@@ -100,21 +100,22 @@ class DocumentController extends Controller
     }
 
     /**
-     * Force-download the file with its original filename. Streams via
-     * BinaryFileResponse so large files don't load into PHP memory.
+     * Force-download the file with its original filename. Streams via the
+     * disk's own download() so this works for both the local 'public' disk
+     * and cloud disks (R2/S3) that have no meaningful local file path.
      */
-    public function download(Documents $document): BinaryFileResponse
+    public function download(Documents $document): StreamedResponse
     {
+        $disk = Storage::disk(config('filesystems.document_disk'));
+
         abort_unless(
-            $document->file_path && Storage::disk('public')->exists($document->file_path),
+            $document->file_path && $disk->exists($document->file_path),
             404,
             'File no longer exists on disk.',
         );
 
-        $absolutePath = Storage::disk('public')->path($document->file_path);
-
-        return response()->download(
-            $absolutePath,
+        return $disk->download(
+            $document->file_path,
             $document->original_filename ?: $document->name,
             ['Content-Type' => $document->mime_type ?: 'application/octet-stream'],
         );

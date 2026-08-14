@@ -24,12 +24,14 @@ class UpdateDocumentAction
         $document->expiry_date = $expiryDate;
 
         if ($newFile) {
+            $disk = config('filesystems.document_disk');
+
             // Delete the old file from disk before storing the new one.
-            if ($document->file_path && Storage::disk('public')->exists($document->file_path)) {
-                Storage::disk('public')->delete($document->file_path);
+            if ($document->file_path && Storage::disk($disk)->exists($document->file_path)) {
+                Storage::disk($disk)->delete($document->file_path);
             }
 
-            $document->file_path = $newFile->store(self::STORAGE_PATH, 'public');
+            $document->file_path = $newFile->store(self::STORAGE_PATH, $disk);
             $document->original_filename = $newFile->getClientOriginalName();
             $document->mime_type = $newFile->getClientMimeType() ?: 'application/octet-stream';
             $document->size_bytes = $newFile->getSize() ?: 0;

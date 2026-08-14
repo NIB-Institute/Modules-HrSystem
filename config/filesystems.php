@@ -17,6 +17,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Document Upload Disk
+    |--------------------------------------------------------------------------
+    |
+    | The disk used for the Documents feature (Modules/Employee). Must be a
+    | disk that's publicly servable (either the local 'public' disk + storage
+    | symlink, or a cloud disk like R2/S3) since documents need viewable URLs.
+    | Defaults to 'public' for local dev; set DOCUMENT_DISK=r2 in production
+    | so uploads persist across deploys instead of living on ephemeral disk.
+    |
+    */
+
+    'document_disk' => env('DOCUMENT_DISK', 'public'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Filesystem Disks
     |--------------------------------------------------------------------------
     |

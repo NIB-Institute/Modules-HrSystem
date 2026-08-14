@@ -62,6 +62,10 @@ services:
         value: database
       - key: FILESYSTEM_DISK
         value: r2 # Cloudflare R2 -- required, Render's disk is ephemeral per-deploy
+      - key: MEDIA_DISK
+        value: r2 # Spatie MediaLibrary (avatars, certificates) -- same reason
+      - key: DOCUMENT_DISK
+        value: r2 # Employee module's Documents feature -- same reason
       - key: CLOUDFLARE_R2_ACCESS_KEY_ID
         sync: false
       - key: CLOUDFLARE_R2_SECRET_ACCESS_KEY

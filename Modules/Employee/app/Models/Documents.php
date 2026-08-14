@@ -51,8 +51,9 @@ class Documents extends Model
 
         // Remove the file from disk when the model is permanently deleted.
         static::forceDeleted(function (Documents $model) {
-            if ($model->file_path && Storage::disk('public')->exists($model->file_path)) {
-                Storage::disk('public')->delete($model->file_path);
+            $disk = Storage::disk(config('filesystems.document_disk'));
+            if ($model->file_path && $disk->exists($model->file_path)) {
+                $disk->delete($model->file_path);
             }
         });
     }
@@ -68,13 +69,14 @@ class Documents extends Model
     }
 
     /**
-     * Public URL for downloading the file (resolves the symlinked /storage path).
+     * Public URL for the file, resolved via the configured document disk
+     * (local 'public' disk + storage symlink, or a cloud disk like R2/S3).
      */
     protected function url(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->file_path
-                ? asset('storage/' . ltrim($this->file_path, '/'))
+                ? Storage::disk(config('filesystems.document_disk'))->url($this->file_path)
                 : null,
         );
     }

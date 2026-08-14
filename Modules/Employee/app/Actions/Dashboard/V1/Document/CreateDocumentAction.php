@@ -18,7 +18,7 @@ class CreateDocumentAction
         ?string $startDate = null,
         ?string $expiryDate = null,
     ): Documents {
-        $storedPath = $file->store(self::STORAGE_PATH, 'public');
+        $storedPath = $file->store(self::STORAGE_PATH, config('filesystems.document_disk'));
 
         return Documents::create([
             'name'        => $name,

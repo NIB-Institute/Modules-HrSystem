@@ -21,6 +21,8 @@ interface DocumentModel {
     size_bytes: number;
     human_size: string;
     description: string | null;
+    start_date: string | null;
+    expiry_date: string | null;
     url: string | null;
     uploader_name?: string | null;
     created_at: string;
