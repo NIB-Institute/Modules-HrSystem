@@ -25,7 +25,7 @@ class ClassroomSeeder extends Seeder
         $classrooms = [
             // Lecture Halls — Business Administration owns the big halls.
             [
-                'department' => 'Business Administration',
+                'department' => 'Accounting',
                 'name' => 'Main Lecture Hall A',
                 'code' => 'LH-A01',
                 'building' => 'Main Building',
@@ -41,7 +41,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'Business Administration',
+                'department' => 'Accounting',
                 'name' => 'Main Lecture Hall B',
                 'code' => 'LH-B01',
                 'building' => 'Main Building',
@@ -59,7 +59,7 @@ class ClassroomSeeder extends Seeder
 
             // Regular Classrooms — split between CS and English Language.
             [
-                'department' => 'Computer Science',
+                'department' => 'IT Department',
                 'name' => 'Room 101',
                 'code' => 'RM-101',
                 'building' => 'Academic Block A',
@@ -75,7 +75,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'Computer Science',
+                'department' => 'IT Department',
                 'name' => 'Room 102',
                 'code' => 'RM-102',
                 'building' => 'Academic Block A',
@@ -91,7 +91,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'English Language',
+                'department' => 'Accounting',
                 'name' => 'Room 201',
                 'code' => 'RM-201',
                 'building' => 'Academic Block A',
@@ -107,7 +107,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'English Language',
+                'department' => 'Accounting',
                 'name' => 'Room 202',
                 'code' => 'RM-202',
                 'building' => 'Academic Block A',
@@ -125,7 +125,7 @@ class ClassroomSeeder extends Seeder
 
             // Computer Labs — Computer Science.
             [
-                'department' => 'Computer Science',
+                'department' => 'IT Department',
                 'name' => 'Computer Lab 1',
                 'code' => 'CL-01',
                 'building' => 'Technology Center',
@@ -141,7 +141,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'Computer Science',
+                'department' => 'IT Department',
                 'name' => 'Computer Lab 2',
                 'code' => 'CL-02',
                 'building' => 'Technology Center',
@@ -157,7 +157,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'Mathematics',
+                'department' => 'IT Department',
                 'name' => 'Science Lab',
                 'code' => 'SL-01',
                 'building' => 'Science Building',
@@ -173,7 +173,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'Mathematics',
+                'department' => 'IT Department',
                 'name' => 'Physics Lab',
                 'code' => 'PL-01',
                 'building' => 'Science Building',
@@ -191,7 +191,7 @@ class ClassroomSeeder extends Seeder
 
             // Seminar Rooms — Business Administration.
             [
-                'department' => 'Business Administration',
+                'department' => 'Accounting',
                 'name' => 'Seminar Room 1',
                 'code' => 'SR-01',
                 'building' => 'Main Building',
@@ -207,7 +207,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'Business Administration',
+                'department' => 'Accounting',
                 'name' => 'Seminar Room 2',
                 'code' => 'SR-02',
                 'building' => 'Main Building',
@@ -225,7 +225,7 @@ class ClassroomSeeder extends Seeder
 
             // Auditorium — Business Administration.
             [
-                'department' => 'Business Administration',
+                'department' => 'Accounting',
                 'name' => 'Main Auditorium',
                 'code' => 'AUD-01',
                 'building' => 'Auditorium Building',
@@ -243,7 +243,7 @@ class ClassroomSeeder extends Seeder
 
             // Workshop — Engineering and English (Art Studio).
             [
-                'department' => 'Engineering',
+                'department' => 'IT Department',
                 'name' => 'Engineering Workshop',
                 'code' => 'WS-01',
                 'building' => 'Engineering Block',
@@ -259,7 +259,7 @@ class ClassroomSeeder extends Seeder
                 'status' => true,
             ],
             [
-                'department' => 'English Language',
+                'department' => 'Accounting',
                 'name' => 'Art Studio',
                 'code' => 'AS-01',
                 'building' => 'Arts Building',
