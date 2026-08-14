@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useTranslation } from '@/composables/useTranslation';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -50,6 +50,34 @@ const memberGender = computed({
         props.member.gender = (value as Gender) || null;
     },
 });
+
+/**
+ * Age is derived from date_of_birth whenever a birth date is known, so the
+ * two never drift apart. It stays manually editable only for family members
+ * whose exact birth date isn't known (common on the paper form this mirrors).
+ */
+const calculateAge = (dateOfBirth: string): number => {
+    const dob = new Date(dateOfBirth);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const hasNotHadBirthdayYet =
+        today.getMonth() < dob.getMonth() ||
+        (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate());
+    if (hasNotHadBirthdayYet) {
+        age--;
+    }
+    return Math.max(age, 0);
+};
+
+watch(
+    () => props.member.date_of_birth,
+    (dateOfBirth) => {
+        if (dateOfBirth) {
+            props.member.age = calculateAge(dateOfBirth);
+        }
+    },
+    { immediate: true },
+);
 </script>
 
 <template>
@@ -101,8 +129,18 @@ const memberGender = computed({
                 <Label class="text-xs font-medium">{{ __('Age') }}</Label>
                 <div class="relative">
                     <Hash class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input v-model.number="member.age" type="number" min="0" :placeholder="__('Age')" class="pl-10 bg-background" />
+                    <Input
+                        v-model.number="member.age"
+                        type="number"
+                        min="0"
+                        :placeholder="__('Age')"
+                        :disabled="!!member.date_of_birth"
+                        class="pl-10 bg-background"
+                    />
                 </div>
+                <p v-if="member.date_of_birth" class="text-xs text-muted-foreground">
+                    {{ __('Calculated automatically from date of birth') }}
+                </p>
             </div>
             <div class="space-y-2">
                 <Label class="text-xs font-medium">{{ __('Occupation') }}</Label>

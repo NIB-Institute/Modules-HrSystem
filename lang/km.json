@@ -26,6 +26,7 @@
     "max :size MB each": "អតិបរមា :size MB ក្នុងមួយ",
     "Main": "សំខាន់",
     "Preview": "មើលជាមុន",
+    "Calculated automatically from date of birth": "គណនាដោយស្វ័យប្រវត្តិពីថ្ងៃខែឆ្នាំកំណើត",
     "Delete this image?": "លុបរូបភាពនេះមែនទេ?",
     "This will permanently remove the file. This action cannot be undone.": "សកម្មភាពនេះនឹងលុបឯកសារជាអចិន្ត្រៃយ៍ ហើយមិនអាចត្រឡប់វិញបានទេ។",
     "Failed to delete media.": "បរាជ័យក្នុងការលុបមេឌា។",
